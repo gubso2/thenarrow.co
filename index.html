@@ -1,0 +1,1849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Narrow — Walk the Path</title>
+  <meta name="description" content="The Narrow is a Christian self-discipline app helping men quit pornography and build unshakeable character. Walk the narrow path." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    :root {
+      --cream:        #F3F1EC;
+      --cream-dark:   #E7E3DB;
+      --cream-border: #D6D1C8;
+      --ink:          #2F2F2F;
+      --ink-mid:      #6B6B6B;
+      --ink-light:    #9A9A9A;
+      --gold:         #8C7A5A;
+      --gold-light:   #A8916C;
+      --gold-dark:    #6E5F46;
+      --gold-pale:    #EAE5DC;
+      --dark-bg:      #2C3A3F;
+      --dark-surface: #35454A;
+      --dark-border:  rgba(255,255,255,0.08);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+
+      --max-w: 1100px;
+      --px: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Utilities ────────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--px);
+    }
+
+    .gold { color: var(--gold); }
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .label::before {
+      content: '';
+      display: block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: .875rem 2rem;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: #404040; transform: translateY(-1px); }
+    .btn-primary.gold-fill {
+      background: var(--gold);
+      color: var(--ink);
+    }
+    .btn-primary.gold-fill:hover { background: var(--gold-light); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: transparent;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: .875rem 2rem;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,.6);
+      background: rgba(255,255,255,.05);
+    }
+
+    /* ── Navigation ───────────────────────────────────────────── */
+    .nav-wrap {
+      position: fixed;
+      top: 1.25rem;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding-inline: var(--px);
+      pointer-events: none;
+    }
+    .nav {
+      pointer-events: all;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding: .75rem 1rem .75rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(44,58,63,0.75);
+      backdrop-filter: blur(100px);
+      -webkit-backdrop-filter: blur(100px);
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background .3s, border-color .3s;
+    }
+    .nav.scrolled {
+      background: rgba(44,58,63,0.95);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: #fff;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      color: rgba(255,255,255,.65);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .nav-cta {
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      background: #fff;
+      color: #2F2F2F;
+      padding: .6rem 1.5rem;
+      border-radius: 50px;
+      transition: background .2s, opacity .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: rgba(255,255,255,.88); }
+
+    .nav-mobile-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-mobile-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,.8);
+      transition: transform .2s;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-btn { display: flex; }
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────── */
+    .hero {
+      padding-top: 9rem;
+      padding-bottom: 5rem;
+      padding-inline: var(--px);
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      min-height: 92vh;
+    }
+
+    .hero-content { max-width: 540px; }
+    .hero-content .label { margin-bottom: 1.5rem; }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .8rem;
+      color: var(--ink-light);
+    }
+    .hero-trust-dots {
+      display: flex;
+      gap: -4px;
+    }
+    .hero-trust-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      border: 2px solid var(--cream);
+      margin-left: -6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .65rem;
+      font-weight: 700;
+      color: var(--ink-mid);
+    }
+    .hero-trust-dot:first-child { margin-left: 0; }
+
+    /* Phone mockup */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-frame {
+      width: 280px;
+      height: 560px;
+      background: var(--dark-bg);
+      border-radius: 44px;
+      border: 10px solid #2a2926;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.06),
+        0 60px 120px rgba(0,0,0,.35),
+        0 20px 40px rgba(0,0,0,.15);
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 28px;
+      background: #2a2926;
+      border-radius: 0 0 18px 18px;
+      z-index: 10;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      padding: 2.5rem .75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      overflow: hidden;
+    }
+
+    /* App UI inside phone */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: .5rem;
+    }
+    .app-greeting {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+      line-height: 1.2;
+    }
+    .app-greeting span { display: block; font-size: .6rem; font-family: var(--font-body); font-weight: 500; color: rgba(255,255,255,.4); letter-spacing: .08em; text-transform: uppercase; }
+    .app-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .app-streak-card {
+      background: linear-gradient(135deg, rgba(201,162,77,.15) 0%, rgba(201,162,77,.05) 100%);
+      border: 1px solid rgba(201,162,77,.2);
+      border-radius: 16px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .app-streak-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .app-streak-label {
+      font-size: .6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.4);
+      margin-top: .2rem;
+    }
+    .app-streak-sub {
+      font-size: .65rem;
+      color: rgba(255,255,255,.55);
+      margin-top: .4rem;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem;
+    }
+    .app-tile {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: .75rem;
+    }
+    .app-tile-icon {
+      font-size: 1rem;
+      margin-bottom: .3rem;
+    }
+    .app-tile-label {
+      font-size: .55rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.35);
+    }
+    .app-tile-value {
+      font-size: .8rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.8);
+      margin-top: .15rem;
+    }
+
+    .app-reflection {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: .75rem;
+    }
+    .app-reflection-label {
+      font-size: .55rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--gold);
+      margin-bottom: .35rem;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+    .app-reflection-label::before { content: '✦'; font-size: .5rem; }
+    .app-reflection-text {
+      font-size: .62rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .app-nav {
+      display: flex;
+      justify-content: space-around;
+      padding: .5rem 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+      margin-top: auto;
+    }
+    .app-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: .45rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.3);
+    }
+    .app-nav-item.active { color: var(--gold); }
+    .app-nav-dot { width: 18px; height: 18px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .7rem; }
+    .app-nav-item.active .app-nav-dot { background: rgba(201,162,77,.15); }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 7rem;
+        text-align: center;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-sub { max-width: 100%; }
+      .hero-actions { justify-content: center; }
+      .hero-trust { justify-content: center; }
+      .hero-visual { order: -1; }
+    }
+
+    /* ── Stats Bar ────────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--dark-bg);
+      padding: 3rem var(--px);
+    }
+    .stats-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-divider {
+      border: none;
+      border-left: 1px solid var(--dark-border);
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .stat-label {
+      font-size: .85rem;
+      color: rgba(255,255,255,.45);
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .stats-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
+    /* ── Problem Section ──────────────────────────────────────── */
+    .section {
+      padding: 6rem var(--px);
+    }
+    .section-center { text-align: center; }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-header.center { text-align: center; }
+    .section-header .label { margin-bottom: 1rem; }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.01em;
+      color: var(--ink);
+    }
+    .section-headline em { font-style: italic; color: var(--gold); }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      max-width: 540px;
+      margin-top: 1rem;
+      line-height: 1.7;
+    }
+    .section-header.center .section-sub {
+      margin-inline: auto;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--cream-border);
+      border: 1px solid var(--cream-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .problem-card {
+      background: var(--cream);
+      padding: 2.5rem;
+      transition: background .2s;
+    }
+    .problem-card:hover { background: var(--cream-dark); }
+    .problem-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--gold-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    .problem-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .6rem;
+      letter-spacing: -.01em;
+    }
+    .problem-body {
+      font-size: .9rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .problem-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Reframe Section ──────────────────────────────────────── */
+    .reframe {
+      background: var(--dark-bg);
+      padding: 7rem var(--px);
+      position: relative;
+      overflow: hidden;
+    }
+    .reframe::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,162,77,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .reframe-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .reframe-content .label { color: var(--gold); margin-bottom: 1.25rem; }
+
+    .reframe-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -.01em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .reframe-headline em { font-style: italic; color: var(--gold); }
+
+    .reframe-body {
+      font-size: 1rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .reframe-scripture {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.25rem;
+      margin-top: 2rem;
+    }
+    .reframe-scripture p {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(255,255,255,.6);
+      line-height: 1.6;
+    }
+    .reframe-scripture cite {
+      display: block;
+      font-style: normal;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: .5rem;
+    }
+
+    .reframe-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+    }
+    .pillar {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      border-radius: 4px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      transition: border-color .2s;
+    }
+    .pillar:hover { border-color: rgba(201,162,77,.3); }
+    .pillar-num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: .6;
+      min-width: 2rem;
+      line-height: 1;
+      margin-top: .1rem;
+    }
+    .pillar-content {}
+    .pillar-title {
+      font-weight: 700;
+      font-size: .95rem;
+      color: rgba(255,255,255,.9);
+      margin-bottom: .3rem;
+      letter-spacing: .01em;
+    }
+    .pillar-desc {
+      font-size: .85rem;
+      color: rgba(255,255,255,.4);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 860px) {
+      .reframe-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* ── Features Section ─────────────────────────────────────── */
+    .features {
+      padding: 7rem var(--px);
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .feature-card {
+      padding: 2rem;
+      border: 1px solid var(--cream-border);
+      border-radius: 4px;
+      background: var(--cream);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .feature-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold), 0 8px 32px rgba(201,162,77,.06);
+    }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    .feature-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: .5rem;
+      letter-spacing: -.01em;
+    }
+    .feature-body {
+      font-size: .875rem;
+      color: var(--ink-mid);
+      line-height: 1.7;
+    }
+    .feature-outcome {
+      margin-top: 1rem;
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--gold-dark);
+      letter-spacing: .04em;
+    }
+    .feature-outcome::before { content: '→ '; }
+
+    @media (max-width: 860px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Testimonials ─────────────────────────────────────────── */
+    .testimonials {
+      background: var(--cream-dark);
+      padding: 7rem var(--px);
+    }
+    .testimonials-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .testimonial-card {
+      background: var(--cream);
+      border: 1px solid var(--cream-border);
+      border-radius: 4px;
+      padding: 2rem;
+    }
+    .testimonial-stars {
+      color: var(--gold);
+      font-size: .8rem;
+      letter-spacing: .1em;
+      margin-bottom: 1rem;
+    }
+    .testimonial-quote {
+      font-size: .9rem;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .testimonial-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .75rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--ink);
+    }
+    .testimonial-meta {
+      font-size: .75rem;
+      color: var(--ink-light);
+      margin-top: .1rem;
+    }
+
+    @media (max-width: 860px) {
+      .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+    }
+
+    /* ── Authority Section ────────────────────────────────────── */
+    .authority {
+      padding: 7rem var(--px);
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .authority-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .authority-block {
+      padding: 2rem;
+      border-top: 2px solid var(--cream-border);
+    }
+    .authority-block:first-child { border-top-color: var(--gold); }
+    .authority-block-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .75rem;
+    }
+    .authority-block-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .75rem;
+      letter-spacing: -.01em;
+    }
+    .authority-block-body {
+      font-size: .875rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+    }
+    .authority-block-body strong { color: var(--ink); font-weight: 600; }
+
+    @media (max-width: 860px) {
+      .authority-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Pricing ──────────────────────────────────────────────── */
+    .pricing {
+      background: var(--dark-bg);
+      padding: 7rem var(--px);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing::before {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(201,162,77,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pricing-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .pricing-header { text-align: center; margin-bottom: 3.5rem; }
+    .pricing-header .label { color: var(--gold); justify-content: center; margin-bottom: 1rem; }
+    .pricing-header .label::before { display: none; }
+    .pricing-header .section-headline { color: #fff; }
+    .pricing-header .section-sub { color: rgba(255,255,255,.45); margin-inline: auto; }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 820px;
+      margin-inline: auto;
+    }
+    .pricing-card {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      border-radius: 8px;
+      padding: 2.5rem;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: rgba(201,162,77,.4);
+      box-shadow: 0 0 0 1px rgba(201,162,77,.15);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--ink);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .9rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .pricing-plan-name {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 1rem;
+    }
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: .3rem;
+      margin-bottom: .5rem;
+    }
+    .pricing-price-amount {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    .pricing-price-period {
+      font-size: .85rem;
+      color: rgba(255,255,255,.35);
+    }
+    .pricing-price-note {
+      font-size: .8rem;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 2rem;
+    }
+    .pricing-divider {
+      height: 1px;
+      background: var(--dark-border);
+      margin: 1.5rem 0;
+    }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      font-size: .875rem;
+      color: rgba(255,255,255,.6);
+    }
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+    .pricing-note {
+      text-align: center;
+      font-size: .8rem;
+      color: rgba(255,255,255,.3);
+      margin-top: 1.5rem;
+    }
+    .pricing-donation {
+      max-width: 820px;
+      margin: 2rem auto 0;
+      background: rgba(201,162,77,.06);
+      border: 1px solid rgba(201,162,77,.15);
+      border-radius: 6px;
+      padding: 1.25rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .pricing-donation-icon { font-size: 1.25rem; flex-shrink: 0; }
+    .pricing-donation-text { font-size: .85rem; color: rgba(255,255,255,.5); line-height: 1.5; }
+    .pricing-donation-text strong { color: var(--gold); font-weight: 600; }
+
+    @media (max-width: 640px) {
+      .pricing-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ── FAQ ──────────────────────────────────────────────────── */
+    .faq {
+      padding: 7rem var(--px);
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .faq-header { text-align: center; margin-bottom: 3rem; }
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-top: 1px solid var(--cream-border);
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--cream-border); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--ink);
+      transition: color .2s;
+    }
+    .faq-question:hover { color: var(--gold-dark); }
+    .faq-chevron {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .6rem;
+      transition: transform .3s, background .2s;
+    }
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      background: var(--gold-pale);
+    }
+    .faq-answer {
+      font-size: .9rem;
+      color: var(--ink-mid);
+      line-height: 1.75;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      padding-bottom: 0;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: 1.4rem;
+    }
+
+    /* ── Final CTA ────────────────────────────────────────────── */
+    .final-cta {
+      background: var(--dark-bg);
+      padding: 9rem var(--px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(201,162,77,.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .final-cta-inner {
+      max-width: 640px;
+      margin-inline: auto;
+      position: relative;
+    }
+    .final-cta .label {
+      color: var(--gold);
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .final-cta .label::before { display: none; }
+    .final-cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -.015em;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .final-cta-headline em { font-style: italic; color: var(--gold); }
+    .final-cta-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.45);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+      margin-inline: auto;
+    }
+    .final-cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .final-cta-note {
+      margin-top: 1.5rem;
+      font-size: .8rem;
+      color: rgba(255,255,255,.25);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer {
+      background: var(--dark-bg);
+      border-top: 1px solid var(--dark-border);
+      padding: 3rem var(--px);
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.5);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: .8rem;
+      color: rgba(255,255,255,.3);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,.7); }
+    .footer-copy {
+      font-size: .75rem;
+      color: rgba(255,255,255,.2);
+      width: 100%;
+      text-align: center;
+      margin-top: .5rem;
+    }
+
+    /* ── Section divider ──────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--cream-border);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* ── Animations ───────────────────────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-up {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .6s ease, transform .6s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <div class="nav-wrap">
+  <header class="nav" id="nav">
+    <a class="nav-logo" href="#"><span>The</span> Narrow</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#science">The Why</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="nav-cta" href="#pricing">Start Free</a></li>
+      </ul>
+    </nav>
+    <button class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  </div>
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <main>
+    <section class="hero" aria-label="Hero">
+      <div class="hero-content">
+        <span class="label">A Christian Discipline App</span>
+        <h1 class="hero-headline">
+          The man<br>you were<br><em>meant to be</em><br>is waiting.
+        </h1>
+        <p class="hero-sub">
+          The Narrow is a discipline system for men who are done making excuses.
+          Quit pornography. Build character. Walk the path that few are willing to take.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary gold-fill" href="#pricing">Begin Your Journey</a>
+          <a class="btn-primary" href="#features" style="background:transparent;color:var(--ink);border:1px solid var(--cream-border);">See How It Works</a>
+        </div>
+        <div class="hero-trust">
+          <div class="hero-trust-dots">
+            <div class="hero-trust-dot">J</div>
+            <div class="hero-trust-dot">M</div>
+            <div class="hero-trust-dot">D</div>
+            <div class="hero-trust-dot">R</div>
+            <div class="hero-trust-dot">+</div>
+          </div>
+          <span>Join thousands of men already on the path</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="app-header">
+              <div class="app-greeting">
+                <span>Good morning</span>
+                Marcus
+              </div>
+              <div class="app-avatar">M</div>
+            </div>
+
+            <div class="app-streak-card">
+              <div class="app-streak-number">47</div>
+              <div class="app-streak-label">Days on the Narrow Path</div>
+              <div class="app-streak-sub">Your longest streak yet — keep going.</div>
+            </div>
+
+            <div class="app-grid">
+              <div class="app-tile">
+                <div class="app-tile-icon">🔥</div>
+                <div class="app-tile-label">Streak</div>
+                <div class="app-tile-value">47 days</div>
+              </div>
+              <div class="app-tile">
+                <div class="app-tile-icon">📖</div>
+                <div class="app-tile-label">Reflections</div>
+                <div class="app-tile-value">32 done</div>
+              </div>
+              <div class="app-tile">
+                <div class="app-tile-icon">⚔️</div>
+                <div class="app-tile-label">Urges Fought</div>
+                <div class="app-tile-value">12 this week</div>
+              </div>
+              <div class="app-tile">
+                <div class="app-tile-icon">🤝</div>
+                <div class="app-tile-label">Brothers</div>
+                <div class="app-tile-value">3 active</div>
+              </div>
+            </div>
+
+            <div class="app-reflection">
+              <div class="app-reflection-label">Today's Reflection</div>
+              <div class="app-reflection-text">"He who conquers himself is greater than he who conquers a city." — Prov. 16:32</div>
+            </div>
+
+            <div class="app-nav">
+              <div class="app-nav-item active">
+                <div class="app-nav-dot">🏠</div>
+                <span>Home</span>
+              </div>
+              <div class="app-nav-item">
+                <div class="app-nav-dot">📊</div>
+                <span>Progress</span>
+              </div>
+              <div class="app-nav-item">
+                <div class="app-nav-dot">⚔️</div>
+                <span>Tools</span>
+              </div>
+              <div class="app-nav-item">
+                <div class="app-nav-dot">👥</div>
+                <span>Brothers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Stats Bar ─────────────────────────────────────────── -->
+    <div class="stats-bar">
+      <div class="stats-inner">
+        <div class="fade-up">
+          <div class="stat-number">78%</div>
+          <div class="stat-label">Report renewed sense of purpose within 30 days</div>
+        </div>
+        <div class="fade-up">
+          <div class="stat-number">47</div>
+          <div class="stat-label">Average streak length after 90 days with The Narrow</div>
+        </div>
+        <div class="fade-up">
+          <div class="stat-number">10%</div>
+          <div class="stat-label">Of every subscription donated to men's recovery ministries</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Problem Section ───────────────────────────────────── -->
+    <section class="section" style="max-width:var(--max-w);margin-inline:auto;">
+      <div class="section-header fade-up">
+        <span class="label">The Real Cost</span>
+        <h2 class="section-headline">
+          Pornography doesn't just<br>
+          take your time.<br>
+          <em>It takes everything.</em>
+        </h2>
+        <p class="section-sub">
+          Most men feel it. Few can name it. Here's what's actually happening beneath the surface.
+        </p>
+      </div>
+
+      <div class="problem-grid fade-up">
+        <div class="problem-card">
+          <div class="problem-icon">🌫️</div>
+          <div class="problem-title">Mental Fog</div>
+          <p class="problem-body">
+            Dopamine flooding rewires your brain's reward system. What used to
+            motivate you — your work, your relationships, your faith — starts to
+            feel hollow. Concentration becomes a fight. Ambition drains quietly.
+          </p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">🔄</div>
+          <div class="problem-title">The Shame Cycle</div>
+          <p class="problem-body">
+            Fall. Hate yourself. Promise to stop. Fall again. This loop doesn't
+            just perpetuate the addiction — it convinces you that change isn't
+            possible for someone like you. That lie is the real prison.
+          </p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">🧱</div>
+          <div class="problem-title">Fractured Relationships</div>
+          <p class="problem-body">
+            Pornography trains you to objectify and disengage. Real intimacy
+            requires vulnerability. Men trapped in this cycle often become
+            emotionally unavailable without knowing why — to their wives,
+            children, and to God.
+          </p>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">⚡</div>
+          <div class="problem-title">Stolen Identity</div>
+          <p class="problem-body">
+            The man you are becoming and the man this habit is making you are
+            not the same person. Every relapse costs you more than willpower.
+            It costs you your self-respect, your clarity, your calling.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Reframe Section ───────────────────────────────────── -->
+    <section class="reframe" id="philosophy">
+      <div class="reframe-inner">
+        <div class="reframe-content fade-up">
+          <span class="label">The Narrow Philosophy</span>
+          <h2 class="reframe-headline">
+            The gate is<br>small. The road<br>is <em>hard.</em><br>Walk it anyway.
+          </h2>
+          <p class="reframe-body">
+            This is not a program built on self-pity or therapeutic comfort.
+            The Narrow is built on a harder, older truth: that you are capable of
+            more than you've been living. That discipline is not punishment — it is
+            the path to the man God designed you to be.
+          </p>
+          <p class="reframe-body">
+            Freedom from pornography is not the goal. It is the beginning.
+            The Narrow rebuilds what this habit has dismantled — your
+            character, your courage, your clarity.
+          </p>
+          <div class="reframe-scripture">
+            <p>"Enter through the narrow gate. For wide is the gate and broad is
+            the road that leads to destruction, and many enter through it. But
+            small is the gate and narrow the road that leads to life."</p>
+            <cite>Matthew 7:13–14</cite>
+          </div>
+        </div>
+
+        <div class="reframe-pillars fade-up">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <div class="pillar-content">
+              <div class="pillar-title">Discipline Over Desire</div>
+              <p class="pillar-desc">Feelings follow action — not the other way around. You don't wait to feel ready. You act, and readiness builds from the act itself.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <div class="pillar-content">
+              <div class="pillar-title">Character Over Comfort</div>
+              <p class="pillar-desc">Every temptation is a test with a specific question: who are you becoming? The narrow path is uncomfortable by design. That discomfort is the work.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">03</div>
+            <div class="pillar-content">
+              <div class="pillar-title">Freedom Through Constraint</div>
+              <p class="pillar-desc">True freedom is not the absence of limits. It is mastery over yourself. The man who controls his desires is freer than the man who is ruled by them.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">04</div>
+            <div class="pillar-content">
+              <div class="pillar-title">Brotherhood, Not Isolation</div>
+              <p class="pillar-desc">Men heal in community. Shame thrives in secrecy. The Narrow connects you to men who understand the weight of this fight — and won't let you carry it alone.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Features ───────────────────────────────────────────── -->
+    <section class="features" id="features">
+      <div class="section-header center fade-up">
+        <span class="label">The System</span>
+        <h2 class="section-headline" style="text-align:center;">
+          Built for the fight<br>you're actually in
+        </h2>
+        <p class="section-sub" style="margin-inline:auto;text-align:center;">
+          Every feature in The Narrow exists for a single reason: to help you become who you are called to be.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🔥</div>
+          <div class="feature-title">Streak System</div>
+          <p class="feature-body">
+            Track your days of clarity with a streak counter that makes your
+            progress feel real. Each day is a decision. Each number is evidence
+            that you are capable.
+          </p>
+          <div class="feature-outcome">Builds momentum and identity over time</div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">⚔️</div>
+          <div class="feature-title">Replace the Temptation</div>
+          <p class="feature-body">
+            In moments of temptation, the app provides an immediate redirect —
+            a specific action, a scripture, a workout, a prayer — chosen by
+            you in advance for exactly this moment.
+          </p>
+          <div class="feature-outcome">Breaks the pattern before it starts</div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📖</div>
+          <div class="feature-title">Daily Reflection</div>
+          <p class="feature-body">
+            A short, daily practice of honest self-examination rooted in
+            scripture and stoic discipline. Not journaling for its own sake —
+            reflection as a weapon of awareness.
+          </p>
+          <div class="feature-outcome">Cultivates self-knowledge and clarity</div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🤝</div>
+          <div class="feature-title">Brotherhood & Accountability</div>
+          <p class="feature-body">
+            Invite a trusted brother to walk alongside you. Share your streak,
+            send an SOS when you're struggling, and receive accountability
+            check-ins. Real relationships, not anonymous feeds.
+          </p>
+          <div class="feature-outcome">Removes the isolation that enables relapse</div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Progress Intelligence</div>
+          <p class="feature-body">
+            See your patterns over time — when you struggle most, how your
+            streaks have grown, what's working. Knowledge is power.
+            Understanding your cycle is how you break it.
+          </p>
+          <div class="feature-outcome">Turns data into strategy</div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title">Curated Scripture & Wisdom</div>
+          <p class="feature-body">
+            Daily verses, historical Christian writing on self-mastery, and
+            meditations from men who have walked hard roads. Truth delivered
+            when you need it most, not as decoration but as fuel.
+          </p>
+          <div class="feature-outcome">Anchors discipline in something bigger than willpower</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Testimonials ───────────────────────────────────────── -->
+    <section class="testimonials">
+      <div class="testimonials-inner">
+        <div class="section-header center fade-up">
+          <span class="label">From the Brotherhood</span>
+          <h2 class="section-headline" style="text-align:center;">
+            Men who walked<br>the <em>narrow road</em>
+          </h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card fade-up">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-quote">
+              "I'd tried to quit probably fifteen times over seven years.
+              Every app I found felt like it was built for someone softer than me.
+              The Narrow is different. It doesn't coddle you. It challenges you.
+              I'm at 83 days. The longest I've ever gone."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">JW</div>
+              <div>
+                <div class="testimonial-name">James W.</div>
+                <div class="testimonial-meta">Father of three — 83-day streak</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-up">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-quote">
+              "The accountability feature changed everything. My brother and I
+              use it together. There's something about knowing he can see my
+              streak — and I can see his — that makes it feel like a real fight
+              we're in together. Like it should be."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">RM</div>
+              <div>
+                <div class="testimonial-name">Ryan M.</div>
+                <div class="testimonial-meta">Engineer, 29 — 61-day streak</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card fade-up">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-quote">
+              "I was skeptical of the scripture side of it but I gave it a
+              fair shot. The daily reflections hit differently than I expected.
+              Not preachy. Honest. I started my longest streak the same week I
+              stopped skipping the reflection. That wasn't an accident."
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">DT</div>
+              <div>
+                <div class="testimonial-name">Daniel T.</div>
+                <div class="testimonial-meta">Veteran — 44-day streak</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Authority Section ──────────────────────────────────── -->
+    <section class="authority" id="science">
+      <div class="section-header center fade-up">
+        <span class="label">The Why</span>
+        <h2 class="section-headline" style="text-align:center;">
+          Ancient wisdom.<br><em>Modern science.</em><br>One path.
+        </h2>
+        <p class="section-sub" style="margin-inline:auto;text-align:center;">
+          The Narrow is not built on religion alone, or science alone. It is built on the convergence of both.
+        </p>
+      </div>
+
+      <div class="authority-grid fade-up">
+        <div class="authority-block">
+          <div class="authority-block-label">Neuroscience</div>
+          <div class="authority-block-title">The Dopamine Reset</div>
+          <p class="authority-block-body">
+            Pornography triggers dopamine releases up to <strong>2.5× above baseline</strong> — higher than most addictive substances. Over time, your brain desensitizes. Real life loses color. The Narrow's streak system and habit replacement protocol are designed specifically to support dopamine pathway recovery over 30, 60, and 90 days.
+          </p>
+        </div>
+
+        <div class="authority-block">
+          <div class="authority-block-label">Habit Psychology</div>
+          <div class="authority-block-title">The Loop You Can Break</div>
+          <p class="authority-block-body">
+            Every habit runs on a three-part loop: <strong>cue → craving → response</strong>. Pornography addiction hijacks this loop deeply. The Narrow's Replace the Temptation feature intercepts at the craving stage — not to suppress it, but to redirect it before the neural pathway fires. Repeated redirection builds a new groove.
+          </p>
+        </div>
+
+        <div class="authority-block">
+          <div class="authority-block-label">Biblical Theology</div>
+          <div class="authority-block-title">Discipline as Discipleship</div>
+          <p class="authority-block-body">
+            Scripture does not treat self-control as optional. <strong>"A man without self-control is like a city broken into and left without walls."</strong> (Prov. 25:28) The Christian tradition — from Paul's letters to the Desert Fathers to modern thinkers — treats the body and its desires as a domain of spiritual warfare, not shame.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Pricing ────────────────────────────────────────────── -->
+    <section class="pricing" id="pricing">
+      <div class="pricing-inner">
+        <div class="pricing-header fade-up">
+          <span class="label">Simple Pricing</span>
+          <h2 class="section-headline" style="color:#fff;">
+            One decision.<br><em>One path.</em>
+          </h2>
+          <p class="section-sub" style="color:rgba(255,255,255,.45);margin-inline:auto;text-align:center;">
+            No complexity. No upsells. The full system, from day one.
+          </p>
+        </div>
+
+        <div class="pricing-cards fade-up">
+          <div class="pricing-card">
+            <div class="pricing-plan-name">Monthly</div>
+            <div class="pricing-price">
+              <span class="pricing-price-amount">$9</span>
+              <span class="pricing-price-period">/ month</span>
+            </div>
+            <p class="pricing-price-note">Cancel anytime. No commitment.</p>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li>Full streak system & progress tracking</li>
+              <li>Replace the Temptation tool</li>
+              <li>Daily reflection & scripture feed</li>
+              <li>Brotherhood & accountability partner</li>
+              <li>Progress analytics dashboard</li>
+            </ul>
+            <a class="btn-outline" href="#" style="width:100%;justify-content:center;">Start Free Trial</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Most Committed</div>
+            <div class="pricing-plan-name">Annual</div>
+            <div class="pricing-price">
+              <span class="pricing-price-amount">$59</span>
+              <span class="pricing-price-period">/ year</span>
+            </div>
+            <p class="pricing-price-note">Less than $5/month — the cost of a coffee.</p>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+              <li>Everything in Monthly</li>
+              <li>Priority access to new features</li>
+              <li>Extended progress history</li>
+              <li>Annual reflection review</li>
+              <li>Early access to brotherhood community</li>
+            </ul>
+            <a class="btn-primary gold-fill" href="#" style="width:100%;justify-content:center;">Walk the Narrow — $59/yr</a>
+          </div>
+        </div>
+
+        <div class="pricing-donation fade-up">
+          <div class="pricing-donation-icon">✦</div>
+          <div class="pricing-donation-text">
+            <strong>10% of every subscription</strong> is donated to men's recovery ministries and addiction counseling for men who cannot afford professional help. Your subscription doesn't just change you — it funds someone else's fight.
+          </div>
+        </div>
+
+        <p class="pricing-note fade-up">7-day free trial included. No credit card required to start.</p>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────────────── -->
+    <section class="faq" id="faq">
+      <div class="faq-header fade-up">
+        <span class="label">Questions</span>
+        <h2 class="section-headline" style="text-align:center;">
+          Honest answers
+        </h2>
+      </div>
+
+      <div class="faq-list fade-up">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Do I have to be a Christian to use The Narrow?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            No. The Narrow is built on Christian conviction and scripture, but the tools — streak tracking, habit replacement, reflection, accountability — work regardless of your faith background. If the biblical framing resonates, lean into it. If not, the discipline system still works. We believe truth holds whether or not you acknowledge its source.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How is this different from other accountability apps?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            Most apps focus on streak counting and content blocking. The Narrow focuses on identity transformation. The streak is a tool, not the point. We pair accountability with daily reflection, habit psychology, and a theological framework for why self-mastery matters — not just as productivity, but as calling.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What happens when I relapse?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            You reset your streak. And you begin again. The Narrow doesn't punish you beyond what the reset already costs. Relapse is part of recovery for most men. The response to relapse — whether you spiral into shame or return with resolve — is what actually determines your trajectory. We help you develop the latter.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How does the accountability feature work?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            You invite a specific person — a trusted friend, mentor, or brother — as your accountability partner. They can see your streak in real time, receive notifications if you reset, and send you check-in messages. You can also send an SOS alert in moments of temptation. It's designed to feel like real brotherhood, not surveillance.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Where does the 10% donation go?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            Ten percent of every subscription is donated to verified Christian men's recovery ministries and organizations providing counseling for men who cannot afford professional help. We publish our giving annually. You'll see exactly where it goes.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is my data private?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            Yes. Your streak data and reflections are private by default — your accountability partner only sees what you choose to share with them. We do not sell your data. We do not use it for advertising. Your struggle is not our product.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Final CTA ──────────────────────────────────────────── -->
+    <section class="final-cta">
+      <div class="final-cta-inner">
+        <span class="label">The Decision</span>
+        <h2 class="final-cta-headline">
+          Walk<br>the <em>Narrow.</em>
+        </h2>
+        <p class="final-cta-sub">
+          The wide road is easy. It is also crowded, and it leads nowhere you want to go.
+          The man you are called to be is on the other path.
+          He is waiting. It starts today.
+        </p>
+        <div class="final-cta-actions">
+          <a class="btn-primary gold-fill" href="#pricing" style="padding:1rem 2.5rem;font-size:1rem;">Begin Your Journey</a>
+          <a class="btn-outline" href="#features" style="padding:1rem 2.5rem;font-size:1rem;">See How It Works</a>
+        </div>
+        <p class="final-cta-note">7-day free trial · Cancel anytime · 10% donated to recovery</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><span>The</span> Narrow</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Giving</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 The Narrow. Built for men who want to be better.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav scroll state
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.faq-item.open').forEach(open => {
+          open.classList.remove('open');
+          open.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Fade-up on scroll (intersection observer)
+    const fadeEls = document.querySelectorAll('.fade-up');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      fadeEls.forEach(el => observer.observe(el));
+    } else {
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
