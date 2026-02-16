@@ -285,6 +285,21 @@
     }
     .hero-trust-dot:first-child { margin-left: 0; }
 
+    .store-badge {
+      display: inline-block;
+      height: 44px;
+      transition: opacity .2s, transform .15s;
+    }
+    .store-badge:hover {
+      opacity: .8;
+      transform: translateY(-1px);
+    }
+    .store-badge img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+
     /* Phone mockup */
     .hero-visual {
       display: flex;
@@ -1226,8 +1241,12 @@
           Quit pornography. Build character. Walk the path that few are willing to take.
         </p>
         <div class="hero-actions">
-          <a class="btn-primary gold-fill" href="#pricing">Begin Your Journey</a>
-          <a class="btn-primary" href="#features" style="background:transparent;color:var(--ink);border:1px solid var(--cream-border);">See How It Works</a>
+          <a class="store-badge" href="#" target="_blank" rel="noopener">
+            <img src="Download App Store.png" alt="Download on the App Store" height="44" />
+          </a>
+          <a class="store-badge" href="#" target="_blank" rel="noopener">
+            <img src="get it on google play.svg" alt="Get it on Google Play" height="44" />
+          </a>
         </div>
         <div class="hero-trust">
           <div class="hero-trust-dots">
