@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
 
   <style>
     /* ── Reset & Base ─────────────────────────────────────────── */
@@ -655,6 +655,12 @@
       font-size: clamp(2.75rem, 5.5vw, 4.5rem);
       margin-bottom: .5rem;
     }
+    .how-narrow-works .battle-plan-main-title .strike-word {
+      color: var(--gold);
+      text-decoration: line-through;
+      text-decoration-color: var(--gold);
+      text-decoration-thickness: 1px;
+    }
     .battle-plan-subtitle {
       font-size: 1.1rem;
       font-weight: 500;
@@ -687,6 +693,12 @@
       color: var(--ink);
       margin-bottom: 1.5rem;
       letter-spacing: -.01em;
+    }
+    .battle-plan-headline .accent {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.35em;
     }
     .battle-plan-body {
       font-size: 1rem;
@@ -831,39 +843,123 @@
       }
     }
 
-    /* ── Stats Bar ────────────────────────────────────────────── */
+    /* ── Stats Bar (Join The Movement) ────────────────────────── */
     .stats-bar {
       background: var(--dark-bg);
       padding: 3rem var(--px);
+      text-align: center;
     }
     .stats-inner {
       max-width: var(--max-w);
       margin-inline: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      text-align: center;
     }
-    .stat-divider {
-      border: none;
-      border-left: 1px solid var(--dark-border);
-    }
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: .4rem;
-    }
-    .stat-label {
-      font-size: .85rem;
-      color: rgba(255,255,255,.45);
-      font-weight: 500;
+    .stats-bar-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0;
     }
 
-    @media (max-width: 600px) {
-      .stats-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+    .movement-carousel {
+      margin-top: 2.5rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      gap: 1.25rem;
+      justify-content: flex-start;
+    }
+    .movement-carousel::-webkit-scrollbar {
+      height: 6px;
+    }
+    .movement-carousel::-webkit-scrollbar-track {
+      background: rgba(255,255,255,.06);
+      border-radius: 3px;
+    }
+    .movement-carousel::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.2);
+      border-radius: 3px;
+    }
+    .movement-carousel-item {
+      flex: 0 0 auto;
+      width: min(200px, 38vw);
+      scroll-snap-align: center;
+      aspect-ratio: 9 / 16;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,.06);
+      position: relative;
+    }
+    .movement-carousel-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .movement-carousel-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.25);
+      font-size: .8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .movement-carousel-item.has-video .movement-carousel-placeholder {
+      display: none;
+    }
+
+    .movement-testimonials-label {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 0;
+    }
+
+    .movement-testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .movement-testimonial-box {
+      background: var(--cream-dark);
+      padding: 1.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--cream-border);
+    }
+    .movement-testimonial-box .movement-testimonial-header {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .movement-testimonial-box .movement-testimonial-stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .movement-testimonial-box .movement-testimonial-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #fff;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .movement-testimonials-grid { grid-template-columns: 1fr; }
     }
 
     /* ── Problem Section ──────────────────────────────────────── */
@@ -1562,7 +1658,7 @@
     <nav>
       <ul class="nav-links">
         <li><a href="mission.html">✝ Our Mission</a></li>
-        <li><a href="#partner">Partner With Us</a></li>
+        <li><a href="for-churches.html">For Churches</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#features">Features</a></li>
         <li><a class="nav-cta" href="#pricing">Try now for free</a></li>
@@ -1696,7 +1792,7 @@
     <section class="how-narrow-works">
       <div class="section-header center fade-up">
         <h2 class="section-headline battle-plan-main-title">
-          The Battle Plan to Defeat Pornography
+          The Battle Plan to Defeat <span class="strike-word">Pornography</span>
         </h2>
         <p class="section-sub battle-plan-subtitle">
           How <em>The Narrow</em> Works
@@ -1707,7 +1803,7 @@
       <div class="battle-plan-section fade-up">
         <div class="battle-plan-inner">
           <div class="battle-plan-content">
-            <h3 class="battle-plan-headline">Remove & replace what you can.</h3>
+            <h3 class="battle-plan-headline"><span class="accent">Remove & replace</span> what you can.</h3>
             <div class="battle-plan-verse">
               <p>"Flee youthful passions and pursue righteousness…"</p>
               <cite>2 Timothy 2:22</cite>
@@ -1727,7 +1823,7 @@
       <div class="battle-plan-section fade-up">
         <div class="battle-plan-inner">
           <div class="battle-plan-content">
-            <h3 class="battle-plan-headline">Resist what you can't remove.</h3>
+            <h3 class="battle-plan-headline"><span class="accent">Resist</span> what you can't remove.</h3>
             <div class="battle-plan-verse">
               <p>"No temptation has overtaken you that is not common to man. God is faithful, and he will not let you be tempted beyond your ability, but with the temptation he will also provide the way of escape…"</p>
               <cite>1 Corinthians 10:13</cite>
@@ -1737,6 +1833,8 @@
               <span>Panic Button</span>
               <span>Daily Accountability</span>
               <span>Accountability Brother</span>
+              <span>Daily Scripture</span>
+              <span>Cognitive Behavioural Therapy (CBT)</span>
             </div>
           </div>
           <div class="battle-plan-image">
@@ -1767,20 +1865,49 @@
       </div>
     </section>
 
-    <!-- ── Stats Bar ─────────────────────────────────────────── -->
+    <!-- ── Join The Movement ──────────────────────────────────── -->
     <div class="stats-bar">
       <div class="stats-inner">
-        <div class="fade-up">
-          <div class="stat-number">78%</div>
-          <div class="stat-label">Report renewed sense of purpose within 30 days</div>
+        <p class="stats-bar-tagline fade-up">Join The Movement</p>
+        <div class="movement-carousel fade-up" id="movement-carousel">
+          <div class="movement-carousel-item">
+            <video muted loop playsinline data-movement-video></video>
+            <div class="movement-carousel-placeholder">Portrait video 1</div>
+          </div>
+          <div class="movement-carousel-item">
+            <video muted loop playsinline data-movement-video></video>
+            <div class="movement-carousel-placeholder">Portrait video 2</div>
+          </div>
+          <div class="movement-carousel-item">
+            <video muted loop playsinline data-movement-video></video>
+            <div class="movement-carousel-placeholder">Portrait video 3</div>
+          </div>
+          <div class="movement-carousel-item">
+            <video muted loop playsinline data-movement-video></video>
+            <div class="movement-carousel-placeholder">Portrait video 4</div>
+          </div>
+          <div class="movement-carousel-item">
+            <video muted loop playsinline data-movement-video></video>
+            <div class="movement-carousel-placeholder">Portrait video 5</div>
+          </div>
         </div>
-        <div class="fade-up">
-          <div class="stat-number">47</div>
-          <div class="stat-label">Average streak length after 90 days with The Narrow</div>
-        </div>
-        <div class="fade-up">
-          <div class="stat-number">10%</div>
-          <div class="stat-label">Of every subscription donated to men's recovery ministries</div>
+        <p class="movement-testimonials-label fade-up">— What People Are Saying —</p>
+        <div class="movement-testimonials-grid fade-up">
+          <div class="movement-testimonial-box">
+            <div class="movement-testimonial-header">Testimonial 1</div>
+            <div class="movement-testimonial-stars">★★★★★</div>
+            <p class="movement-testimonial-text">Replace with testimonial quote. The background matches The Real Cost section.</p>
+          </div>
+          <div class="movement-testimonial-box">
+            <div class="movement-testimonial-header">Testimonial 2</div>
+            <div class="movement-testimonial-stars">★★★★★</div>
+            <p class="movement-testimonial-text">Replace with testimonial quote. Stars and text use gold and white as specified.</p>
+          </div>
+          <div class="movement-testimonial-box">
+            <div class="movement-testimonial-header">Testimonial 3</div>
+            <div class="movement-testimonial-stars">★★★★★</div>
+            <p class="movement-testimonial-text">Replace with testimonial quote. Edit headers and copy as needed.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -2154,11 +2281,11 @@
       </div>
     </section>
 
-    <!-- ── Partner With Us ─────────────────────────────────────── -->
-    <section class="reframe" id="partner">
+    <!-- ── For Churches ─────────────────────────────────────────── -->
+    <section class="reframe" id="for-churches">
       <div class="reframe-inner">
         <div class="reframe-content fade-up">
-          <span class="label">Partner With Us</span>
+          <span class="label">For Churches</span>
           <h2 class="reframe-headline">
             Join the mission.<br>Multiply the impact.
           </h2>
@@ -2167,6 +2294,7 @@
             bring clarity, accountability, and freedom to the men in your community.
             If you're leading men and want to offer a proven path — we'd love to connect.
           </p>
+          <a href="for-churches.html" class="btn-primary gold-fill" style="margin-top:1rem;">Express interest</a>
         </div>
       </div>
     </section>
@@ -2315,6 +2443,15 @@
       window.addEventListener('scroll', updateHighlight, { passive: true });
       updateHighlight();
     })();
+
+    // Join The Movement carousel — pause video on hover, play on mouse leave
+    document.querySelectorAll('[data-movement-video]').forEach(video => {
+      const item = video.closest('.movement-carousel-item');
+      if (!item) return;
+      if (video.src) item.classList.add('has-video');
+      item.addEventListener('mouseenter', () => { video.pause(); });
+      item.addEventListener('mouseleave', () => { if (video.src) video.play(); });
+    });
 
     // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {

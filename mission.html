@@ -28,12 +28,29 @@
 
     body {
       background-color: var(--page-bg);
+      min-height: 100vh;
       color: var(--page-text);
       font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
+      position: relative;
     }
+    .mission-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: var(--page-bg) url('mission%20background%20image%202.png') center / cover no-repeat;
+    }
+    .mission-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(216, 210, 200, 0.25);
+      pointer-events: none;
+    }
+    body > .nav-wrap,
+    body > main { position: relative; z-index: 1; }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
@@ -130,9 +147,8 @@
     }
 
     .mission-inner {
-      max-width: var(--max-w);
-      margin-inline: auto;
-      max-width: 720px;
+      width: 100%;
+      max-width: 100%;
     }
 
     .mission-label {
@@ -188,13 +204,15 @@
 </head>
 <body>
 
+  <div class="mission-bg" aria-hidden="true"></div>
+
   <div class="nav-wrap" id="nav-wrap">
     <header class="nav scrolled" id="nav">
       <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
       <nav>
         <ul class="nav-links">
           <li><a href="mission.html" class="active">✝ Our Mission</a></li>
-          <li><a href="index.html#partner">Partner With Us</a></li>
+          <li><a href="for-churches.html">For Churches</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="index.html#features">Features</a></li>
           <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
@@ -210,19 +228,8 @@
     <div class="mission-inner">
       <span class="mission-label">✝ Our Mission</span>
       <h1 class="mission-headline">
-        To help men walk the narrow road — free, focused, and faithful.
+        To call men off the wide road of pornography and onto the Narrow Path — into strength, freedom, and the fullness of God's design.
       </h1>
-      <p class="mission-body">
-        The Narrow exists to equip men with the clarity, discipline, and community
-        needed to break free from pornography and live with purpose. We believe
-        every man is capable of more than his habits suggest — and that real
-        change happens when we choose the hard path together.
-      </p>
-      <p class="mission-body">
-        Freedom from pornography is not the goal. It is the beginning. We're here
-        to walk with you as you rebuild character, courage, and clarity — one
-        day at a time.
-      </p>
       <a href="index.html" class="mission-back">← Back to home</a>
     </div>
   </main>
