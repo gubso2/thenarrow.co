@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -200,6 +200,42 @@
       transition: opacity .2s;
     }
     .mission-back:hover { opacity: .8; }
+
+    /* ── Our Commitment / Our Pledge ───────────────────────────── */
+    .mission-pledge {
+      background: #111111;
+      color: #fff;
+      padding: 4rem var(--px) 4.5rem;
+      margin-inline: calc(-1 * var(--px));
+    }
+    .mission-pledge-inner {
+      max-width: 720px;
+      margin-inline: auto;
+    }
+    .mission-pledge-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 600;
+      color: var(--page-gold);
+      margin-bottom: 1.5rem;
+    }
+    .mission-pledge-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .mission-pledge-body p { margin-bottom: 1rem; }
+    .mission-pledge-body p:last-child { margin-bottom: 0; }
+    .mission-pledge-signatures {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--page-gold);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
   </style>
 </head>
 <body>
@@ -232,6 +268,19 @@
       </h1>
       <a href="index.html" class="mission-back">← Back to home</a>
     </div>
+
+    <section class="mission-pledge">
+      <div class="mission-pledge-inner">
+        <h2 class="mission-pledge-title">Our Commitment</h2>
+        <div class="mission-pledge-body">
+          <p>Our Pledge — Add your pledge text here. This section uses a #111111 background with white body copy. Replace this paragraph with your actual commitment or pledge wording.</p>
+        </div>
+        <div class="mission-pledge-signatures">
+          — [Signature 1]<br>
+          — [Signature 2]
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>

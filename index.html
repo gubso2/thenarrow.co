@@ -790,7 +790,7 @@
     .battle-plan-cta {
       text-align: center;
       padding-top: 3.5rem;
-      padding-bottom: 1rem;
+      padding-bottom: 1.75rem;
     }
     .battle-plan-cta .btn-primary {
       border-radius: 9999px;
@@ -802,7 +802,7 @@
     .battle-plan-stats {
       max-width: var(--max-w);
       margin-inline: auto;
-      padding: 0 var(--px) 3rem;
+      padding: 2rem var(--px) 3rem;
     }
     .battle-plan-stats-box {
       background: var(--gold);
@@ -1034,6 +1034,35 @@
 
     @media (max-width: 640px) {
       .problem-grid { grid-template-columns: 1fr; }
+    }
+
+    .benefits-carousel-wrap {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      min-height: 5rem;
+    }
+    .benefits-carousel-line {
+      position: relative;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.01em;
+      min-height: 3.5rem;
+    }
+    .benefits-carousel-item {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 100%;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .benefits-carousel-item.active {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* ── Reframe Section ──────────────────────────────────────── */
@@ -1912,57 +1941,25 @@
       </div>
     </div>
 
-    <!-- ── Problem Section ───────────────────────────────────── -->
+    <!-- ── Life Changing Benefits ─────────────────────────────── -->
     <section class="section" style="max-width:var(--max-w);margin-inline:auto;">
-      <div class="section-header fade-up">
-        <span class="label">The Real Cost</span>
-        <h2 class="section-headline">
-          Pornography doesn't just<br>
-          take your time.<br>
-          <em>It takes everything.</em>
+      <div class="section-header center fade-up">
+        <span class="label">— Life Changing Benefits —</span>
+        <h2 class="section-headline" style="text-align:center;">
+          Peak Performance, Porn Free
         </h2>
-        <p class="section-sub">
-          Most men feel it. Few can name it. Here's what's actually happening beneath the surface.
-        </p>
       </div>
 
-      <div class="problem-grid fade-up">
-        <div class="problem-card">
-          <div class="problem-icon">🌫️</div>
-          <div class="problem-title">Mental Fog</div>
-          <p class="problem-body">
-            Dopamine flooding rewires your brain's reward system. What used to
-            motivate you — your work, your relationships, your faith — starts to
-            feel hollow. Concentration becomes a fight. Ambition drains quietly.
-          </p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">🔄</div>
-          <div class="problem-title">The Shame Cycle</div>
-          <p class="problem-body">
-            Fall. Hate yourself. Promise to stop. Fall again. This loop doesn't
-            just perpetuate the addiction — it convinces you that change isn't
-            possible for someone like you. That lie is the real prison.
-          </p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">🧱</div>
-          <div class="problem-title">Fractured Relationships</div>
-          <p class="problem-body">
-            Pornography trains you to objectify and disengage. Real intimacy
-            requires vulnerability. Men trapped in this cycle often become
-            emotionally unavailable without knowing why — to their wives,
-            children, and to God.
-          </p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">⚡</div>
-          <div class="problem-title">Stolen Identity</div>
-          <p class="problem-body">
-            The man you are becoming and the man this habit is making you are
-            not the same person. Every relapse costs you more than willpower.
-            It costs you your self-respect, your clarity, your calling.
-          </p>
+      <div class="benefits-carousel-wrap fade-up">
+        <div class="benefits-carousel-line">
+          <span class="benefits-carousel-item active">Stronger Faith</span>
+          <span class="benefits-carousel-item">Higher Testosterone</span>
+          <span class="benefits-carousel-item">More Energy</span>
+          <span class="benefits-carousel-item">Better Focus</span>
+          <span class="benefits-carousel-item">Greater Motivation</span>
+          <span class="benefits-carousel-item">Improved Confidence</span>
+          <span class="benefits-carousel-item">Healthier Libido</span>
+          <span class="benefits-carousel-item">Deeper Relationships</span>
         </div>
       </div>
     </section>
@@ -2452,6 +2449,19 @@
       item.addEventListener('mouseenter', () => { video.pause(); });
       item.addEventListener('mouseleave', () => { if (video.src) video.play(); });
     });
+
+    // Life Changing Benefits — rotate through benefit items
+    (function() {
+      const items = document.querySelectorAll('.benefits-carousel-item');
+      if (items.length === 0) return;
+      let index = 0;
+      function showNext() {
+        items[index].classList.remove('active');
+        index = (index + 1) % items.length;
+        items[index].classList.add('active');
+      }
+      setInterval(showNext, 2800);
+    })();
 
     // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {
