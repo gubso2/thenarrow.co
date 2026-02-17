@@ -585,10 +585,10 @@
       padding: 4rem var(--px);
     }
     .scroll-highlight-text {
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
       font-weight: 700;
-      line-height: 1.4;
-      max-width: 800px;
+      line-height: 1.35;
+      max-width: 900px;
       text-align: center;
     }
     .scroll-word {
@@ -597,6 +597,238 @@
     }
     .scroll-word.highlighted {
       color: #2F2F2F;
+    }
+    .scroll-second-line {
+      display: inline;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .scroll-second-line.visible {
+      opacity: 1;
+    }
+    .scroll-second-line .scroll-word {
+      color: rgba(0,0,0,0.12);
+    }
+    .scroll-second-line.visible .scroll-word.highlighted {
+      color: #2F2F2F;
+    }
+    .scroll-verse {
+      background: #D8D2C8;
+      padding: 2.5rem var(--px) 4rem;
+      text-align: center;
+    }
+    .scroll-verse-inner {
+      max-width: 640px;
+      margin-inline: auto;
+      border-left: 3px solid #8c7a5a;
+      padding-left: 1.25rem;
+      text-align: left;
+    }
+    .scroll-verse p {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #2F2F2F;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .scroll-verse cite {
+      display: block;
+      font-style: normal;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #8c7a5a;
+      margin-top: .75rem;
+    }
+
+    .how-narrow-works {
+      background: #111111;
+      padding: 5rem var(--px);
+      text-align: center;
+    }
+    .how-narrow-works .section-header.center .section-headline { color: var(--ink); }
+    .how-narrow-works .section-sub { color: rgba(255,255,255,.5); margin-inline: auto; }
+    .how-narrow-works .battle-plan-main-title {
+      color: var(--gold);
+      font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+      margin-bottom: .5rem;
+    }
+    .battle-plan-subtitle {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.7);
+      margin-inline: auto;
+      margin-top: 0;
+    }
+    .battle-plan-subtitle em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .battle-plan-section {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-top: 4rem;
+      text-align: left;
+    }
+    .battle-plan-section:first-of-type { padding-top: 2rem; }
+    .battle-plan-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .battle-plan-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      letter-spacing: -.01em;
+    }
+    .battle-plan-body {
+      font-size: 1rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .battle-plan-body ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .battle-plan-body li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: .5rem;
+    }
+    .battle-plan-body li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: .55em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .battle-plan-verse {
+      border-left: 3px solid var(--gold);
+      padding-left: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .battle-plan-verse p {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(255,255,255,.7);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .battle-plan-verse cite {
+      display: block;
+      font-style: normal;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: .5rem;
+    }
+    .battle-plan-features {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .battle-plan-features span {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.08);
+      padding: .4rem .85rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .battle-plan-image {
+      min-height: 280px;
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.25);
+      font-size: .875rem;
+    }
+    .battle-plan-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+    @media (max-width: 860px) {
+      .battle-plan-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .battle-plan-image { min-height: 220px; order: -1; }
+    }
+
+    .battle-plan-cta {
+      text-align: center;
+      padding-top: 3.5rem;
+      padding-bottom: 1rem;
+    }
+    .battle-plan-cta .btn-primary {
+      border-radius: 9999px;
+      color: #111111;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .battle-plan-stats {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding: 0 var(--px) 3rem;
+    }
+    .battle-plan-stats-box {
+      background: var(--gold);
+      border-radius: 9999px;
+      padding: 2.25rem 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      align-items: center;
+      text-align: center;
+      box-shadow:
+        0 0 0 1px rgba(242, 227, 195, 0.4),
+        0 0 40px rgba(242, 227, 195, 0.25),
+        0 0 80px rgba(242, 227, 195, 0.12);
+    }
+    .battle-plan-stat-item {
+      padding: 0 0.5rem;
+    }
+    .battle-plan-stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 3.25rem);
+      font-weight: 700;
+      color: #111111;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .battle-plan-stat-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #2F2F2F;
+      line-height: 1.35;
+    }
+    @media (max-width: 640px) {
+      .battle-plan-stats-box {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+        padding: 2rem 1.5rem;
+      }
     }
 
     /* ── Stats Bar ────────────────────────────────────────────── */
@@ -1326,9 +1558,11 @@
   <!-- ── Navigation ─────────────────────────────────────────── -->
   <div class="nav-wrap">
   <header class="nav" id="nav">
-    <a class="nav-logo" href="#"><img src="THE.png" alt="The Narrow" /></a>
+    <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
     <nav>
       <ul class="nav-links">
+        <li><a href="mission.html">✝ Our Mission</a></li>
+        <li><a href="#partner">Partner With Us</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#features">Features</a></li>
         <li><a class="nav-cta" href="#pricing">Try now for free</a></li>
@@ -1441,8 +1675,95 @@
     <section class="scroll-highlight" id="scroll-highlight">
       <div class="scroll-highlight-sticky">
         <p class="scroll-highlight-text">
-          <span class="scroll-word">Built</span> <span class="scroll-word">on</span> <span class="scroll-word">faith.</span> <span class="scroll-word">Rooted</span> <span class="scroll-word">in</span> <span class="scroll-word">discipline.</span> <span class="scroll-word">Backed</span> <span class="scroll-word">by</span> <span class="scroll-word">science.</span> <span class="scroll-word">Designed</span> <span class="scroll-word">for</span> <span class="scroll-word">freedom.</span>
+          <span class="scroll-line-1">
+            <span class="scroll-word">1</span> <span class="scroll-word">in</span> <span class="scroll-word">3</span> <span class="scroll-word">Christian</span> <span class="scroll-word">men</span> <span class="scroll-word">quietly</span> <span class="scroll-word">battle</span> <span class="scroll-word">pornography</span> <span class="scroll-word">—</span> <span class="scroll-word">losing</span> <span class="scroll-word">motivation,</span> <span class="scroll-word">intimacy,</span> <span class="scroll-word">and</span> <span class="scroll-word">spiritual</span> <span class="scroll-word">fire.</span>
+          </span><br>
+          <span class="scroll-second-line" id="scroll-second-line">
+            <span class="scroll-word">But</span> <span class="scroll-word">God</span> <span class="scroll-word">has</span> <span class="scroll-word">something</span> <span class="scroll-word">far</span> <span class="scroll-word">greater</span> <span class="scroll-word">planned</span> <span class="scroll-word">for</span> <span class="scroll-word">you.</span>
+          </span>
         </p>
+      </div>
+    </section>
+
+    <div class="scroll-verse">
+      <div class="scroll-verse-inner fade-up">
+        <p>"It is for freedom that Christ has set us free. Stand firm…"</p>
+        <cite>Galatians 5:1</cite>
+      </div>
+    </div>
+
+    <!-- ── How The Narrow Works ───────────────────────────────── -->
+    <section class="how-narrow-works">
+      <div class="section-header center fade-up">
+        <h2 class="section-headline battle-plan-main-title">
+          The Battle Plan to Defeat Pornography
+        </h2>
+        <p class="section-sub battle-plan-subtitle">
+          How <em>The Narrow</em> Works
+        </p>
+      </div>
+
+      <!-- Section 1: Remove & replace what you can -->
+      <div class="battle-plan-section fade-up">
+        <div class="battle-plan-inner">
+          <div class="battle-plan-content">
+            <h3 class="battle-plan-headline">Remove & replace what you can.</h3>
+            <div class="battle-plan-verse">
+              <p>"Flee youthful passions and pursue righteousness…"</p>
+              <cite>2 Timothy 2:22</cite>
+            </div>
+            <div class="battle-plan-features">
+              <span>Porn Blocker</span>
+              <span>Routines</span>
+            </div>
+          </div>
+          <div class="battle-plan-image">
+            <span>App image</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Resist what you can't remove -->
+      <div class="battle-plan-section fade-up">
+        <div class="battle-plan-inner">
+          <div class="battle-plan-content">
+            <h3 class="battle-plan-headline">Resist what you can't remove.</h3>
+            <div class="battle-plan-verse">
+              <p>"No temptation has overtaken you that is not common to man. God is faithful, and he will not let you be tempted beyond your ability, but with the temptation he will also provide the way of escape…"</p>
+              <cite>1 Corinthians 10:13</cite>
+            </div>
+            <div class="battle-plan-features">
+              <span>Community</span>
+              <span>Panic Button</span>
+              <span>Daily Accountability</span>
+              <span>Accountability Brother</span>
+            </div>
+          </div>
+          <div class="battle-plan-image">
+            <span>App image</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="battle-plan-cta fade-up">
+        <a href="#pricing" class="btn-primary gold-fill">Download</a>
+      </div>
+
+      <div class="battle-plan-stats fade-up">
+        <div class="battle-plan-stats-box">
+          <div class="battle-plan-stat-item">
+            <div class="battle-plan-stat-number">78%</div>
+            <div class="battle-plan-stat-label">Report improvement<br>in life quality</div>
+          </div>
+          <div class="battle-plan-stat-item">
+            <div class="battle-plan-stat-number">47</div>
+            <div class="battle-plan-stat-label">Average streak length<br>with The Narrow</div>
+          </div>
+          <div class="battle-plan-stat-item">
+            <div class="battle-plan-stat-number">10%</div>
+            <div class="battle-plan-stat-label">Of every subscription<br>donated to ministries</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1833,6 +2154,23 @@
       </div>
     </section>
 
+    <!-- ── Partner With Us ─────────────────────────────────────── -->
+    <section class="reframe" id="partner">
+      <div class="reframe-inner">
+        <div class="reframe-content fade-up">
+          <span class="label">Partner With Us</span>
+          <h2 class="reframe-headline">
+            Join the mission.<br>Multiply the impact.
+          </h2>
+          <p class="reframe-body">
+            Churches, ministries, and organizations can partner with The Narrow to
+            bring clarity, accountability, and freedom to the men in your community.
+            If you're leading men and want to offer a proven path — we'd love to connect.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- ── FAQ ────────────────────────────────────────────────── -->
     <section class="faq" id="faq">
       <div class="faq-header fade-up">
@@ -1950,11 +2288,13 @@
       navWrap.classList.toggle('scrolled', scrolled);
     }, { passive: true });
 
-    // Scroll highlight effect
+    // Scroll highlight effect — second line appears only after first line is fully read
     (function() {
       const section = document.getElementById('scroll-highlight');
+      const secondLine = document.getElementById('scroll-second-line');
       const words = section.querySelectorAll('.scroll-word');
       const totalWords = words.length;
+      const firstLineWordCount = 15;
 
       function updateHighlight() {
         const rect = section.getBoundingClientRect();
@@ -1966,6 +2306,10 @@
         words.forEach((word, i) => {
           word.classList.toggle('highlighted', i < activeIndex);
         });
+
+        if (secondLine && activeIndex >= firstLineWordCount) {
+          secondLine.classList.add('visible');
+        }
       }
 
       window.addEventListener('scroll', updateHighlight, { passive: true });
