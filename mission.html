@@ -16,10 +16,10 @@
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
     :root {
-      --page-bg:    #D8D2C8;
-      --page-text:  #1C1C1E;
-      --page-muted: #5a5752;
-      --page-gold:  #8c7a5a;
+      --page-bg:      #f5f4f2;
+      --page-text:    #1C1C1E;
+      --page-muted:   #5a5752;
+      --page-gold:    #8c7a5a;
       --font-display: 'Inter', system-ui, sans-serif;
       --font-body:    'Inter', system-ui, sans-serif;
       --max-w: 1100px;
@@ -45,7 +45,7 @@
       padding-inline: var(--px);
     }
 
-    /* ── Navigation (light page) ───────────────────────────────── */
+    /* ── Navigation (same as home) ────────────────────────────── */
     .nav-wrap {
       position: fixed;
       top: 0;
@@ -54,301 +54,318 @@
       z-index: 100;
       padding-inline: var(--px);
       pointer-events: none;
+      transition: top .3s, padding .3s;
     }
-    .nav-wrap.scrolled { top: .75rem; }
-
+    .nav-wrap.scrolled {
+      top: 0;
+      padding-inline: var(--px);
+      background: #f5f4f2;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
     .nav {
       pointer-events: all;
       width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
       padding: .75rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 9999px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      background: transparent;
       transition: all .4s ease;
+      border: none;
+      border-radius: 0;
     }
     .nav.scrolled {
+      background: transparent;
+      padding: .75rem 1.5rem;
+      border-bottom: none;
+      box-shadow: none;
+    }
+    .nav-logo { display: flex; align-items: center; cursor: pointer; transition: opacity .2s; }
+    .nav-logo:hover { opacity: .8; }
+    .nav-logo img { height: 32px; width: auto; object-fit: contain; transition: filter .4s; }
+    .nav.scrolled .nav-logo img { filter: brightness(0) saturate(100%); }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: #4b5563; padding: .5rem 1rem; border-radius: 1rem; transition: all .4s; cursor: pointer; }
+    .nav-links a:hover { opacity: .7; color: #111827; }
+    .nav-links a.active { color: var(--page-gold); font-weight: 600; }
+    .nav-cta { font-size: .875rem; font-weight: 500; background: rgba(0,0,0,0.06); color: #111827; padding: .5rem 1rem; border-radius: 1rem; border: none; transition: all .4s; white-space: nowrap; cursor: pointer; }
+    .nav-cta:hover { background: rgba(0,0,0,0.12); }
+    .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: #4b5563; transition: all .4s; }
+    @media (max-width: 768px) {
+      .nav { padding: .75rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-btn { display: flex; }
+      .nav-mobile-btn span { background: #4b5563; }
+    }
+    @media (min-width: 1024px) {
+      .nav { padding: .75rem 3rem; }
+      .nav.scrolled { padding: .75rem 3rem; }
+    }
+
+    /* ── Hero Banner ──────────────────────────────────────────── */
+    .cms-banner {
+      position: relative;
+      width: 100%;
+      --text-color: #f5f4ef;
+    }
+    .cms-banner-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 376 / 492;
+    }
+    @media (min-width: 768px) {
+      .cms-banner-inner { aspect-ratio: 1440 / 698; }
+    }
+    .cms-banner-image {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .cms-banner-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cms-banner-image-mobile { display: block; }
+    .cms-banner-image-desktop { display: none; }
+    @media (min-width: 768px) {
+      .cms-banner-image-mobile { display: none; }
+      .cms-banner-image-desktop { display: block; }
+    }
+    .cms-banner-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .cms-banner-content {
+      max-width: 1012px;
+      padding: 2.25rem var(--px) 3.5rem;
+      text-align: center;
+    }
+    @media (min-width: 1024px) {
+      .cms-banner-content { padding: 3.5rem var(--px) 3.5rem; }
+    }
+    .cms-banner-label {
+      font-size: 1.125rem;
+      color: var(--text-color);
+      letter-spacing: 0.05em;
+    }
+    @media (min-width: 1024px) {
+      .cms-banner-label { font-size: 1.25rem; }
+    }
+    .cms-banner-headline {
+      margin-top: 1rem;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-color);
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 1024px) {
+      .cms-banner-headline { margin-top: 1.5rem; font-size: clamp(3rem, 4vw, 4rem); }
+    }
+
+    /* ── Text Block (black) ───────────────────────────────────── */
+    .text-block {
+      background: #000;
+      padding: 3rem var(--px) 6rem;
+    }
+    @media (min-width: 1024px) {
+      .text-block { padding: 6rem var(--px); }
+    }
+    .text-block-inner {
       max-width: var(--max-w);
       margin-inline: auto;
     }
-
-    .nav-logo img {
-      height: 32px;
-      width: auto;
-      object-fit: contain;
-      filter: brightness(0) saturate(100%);
+    .text-block-paragraph {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 2rem;
+      line-height: 1.5;
     }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      list-style: none;
+    .text-block-paragraph:first-child { margin-top: 0; }
+    @media (min-width: 1024px) {
+      .text-block-paragraph {
+        width: calc(50% - 15px);
+        font-size: 1.75rem;
+        margin-top: 2rem;
+      }
+      .text-block-paragraph:nth-child(even) {
+        margin-left: auto;
+        padding-left: 3rem;
+      }
+      .text-block-paragraph:nth-child(odd):not(:first-child) {
+        padding-right: 3rem;
+      }
     }
-    .nav-links a {
-      font-size: .875rem;
-      font-weight: 500;
-      color: var(--page-text);
-      padding: .5rem 1rem;
-      border-radius: 1rem;
-      transition: opacity .2s;
-    }
-    .nav-links a:hover { opacity: .7; }
-    .nav-links a.active { color: var(--page-gold); font-weight: 600; }
-
-    .nav-cta {
-      font-size: .875rem;
-      font-weight: 500;
-      background: rgba(0,0,0,0.06);
-      color: var(--page-text);
-      padding: .5rem 1rem;
-      border-radius: 1rem;
-      border: none;
-      transition: background .2s;
-    }
-    .nav-cta:hover { background: rgba(0,0,0,0.12); }
-
-    .nav-mobile-btn { display: none; }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-cta { display: none; }
-      .nav-mobile-btn { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-      .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: var(--page-text); }
-    }
-
-    /* ── Mission page & bento ─────────────────────────────────── */
-    .mission-page {
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-      padding-inline: 0;
-      min-height: 100vh;
-    }
-
-    .bento-wrap {
-      width: 100%;
-      max-width: none;
-    }
-
-    .bento-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-      padding-inline: var(--px);
-    }
-
-    .mission-back-wrap {
-      padding-inline: var(--px);
-    }
-
-    .bento-item--large {
-      grid-column: 1 / -1;
-    }
-
-    .bento-card {
-      background: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      min-height: 280px;
-      display: flex;
-      border: 1px solid rgba(0,0,0,.06);
-    }
-
-    .bento-item--large .bento-card {
-      min-height: 320px;
-      flex-direction: row;
-    }
-
-    .bento-item--large .bento-content {
-      flex: 1;
-      padding: 2.5rem 2.5rem 2.5rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
-    }
-
-    .bento-item--large .bento-visual {
-      width: min(42%, 380px);
-      min-height: 280px;
-      flex-shrink: 0;
-    }
-
-    .bento-item:not(.bento-item--large) .bento-card {
-      flex-direction: column;
-    }
-
-    .bento-item:not(.bento-item--large) .bento-visual {
-      height: 140px;
-      flex-shrink: 0;
-    }
-
-    .bento-item:not(.bento-item--large) .bento-content {
-      flex: 1;
-      padding: 1.5rem 1.5rem 1.75rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: left;
-      align-items: flex-start;
-    }
-
-    .bento-visual {
-      background: #f5f4f2;
-      position: relative;
-      background-image: linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-
-    .bento-visual-label {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(-90deg);
-      transform-origin: center;
-      font-size: .65rem;
-      font-weight: 600;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,.35);
-      white-space: nowrap;
-    }
-
-    .bento-title {
+    .text-block-headline {
+      margin-top: 2rem;
       font-family: var(--font-display);
-      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 1024px) {
+      .text-block-headline { margin-top: 5.875rem; }
+    }
+
+    /* ── Our Story ────────────────────────────────────────────── */
+    .our-model {
+      background: var(--page-bg);
+      padding: 3rem var(--px) 3rem;
+    }
+    @media (min-width: 1024px) {
+      .our-model { padding: 7.75rem var(--px) 6.25rem; }
+    }
+    .our-model-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    @media (min-width: 1024px) {
+      .our-model-inner { display: flex; gap: 30px; }
+    }
+    .our-model-title {
+      font-family: var(--font-display);
+      font-size: 1.875rem;
       font-weight: 700;
       color: var(--page-text);
-      margin-bottom: 0.5rem;
-      letter-spacing: -.02em;
     }
-
-    .bento-body {
-      font-size: 0.95rem;
-      color: var(--page-muted);
-      line-height: 1.7;
-      margin-bottom: 1rem;
+    @media (min-width: 1024px) {
+      .our-model-title { font-size: 2.25rem; width: calc(50% - 15px); flex-shrink: 0; }
     }
-
-    .bento-item--large .bento-body {
-      font-size: 1.05rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .bento-verse {
-      border-left: 2px solid var(--page-gold);
-      padding-left: 1rem;
-      margin-top: 0.5rem;
-    }
-
-    .bento-verse p {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--page-muted);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .bento-verse cite {
-      display: block;
-      font-style: normal;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--page-gold);
-      margin-top: .5rem;
-    }
-
-    .bento-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: .875rem;
-      font-weight: 500;
-      color: var(--page-gold);
-      margin-top: auto;
-      transition: opacity .2s;
-    }
-
-    .bento-cta:hover { opacity: .85; }
-
-    .bento-cta--btn {
-      background: rgba(0,0,0,.06);
+    .our-model-body {
+      margin-top: 1rem;
+      font-size: 1.5rem;
       color: var(--page-text);
-      padding: 0.6rem 1.25rem;
-      border-radius: 9999px;
-      border: 1px solid rgba(0,0,0,.1);
+      line-height: 1.5;
+    }
+    .our-model-body p {
+      margin: 0 0 1.25rem 0;
+    }
+    .our-model-body p:last-child {
+      margin-bottom: 0;
+    }
+    @media (min-width: 1024px) {
+      .our-model-body { margin-top: 0; width: calc(50% - 15px); font-size: 1.75rem; }
     }
 
-    .bento-cta--btn:hover { background: rgba(0,0,0,.1); }
-
-    .bento-link-round {
-      display: inline-flex;
+    /* ── Video/Card Carousel ──────────────────────────────────── */
+    .video-carousel {
+      border-top: 1px solid rgba(0,0,0,0.1);
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+    .video-carousel-inner {
+      display: flex;
+      gap: 0;
+      padding: 2rem 0;
+    }
+    .video-carousel-slide {
+      flex: 0 0 min(85vw, 400px);
+      scroll-snap-align: start;
+      padding: 2rem var(--px);
+      border-left: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 768px) {
+      .video-carousel-slide { flex: 0 0 min(45vw, 440px); padding: 2rem 3rem; }
+    }
+    @media (min-width: 1024px) {
+      .video-carousel-slide { flex: 0 0 calc(33.333% - 1px); }
+    }
+    .video-carousel-slide h2 {
+      font-family: var(--font-display);
+      font-size: 1.875rem;
+      font-weight: 700;
+      min-height: 76px;
+      color: var(--page-text);
+    }
+    @media (min-width: 1024px) {
+      .video-carousel-slide h2 { font-size: 2.25rem; min-height: 88px; }
+    }
+    .video-carousel-visual {
+      margin-top: 2rem;
+      width: 100%;
+      aspect-ratio: 1;
+      background: #e8e6e1;
+      border-radius: 8px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(0,0,0,.06);
-      color: var(--page-text);
-      margin-top: auto;
-      align-self: flex-end;
-      transition: background .2s, color .2s;
+      color: var(--page-muted);
+      font-size: 0.9rem;
     }
-
-    .bento-link-round:hover {
-      background: rgba(0,0,0,.1);
-      color: var(--page-text);
+    @media (min-width: 1024px) {
+      .video-carousel-visual { margin-top: 6rem; }
     }
-
-    .mission-back {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      font-size: .9rem;
+    .video-carousel-text {
+      margin-top: 2rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--page-text);
+      flex: 1;
+    }
+    @media (min-width: 1024px) {
+      .video-carousel-text { margin-top: 6rem; }
+    }
+    .video-carousel-text a {
+      display: block;
+      margin-top: 1.5rem;
       font-weight: 500;
-      color: var(--page-gold);
-      transition: opacity .2s;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      color: var(--page-text);
     }
+    .video-carousel-text a:hover { opacity: 0.8; }
 
-    .mission-back:hover { opacity: .8; }
-
-    @media (max-width: 768px) {
-      .bento-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-      .bento-item--large .bento-card {
-        flex-direction: column;
-      }
-      .bento-item--large .bento-visual {
-        width: 100%;
-        min-height: 160px;
-      }
+    /* ── References ───────────────────────────────────────────── */
+    .references {
+      padding: 2rem var(--px) 2rem;
+      margin-top: 0;
     }
+    @media (min-width: 1024px) {
+      .references { padding: 3.5rem var(--px) 2rem; }
+    }
+    .references ol {
+      font-size: 0.75rem;
+      color: var(--page-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      list-style: decimal;
+      padding-left: 1.5rem;
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .references a { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <div class="nav-wrap" id="nav-wrap">
+  <div class="nav-wrap scrolled" id="nav-wrap">
     <header class="nav scrolled" id="nav">
       <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
       <nav>
         <ul class="nav-links">
           <li><a href="mission.html" class="active">✝ Our Mission</a></li>
           <li><a href="for-churches.html">For Churches</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="guides.html">Learn</a></li>
           <li><a href="features.html">Features</a></li>
-          <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
+          <li><a class="nav-cta" href="index.html#">Try now for free</a></li>
         </ul>
       </nav>
       <button class="nav-mobile-btn" aria-label="Menu">
@@ -357,65 +374,79 @@
     </header>
   </div>
 
-  <main class="mission-page">
-    <div class="bento-wrap">
-      <div class="bento-grid">
-        <!-- Large top card: mission + verse -->
-        <div class="bento-item bento-item--large">
-          <div class="bento-card">
-            <div class="bento-content">
-              <h1 class="bento-title">Our Mission</h1>
-              <p class="bento-body">
-                To call men off the wide road of pornography and onto the Narrow Path — into strength, freedom, and the fullness of God's design.
-              </p>
-              <div class="bento-verse">
-                <p>"Enter through the narrow gate. For wide is the gate and broad is the road that leads to destruction, and many enter through it. But small is the gate and narrow the road that leads to life."</p>
-                <cite>Matthew 7:13–14</cite>
-              </div>
-              <a href="index.html" class="bento-cta bento-cta--btn">Back to home →</a>
-            </div>
-            <div class="bento-visual">
-              <span class="bento-visual-label">Our Mission</span>
-            </div>
-          </div>
+  <main id="MainContent" role="main" tabindex="-1" class="outline-none" style="background: var(--page-bg);">
+    <!-- Hero Banner -->
+    <section class="cms-banner">
+      <div class="cms-banner-inner">
+        <div class="cms-banner-image">
+          <img class="cms-banner-image-mobile" src="mission background.png" alt="" />
+          <img class="cms-banner-image-desktop" src="mission background.png" alt="" />
         </div>
-
-        <!-- Our Story -->
-        <div class="bento-item">
-          <div class="bento-card">
-            <div class="bento-visual">
-              <span class="bento-visual-label">Our Story</span>
-            </div>
-            <div class="bento-content">
-              <h2 class="bento-title">Our Story</h2>
-              <p class="bento-body">
-                Add your story here. This section uses the same label and body style as the rest of the mission page.
-              </p>
-              <a href="index.html" class="bento-link-round" aria-label="Go to home">→</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Our Commitment -->
-        <div class="bento-item">
-          <div class="bento-card">
-            <div class="bento-visual">
-              <span class="bento-visual-label">Our Commitment</span>
-            </div>
-            <div class="bento-content">
-              <h2 class="bento-title">Our Commitment</h2>
-              <p class="bento-body">
-                Add your commitment here. Same styling: gold label, muted body text.
-              </p>
-              <a href="index.html" class="bento-link-round" aria-label="Go to home">→</a>
-            </div>
+        <div class="cms-banner-overlay">
+          <div class="cms-banner-content">
+            <p class="cms-banner-label">OUR MISSION</p>
+            <h1 class="cms-banner-headline">To call men off the wide road of pornography and onto the Narrow Path — into strength, freedom, and the fullness of God's design.</h1>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="mission-back-wrap">
-        <a href="index.html" class="mission-back">← Back to home</a>
+    <!-- Text Block -->
+    <section class="text-block">
+      <div class="text-block-inner">
+        <p class="text-block-paragraph">One in two Christian men quietly battles pornography — losing motivation, intimacy, and spiritual fire. Meanwhile, the wide road promises ease but leads only to destruction.</p>
+        <p class="text-block-paragraph">We see a world where men step off that road and walk the narrow path. Step one: We build tools rooted in scripture and science — streak tracking, habit replacement, daily reflection, and brotherhood. Step two: We give men the clarity, discipline, and community to become who they were made to be. The Narrow exists for one purpose: to help men quit porn and live with freedom.</p>
+        <h2 class="text-block-headline">This is the narrow path.</h2>
       </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="our-model">
+      <div class="our-model-inner">
+        <h2 class="our-model-title">Our Story</h2>
+        <div class="our-model-body">
+          <p>Cam has served as a Christian youth leader for years. He watched young men who loved God quietly struggle with pornography — trapped in shame, secrecy, and confusion. The silence around it was costing them their confidence, relationships, and spiritual fire.</p>
+          <p>Yujin's story is harder. Regrettably, 10 years ago, he made criminal choices that led to prison for consuming illegal content — something Yujin regrets daily and feels deep remorse for.</p>
+          <p>Through accountability, repentance, and radical change, his life was rebuilt. Today, he is committed to stopping others from engaging in this destructive industry.</p>
+          <p>The Narrow exists because God's grace is stronger than shame — and you were never meant to live chained to secrecy, guilt, and compulsive desire.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video / Card Carousel -->
+    <section class="video-carousel">
+      <div class="video-carousel-inner">
+        <div class="video-carousel-slide">
+          <h2>World-class product</h2>
+          <div class="video-carousel-visual">Video 1</div>
+          <div class="video-carousel-text">
+            We design and create tools rooted in scripture and science — streak tracking, habit replacement, daily reflection — to help men quit porn and build unshakeable character.
+          </div>
+        </div>
+        <div class="video-carousel-slide">
+          <h2>Brotherhood</h2>
+          <div class="video-carousel-visual">Video 2</div>
+          <div class="video-carousel-text">
+            This is not accountability as usual. The Narrow pairs you with a brother who walks the path with you — daily check-ins, real support, no judgment.
+            <a href="features.html">Read more</a>
+          </div>
+        </div>
+        <div class="video-carousel-slide">
+          <h2>Walking together</h2>
+          <div class="video-carousel-visual">Video 3</div>
+          <div class="video-carousel-text">
+            We fund recovery ministries and counseling for men who cannot afford help. Your subscription doesn't just change you — it funds someone else's fight.
+            <a href="index.html">Back to home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- References (optional) -->
+    <div class="references">
+      <ol>
+        <li>Statistics on Christian men and pornography vary by study. One in two is a commonly cited figure in ministry contexts.</li>
+      </ol>
     </div>
   </main>
 
@@ -424,15 +455,8 @@
       const nav = document.getElementById('nav');
       const navWrap = document.getElementById('nav-wrap');
       if (!nav || !navWrap) return;
-      let lastScroll = 0;
-      function updateNav() {
-        const scrolled = window.scrollY > 20;
-        nav.classList.toggle('scrolled', scrolled);
-        navWrap.classList.toggle('scrolled', scrolled);
-        lastScroll = window.scrollY;
-      }
-      window.addEventListener('scroll', updateNav, { passive: true });
-      updateNav();
+      nav.classList.add('scrolled');
+      navWrap.classList.add('scrolled');
     })();
   </script>
 </body>

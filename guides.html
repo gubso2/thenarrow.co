@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Churches — The Narrow</title>
+  <title>Guides — The Narrow</title>
   <link rel="icon" type="image/png" href="favicon 2.png" />
-  <meta name="description" content="Churches and ministries can partner with The Narrow to bring clarity, accountability, and freedom to the men in your community." />
+  <meta name="description" content="Guides and resources to help you walk the narrow path. Learn how to break free and become the man you're called to be." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -119,139 +119,130 @@
     }
 
     /* ── Page content ─────────────────────────────────────────── */
-    .for-churches-page {
+    .guides-page {
       padding-top: 8rem;
       padding-bottom: 6rem;
       padding-inline: var(--px);
       min-height: 100vh;
     }
 
-    .for-churches-inner {
-      max-width: 640px;
+    .guides-inner {
+      max-width: var(--max-w);
       margin-inline: auto;
     }
 
-    .for-churches-headline {
+    .guides-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .guides-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--page-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .guides-headline {
       font-family: var(--font-display);
       font-size: clamp(2.25rem, 4vw, 3.25rem);
       font-weight: 700;
       color: var(--page-text);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
       letter-spacing: -.01em;
+      line-height: 1.1;
     }
 
-    .for-churches-intro {
+    .guides-intro {
       font-size: 1.1rem;
       color: var(--page-muted);
       line-height: 1.7;
-      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-inline: auto;
     }
 
-    .for-churches-promo {
-      background: linear-gradient(135deg, rgba(242,227,195,.12) 0%, rgba(242,227,195,.06) 100%);
-      border: 1px solid rgba(242,227,195,.25);
-      border-radius: 12px;
-      padding: 2rem;
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
       margin-bottom: 2.5rem;
     }
-
-    .for-churches-promo-title {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--page-gold);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    @media (min-width: 900px) {
+      .guides-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
-    .for-churches-promo-title::before {
-      content: '✦';
-      font-size: 1rem;
-    }
-
-    .for-churches-promo-text {
-      font-size: 1rem;
-      color: var(--page-text);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    .for-churches-form-wrap {
+    .guide-block {
+      display: block;
+      text-decoration: none;
+      color: inherit;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: 2rem;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s, background .2s;
     }
-
-    .for-churches-form label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--page-text);
-      margin-bottom: 0.35rem;
-    }
-
-    .for-churches-form input,
-    .for-churches-form textarea {
-      width: 100%;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--page-text);
+    .guide-block:hover {
+      border-color: rgba(242,227,195,.25);
       background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 6px;
-      padding: 0.75rem 1rem;
-      margin-bottom: 1.25rem;
-      transition: border-color .2s;
     }
 
-    .for-churches-form input::placeholder,
-    .for-churches-form textarea::placeholder {
+    .guide-block-artwork {
+      aspect-ratio: 1;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px 10px 0 0;
+    }
+
+    .guide-block-body {
+      padding: 0.75rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .guide-block-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--page-text);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .guide-block-meta {
+      font-size: 0.875rem;
       color: var(--page-muted);
+      line-height: 1.3;
     }
 
-    .for-churches-form input:focus,
-    .for-churches-form textarea:focus {
-      outline: none;
-      border-color: var(--page-gold);
-    }
-
-    .for-churches-form textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .for-churches-form button[type="submit"] {
-      font-family: var(--font-body);
+    .guides-faq-link {
+      display: inline-block;
       font-size: 1rem;
       font-weight: 600;
-      color: #111111;
-      background: var(--page-gold);
-      border: none;
-      border-radius: 6px;
-      padding: 0.875rem 2rem;
-      cursor: pointer;
-      transition: background .2s, transform .15s;
+      color: var(--page-gold);
+      margin-top: 1.5rem;
+      transition: opacity .2s;
     }
+    .guides-faq-link:hover { opacity: .85; }
 
-    .for-churches-form button[type="submit"]:hover {
-      background: #e6d4a8;
-      transform: translateY(-1px);
-    }
-
-    .for-churches-back {
+    .guides-back {
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       font-size: .9rem;
       font-weight: 500;
       color: var(--page-gold);
       transition: opacity .2s;
     }
-    .for-churches-back:hover { opacity: .8; }
+    .guides-back:hover { opacity: .8; }
   </style>
 </head>
 <body>
@@ -262,8 +253,8 @@
       <nav>
         <ul class="nav-links">
           <li><a href="mission.html">✝ Our Mission</a></li>
-          <li><a href="for-churches.html" class="active">For Churches</a></li>
-          <li><a href="guides.html">Learn</a></li>
+          <li><a href="for-churches.html">For Churches</a></li>
+          <li><a href="guides.html" class="active">Learn</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
         </ul>
@@ -274,43 +265,71 @@
     </header>
   </div>
 
-  <main class="for-churches-page">
-    <div class="for-churches-inner">
-      <h1 class="for-churches-headline">For Churches</h1>
-      <p class="for-churches-intro">
-        Join the mission. Multiply the impact. Churches, ministries, and organizations can partner with The Narrow to bring clarity, accountability, and freedom to the men in your community.
-      </p>
-
-      <div class="for-churches-promo">
-        <h2 class="for-churches-promo-title">Youth Promotion</h2>
-        <p class="for-churches-promo-text">
-          Claim <strong>25 free annual subscriptions</strong> for your youth (under 18). Sign up below and we'll take you through a 30-minute onboarding call, then send you the codes.
+  <main class="guides-page">
+    <div class="guides-inner">
+      <div class="guides-header">
+        <span class="guides-label">Learn</span>
+        <h1 class="guides-headline">Guides & resources</h1>
+        <p class="guides-intro">
+          Practical wisdom for walking the narrow path. Resources to help you break free and become the man you're called to be.
         </p>
       </div>
 
-      <div class="for-churches-form-wrap">
-        <!-- Replace action with your Formspree URL, e.g. action="https://formspree.io/f/YOUR_FORM_ID" -->
-        <form class="for-churches-form" action="#" method="post">
-          <label for="church">Church or organization name</label>
-          <input type="text" id="church" name="church" required placeholder="Your church or organization" />
-
-          <label for="name">Contact name</label>
-          <input type="text" id="name" name="name" required placeholder="Your name" />
-
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com" />
-
-          <label for="phone">Phone <span style="font-weight:400;color:var(--page-muted);">(optional)</span></label>
-          <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
-
-          <label for="message">Message <span style="font-weight:400;color:var(--page-muted);">(optional)</span></label>
-          <textarea id="message" name="message" placeholder="How would you like to use The Narrow in your community?"></textarea>
-
-          <button type="submit">Send interest</button>
-        </form>
+      <div class="guides-grid">
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">You're Not Alone: The Silent Struggle of Modern Men</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">Pornography by the Numbers: A Modern Epidemic</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">How Porn Rewires Your Brain — and How to Recover</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">The Science Behind Porn Use and Habit Formation</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">How Pornography Affects Men and Women Differently</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">What Does the Bible Say About Pornography?</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">From Shame to Freedom: How the Grace of God Restores and Redeems</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
       </div>
 
-      <a href="index.html" class="for-churches-back">← Back to home</a>
+      <a href="index.html#faq" class="guides-faq-link">View FAQ →</a>
+
+      <a href="index.html" class="guides-back">← Back to home</a>
     </div>
   </main>
 

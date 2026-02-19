@@ -47,25 +47,27 @@
       z-index: 100;
       padding-inline: var(--px);
       pointer-events: none;
+      transition: top .3s, padding .3s;
     }
-    .nav-wrap.scrolled { top: .75rem; }
-
+    .nav-wrap.scrolled {
+      top: 0;
+      background: #f5f4f2;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
     .nav {
       pointer-events: all;
       width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
       padding: .75rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 9999px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      background: transparent;
       transition: all .4s ease;
     }
-    .nav.scrolled { max-width: var(--max-w); margin-inline: auto; }
+    .nav.scrolled { padding: .75rem 1.5rem; }
 
     .nav-logo img {
       height: 32px;
@@ -73,42 +75,23 @@
       object-fit: contain;
       filter: brightness(0) saturate(100%);
     }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: .875rem;
-      font-weight: 500;
-      color: #1C1C1E;
-      padding: .5rem 1rem;
-      border-radius: 1rem;
-      transition: opacity .2s;
-    }
-    .nav-links a:hover { opacity: .7; }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: #4b5563; padding: .5rem 1rem; border-radius: 1rem; transition: all .4s; }
+    .nav-links a:hover { opacity: .7; color: #111827; }
     .nav-links a.active { color: #8c7a5a; font-weight: 600; }
-
-    .nav-cta {
-      font-size: .875rem;
-      font-weight: 500;
-      background: rgba(0,0,0,0.06);
-      color: #1C1C1E;
-      padding: .5rem 1rem;
-      border-radius: 1rem;
-      transition: background .2s;
-    }
+    .nav-cta { font-size: .875rem; font-weight: 500; background: rgba(0,0,0,0.06); color: #111827; padding: .5rem 1rem; border-radius: 1rem; border: none; transition: background .2s; }
     .nav-cta:hover { background: rgba(0,0,0,0.12); }
-
     .nav-mobile-btn { display: none; }
-
     @media (max-width: 768px) {
+      .nav { padding: .75rem 1.5rem; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-mobile-btn { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-      .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: #1C1C1E; }
+      .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: #4b5563; }
+    }
+    @media (min-width: 1024px) {
+      .nav { padding: .75rem 3rem; }
+      .nav.scrolled { padding: .75rem 3rem; }
     }
 
     /* ── Page content ─────────────────────────────────────────── */
@@ -247,14 +230,14 @@
 </head>
 <body>
 
-  <div class="nav-wrap" id="nav-wrap">
+  <div class="nav-wrap scrolled" id="nav-wrap">
     <header class="nav scrolled" id="nav">
       <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
       <nav>
         <ul class="nav-links">
           <li><a href="mission.html">✝ Our Mission</a></li>
           <li><a href="for-churches.html">For Churches</a></li>
-          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="guides.html">Learn</a></li>
           <li><a href="features.html" class="active">Features</a></li>
           <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
         </ul>
@@ -344,13 +327,8 @@
       const nav = document.getElementById('nav');
       const navWrap = document.getElementById('nav-wrap');
       if (!nav || !navWrap) return;
-      function updateNav() {
-        const scrolled = window.scrollY > 20;
-        nav.classList.toggle('scrolled', scrolled);
-        navWrap.classList.toggle('scrolled', scrolled);
-      }
-      window.addEventListener('scroll', updateNav, { passive: true });
-      updateNav();
+      nav.classList.add('scrolled');
+      navWrap.classList.add('scrolled');
     })();
   </script>
 </body>
