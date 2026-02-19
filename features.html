@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For Churches — The Narrow</title>
+  <title>Features — The Narrow</title>
   <link rel="icon" type="image/png" href="favicon 2.png" />
-  <meta name="description" content="Churches and ministries can partner with The Narrow to bring clarity, accountability, and freedom to the men in your community." />
+  <meta name="description" content="Every feature in The Narrow exists to help you become who you are called to be. Built for the fight you're actually in." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -112,129 +112,120 @@
     }
 
     /* ── Page content ─────────────────────────────────────────── */
-    .for-churches-page {
+    .features-page {
       padding-top: 8rem;
       padding-bottom: 6rem;
       padding-inline: var(--px);
       min-height: 100vh;
     }
 
-    .for-churches-inner {
-      max-width: 640px;
+    .features-inner {
+      max-width: var(--max-w);
       margin-inline: auto;
     }
 
-    .for-churches-headline {
+    .features-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .features-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--page-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .features-headline {
       font-family: var(--font-display);
       font-size: clamp(2.25rem, 4vw, 3.25rem);
       font-weight: 700;
       color: var(--page-text);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
       letter-spacing: -.01em;
+      line-height: 1.1;
     }
 
-    .for-churches-intro {
+    .features-intro {
       font-size: 1.1rem;
       color: var(--page-muted);
       line-height: 1.7;
-      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-inline: auto;
     }
 
-    .for-churches-promo {
-      background: linear-gradient(135deg, rgba(242,227,195,.12) 0%, rgba(242,227,195,.06) 100%);
-      border: 1px solid rgba(242,227,195,.25);
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       padding: 2rem;
-      margin-bottom: 2.5rem;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .feature-card:hover {
+      border-color: rgba(242,227,195,.3);
+      box-shadow: 0 0 0 1px rgba(242,227,195,.15);
     }
 
-    .for-churches-promo-title {
+    .feature-icon {
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
       font-family: var(--font-display);
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--page-gold);
+      color: var(--page-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-body {
+      font-size: 0.95rem;
+      color: var(--page-muted);
+      line-height: 1.65;
       margin-bottom: 0.75rem;
-      display: flex;
+    }
+
+    .feature-outcome {
+      font-size: .85rem;
+      color: var(--page-gold);
+      font-weight: 500;
+    }
+    .feature-outcome::before { content: '→ '; }
+
+    .features-cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .features-cta a {
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-    }
-
-    .for-churches-promo-title::before {
-      content: '✦';
-      font-size: 1rem;
-    }
-
-    .for-churches-promo-text {
-      font-size: 1rem;
-      color: var(--page-text);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    .for-churches-form-wrap {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: 2rem;
-    }
-
-    .for-churches-form label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--page-text);
-      margin-bottom: 0.35rem;
-    }
-
-    .for-churches-form input,
-    .for-churches-form textarea {
-      width: 100%;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--page-text);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 6px;
-      padding: 0.75rem 1rem;
-      margin-bottom: 1.25rem;
-      transition: border-color .2s;
-    }
-
-    .for-churches-form input::placeholder,
-    .for-churches-form textarea::placeholder {
-      color: var(--page-muted);
-    }
-
-    .for-churches-form input:focus,
-    .for-churches-form textarea:focus {
-      outline: none;
-      border-color: var(--page-gold);
-    }
-
-    .for-churches-form textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .for-churches-form button[type="submit"] {
-      font-family: var(--font-body);
       font-size: 1rem;
       font-weight: 600;
       color: #111111;
       background: var(--page-gold);
-      border: none;
-      border-radius: 6px;
       padding: 0.875rem 2rem;
-      cursor: pointer;
+      border-radius: 9999px;
       transition: background .2s, transform .15s;
     }
-
-    .for-churches-form button[type="submit"]:hover {
+    .features-cta a:hover {
       background: #e6d4a8;
       transform: translateY(-1px);
     }
 
-    .for-churches-back {
+    .features-back {
       display: inline-flex;
       align-items: center;
       gap: .5rem;
@@ -244,7 +235,14 @@
       color: var(--page-gold);
       transition: opacity .2s;
     }
-    .for-churches-back:hover { opacity: .8; }
+    .features-back:hover { opacity: .8; }
+
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -255,9 +253,9 @@
       <nav>
         <ul class="nav-links">
           <li><a href="mission.html">✝ Our Mission</a></li>
-          <li><a href="for-churches.html" class="active">For Churches</a></li>
+          <li><a href="for-churches.html">For Churches</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
-          <li><a href="features.html">Features</a></li>
+          <li><a href="features.html" class="active">Features</a></li>
           <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
         </ul>
       </nav>
@@ -267,43 +265,77 @@
     </header>
   </div>
 
-  <main class="for-churches-page">
-    <div class="for-churches-inner">
-      <h1 class="for-churches-headline">For Churches</h1>
-      <p class="for-churches-intro">
-        Join the mission. Multiply the impact. Churches, ministries, and organizations can partner with The Narrow to bring clarity, accountability, and freedom to the men in your community.
-      </p>
-
-      <div class="for-churches-promo">
-        <h2 class="for-churches-promo-title">Youth Promotion</h2>
-        <p class="for-churches-promo-text">
-          Claim <strong>25 free annual subscriptions</strong> for your youth (under 18). Sign up below and we'll take you through a 30-minute onboarding call, then send you the codes.
+  <main class="features-page">
+    <div class="features-inner">
+      <div class="features-header">
+        <span class="features-label">The System</span>
+        <h1 class="features-headline">Built for the fight you're actually in</h1>
+        <p class="features-intro">
+          Every feature in The Narrow exists for a single reason: to help you become who you are called to be.
         </p>
       </div>
 
-      <div class="for-churches-form-wrap">
-        <!-- Replace action with your Formspree URL, e.g. action="https://formspree.io/f/YOUR_FORM_ID" -->
-        <form class="for-churches-form" action="#" method="post">
-          <label for="church">Church or organization name</label>
-          <input type="text" id="church" name="church" required placeholder="Your church or organization" />
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔥</div>
+          <div class="feature-title">Streak System</div>
+          <p class="feature-body">
+            Track your days of clarity with a streak counter that makes your progress feel real. Each day is a decision. Each number is evidence that you are capable.
+          </p>
+          <div class="feature-outcome">Builds momentum and identity over time</div>
+        </div>
 
-          <label for="name">Contact name</label>
-          <input type="text" id="name" name="name" required placeholder="Your name" />
+        <div class="feature-card">
+          <div class="feature-icon">⚔️</div>
+          <div class="feature-title">Replace the Temptation</div>
+          <p class="feature-body">
+            In moments of temptation, the app provides an immediate redirect — a specific action, a scripture, a workout, a prayer — chosen by you in advance for exactly this moment.
+          </p>
+          <div class="feature-outcome">Breaks the pattern before it starts</div>
+        </div>
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com" />
+        <div class="feature-card">
+          <div class="feature-icon">📖</div>
+          <div class="feature-title">Daily Reflection</div>
+          <p class="feature-body">
+            A short, daily practice of honest self-examination rooted in scripture and stoic discipline. Not journaling for its own sake — reflection as a weapon of awareness.
+          </p>
+          <div class="feature-outcome">Cultivates self-knowledge and clarity</div>
+        </div>
 
-          <label for="phone">Phone <span style="font-weight:400;color:var(--page-muted);">(optional)</span></label>
-          <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <div class="feature-title">Brotherhood & Accountability</div>
+          <p class="feature-body">
+            Invite a trusted brother to walk alongside you. Share your streak, send an SOS when you're struggling, and receive accountability check-ins. Real relationships, not anonymous feeds.
+          </p>
+          <div class="feature-outcome">Removes the isolation that enables relapse</div>
+        </div>
 
-          <label for="message">Message <span style="font-weight:400;color:var(--page-muted);">(optional)</span></label>
-          <textarea id="message" name="message" placeholder="How would you like to use The Narrow in your community?"></textarea>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Progress Intelligence</div>
+          <p class="feature-body">
+            See your patterns over time — when you struggle most, how your streaks have grown, what's working. Understanding your cycle is how you break it.
+          </p>
+          <div class="feature-outcome">Turns data into strategy</div>
+        </div>
 
-          <button type="submit">Send interest</button>
-        </form>
+        <div class="feature-card">
+          <div class="feature-icon">✦</div>
+          <div class="feature-title">Curated Scripture & Wisdom</div>
+          <p class="feature-body">
+            Daily verses, historical Christian writing on self-mastery, and meditations from men who have walked hard roads. Truth delivered when you need it most.
+          </p>
+          <div class="feature-outcome">Anchors discipline in something bigger than willpower</div>
+        </div>
       </div>
 
-      <a href="index.html" class="for-churches-back">← Back to home</a>
+      <div class="features-cta">
+        <a href="index.html#pricing">Try now for free →</a>
+      </div>
+
+      <a href="index.html" class="features-back">← Back to home</a>
     </div>
   </main>
 
