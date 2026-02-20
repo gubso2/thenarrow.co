@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pornography by the Numbers: A Modern Epidemic — The Narrow</title>
+  <link rel="icon" type="image/svg+xml" href="favicon 3.svg" />
+  <meta name="description" content="A data-driven guide to pornography statistics, global trends, usage among Christians, and the measurable differences between men and women." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Inline critical styles if blog-post.css doesn't exist - duplicate from blog-post */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    :root { --page-bg: #111111; --page-text: #E8E6E1; --page-muted: #A0A09A; --page-gold: #f2e3c3; --font-display: 'Inter', system-ui, sans-serif; --font-body: 'Inter', system-ui, sans-serif; --max-w: 1100px; --px: clamp(1.25rem, 5vw, 3rem); }
+    body { background-color: var(--page-bg); color: var(--page-text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .nav-wrap { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding-inline: var(--px); pointer-events: none; }
+    .nav-wrap.scrolled { background: #f5f4f2; border-bottom: 1px solid rgba(0,0,0,0.08); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .nav { pointer-events: all; width: 100%; max-width: var(--max-w); margin-inline: auto; padding: .75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 32px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%); }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: #4b5563; padding: .5rem 1rem; border-radius: 1rem; }
+    .nav-links a:hover { opacity: .7; color: #111827; }
+    .nav-links a.active { color: #8c7a5a; font-weight: 600; }
+    .nav-cta { font-size: .875rem; font-weight: 500; background: rgba(0,0,0,0.06); color: #111827; padding: .5rem 1rem; border-radius: 1rem; }
+    .nav-cta:hover { background: rgba(0,0,0,0.12); }
+    .nav-mobile-btn { display: none; }
+    @media (max-width: 768px) { .nav-links, .nav-cta { display: none; } .nav-mobile-btn { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; } .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: #4b5563; } }
+    .blog-page { padding-top: 8rem; padding-bottom: 6rem; padding-inline: var(--px); min-height: 100vh; }
+    .blog-layout { max-width: var(--max-w); margin-inline: auto; }
+    @media (min-width: 900px) { .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 3rem; } }
+    .article-back-link { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 2rem; font-size: .9rem; font-weight: 500; color: var(--page-gold); transition: opacity .2s; }
+    .article-back-link:hover { opacity: .8; }
+    .post-header { margin-bottom: 2.5rem; }
+    .post-category { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--page-gold); margin-bottom: .75rem; }
+    .post-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; }
+    .coloured-block { background: rgba(242,227,195,0.1); border: 1px solid rgba(242,227,195,0.25); border-radius: 12px; padding: 1.75rem; margin: 2rem 0; }
+    .coloured-block.gold { border-color: rgba(242,227,195,0.35); background: rgba(242,227,195,0.08); }
+    .block-heading { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-bottom: .5rem; }
+    .block-divider { width: 48px; height: 3px; background: var(--page-gold); border-radius: 2px; margin-bottom: 1rem; }
+    .block-text { font-size: 0.95rem; line-height: 1.7; }
+    .block-text p { margin: 0 0 1rem 0; }
+    .block-text p:last-child { margin-bottom: 0; }
+    .block-text a { color: var(--page-gold); text-decoration: underline; }
+    .block-text ul { margin: 0 0 1rem 0; padding-left: 1.25rem; }
+    .block-text li { margin-bottom: .5rem; }
+    .blog-cta-button { display: inline-block; margin-top: 1rem; padding: .75rem 1.5rem; background: var(--page-gold); color: #111; font-size: .9rem; font-weight: 600; border-radius: 8px; }
+    .blog-cta-button:hover { background: #e6d4a8; transform: translateY(-1px); }
+    .post-rich-text { margin: 2rem 0; }
+    .post-rich-text h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin: 2.5rem 0 1rem 0; }
+    .post-rich-text h2:first-child { margin-top: 0; }
+    .post-rich-text h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin: 1.75rem 0 .75rem 0; }
+    .post-rich-text p { margin: 0 0 1rem 0; line-height: 1.7; }
+    .post-rich-text blockquote { margin: 1.5rem 0; padding: 1rem 1.5rem; border-left: 4px solid var(--page-gold); background: rgba(242,227,195,0.06); border-radius: 0 8px 8px 0; font-style: italic; color: var(--page-muted); }
+    .section-break { border: none; height: 1px; background: rgba(255,255,255,0.15); margin: 2.5rem 0; }
+    .did-you-know { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+    .did-you-know-heading { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--page-gold); margin-bottom: .75rem; }
+    .did-you-know-text { font-size: 0.95rem; line-height: 1.7; }
+    .did-you-know-text a { color: var(--page-gold); text-decoration: underline; }
+    .post-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 2.5rem 0 1.5rem 0; }
+    .tags-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+    .tags-label { font-size: .85rem; color: var(--page-muted); }
+    .tag-link { font-size: .8rem; color: var(--page-gold); padding: .25rem .6rem; background: rgba(242,227,195,0.1); border-radius: 6px; }
+    .post-sidebar { margin-top: 2rem; }
+    @media (min-width: 900px) { .post-sidebar { margin-top: 0; position: sticky; top: 6rem; } }
+    .related-heading { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; }
+    .related-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .related-item { display: block; }
+    .related-item-img { display: block; aspect-ratio: 3/2; background: rgba(0,0,0,0.3); border-radius: 8px; margin-bottom: .5rem; overflow: hidden; }
+    .related-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .related-category { font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--page-gold); margin-bottom: .25rem; }
+    .related-item-title { font-family: var(--font-display); font-size: .95rem; font-weight: 600; line-height: 1.35; }
+    .footer { background: #111111; padding: 3rem var(--px) 2rem; position: relative; overflow: hidden; }
+    .footer-inner { max-width: var(--max-w); margin-inline: auto; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .footer-links a { font-size: 15px; line-height: 1.35; color: rgba(255,255,255,.95); transition: opacity .2s; text-underline-offset: 4px; }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-app-btns { display: flex; gap: .5rem; }
+    .footer-app-btn { display: inline-flex; align-items: center; justify-content: center; transition: opacity .2s; line-height: 0; }
+    .footer-app-btn:hover { opacity: .85; }
+    .footer-app-btn img { height: 48px; width: auto; object-fit: contain; }
+    .footer-divider { width: 100%; height: 1px; background: rgba(255,255,255,.3); margin: 1.75rem 0; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 17px; line-height: 1.4; color: rgba(255,255,255,.95); }
+    .footer-social-row { display: flex; align-items: center; gap: 2rem; }
+    .footer-social-label { font-size: 17px; line-height: 1.4; color: rgba(255,255,255,.95); }
+    .footer-social { display: flex; align-items: center; gap: 1.5rem; }
+    .footer-social a { display: block; line-height: 0; opacity: .9; transition: opacity .2s; }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social img { width: 36px; height: 36px; object-fit: contain; }
+    .footer-logo-big { width: 100vw; margin-left: calc(-50vw + 50%); margin-top: 1.5rem; padding-top: 1rem; pointer-events: none; display: flex; justify-content: center; }
+    .footer-logo-big img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
+    @media (max-width: 768px) { .footer-top { flex-direction: column; align-items: flex-start; } .footer-bottom { flex-direction: column; align-items: flex-start; } .footer-social-row { flex-direction: column; align-items: flex-start; gap: 1rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap scrolled" id="nav-wrap">
+    <header class="nav scrolled" id="nav">
+      <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="mission.html">✝ Our Mission</a></li>
+          <li><a href="for-churches.html">For Churches</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="guides.html" class="active">Learn</a></li>
+          <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
+        </ul>
+      </nav>
+      <button class="nav-mobile-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </header>
+  </div>
+
+  <main class="blog-page">
+    <div class="blog-layout">
+      <article class="post-content">
+        <a href="guides.html" class="article-back-link">← Back to resources</a>
+        <header class="post-header">
+          <div class="post-category">The Basics</div>
+          <h1 class="post-title">Pornography by the Numbers: A Modern Epidemic</h1>
+        </header>
+
+        <div class="post-rich-text">
+          <p>Pornography is no longer a fringe issue. It is one of the most consumed forms of media in the digital age — shaping brains, relationships, and even church communities.</p>
+          <p>If we want to address pornography seriously, we need more than opinion. We need data.</p>
+          <p>This guide examines pornography statistics, global trends, usage among Christians, and the measurable differences between men and women.</p>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>The Global Scale of Pornography Consumption</h2>
+          <p>The pornography industry is estimated to generate between $15–97 billion annually, depending on methodology and international inclusion (IBISWorld; Statista; Forbes industry estimates).</p>
+          <p>One of the largest adult websites reported:</p>
+          <ul>
+            <li>42+ billion visits in a single year</li>
+            <li>Over 115 million visits per day</li>
+            <li>More than 5 billion hours watched annually</li>
+          </ul>
+          <p>(Sources: Platform transparency reports; SimilarWeb traffic data.)</p>
+          <p>Estimates suggest pornographic content accounts for 4–10% of total global internet traffic (Ogas & Gaddam; TopTenReviews).</p>
+          <p>These numbers confirm what many already suspect:</p>
+          <blockquote>Pornography is mainstream digital media consumption.</blockquote>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>Porn Addiction Statistics: Age of First Exposure</h2>
+          <p>The average age of first exposure to pornography is now estimated between 11 and 13 years old.</p>
+          <p>According to a 2022 Common Sense Media report:</p>
+          <ul>
+            <li>73% of teens have viewed pornography</li>
+            <li>15% first saw pornography at age 10 or younger</li>
+            <li>Nearly half encountered it unintentionally</li>
+          </ul>
+          <p>Early exposure correlates strongly with increased likelihood of habitual use in adulthood (Wright et al., 2016; Owens et al., 2012).</p>
+          <blockquote>Pornography is not just an adult issue. It is a generational formation issue.</blockquote>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>Pornography Usage Among Men and Women</h2>
+          <h3>Pornography Statistics for Men</h3>
+          <p>Research consistently shows higher usage rates among men:</p>
+          <ul>
+            <li>60–70% of adult men report viewing pornography monthly (Pew; Barna)</li>
+            <li>30–40% report weekly use</li>
+            <li>Highest frequency appears among men aged 18–30</li>
+          </ul>
+          <p>Men are more likely to:</p>
+          <ul>
+            <li>Consume pornography alone</li>
+            <li>Develop habitual or compulsive patterns</li>
+            <li>Escalate to novel content over time</li>
+          </ul>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h3>Pornography Statistics for Women</h3>
+          <p>The gender gap remains, but it is narrowing:</p>
+          <ul>
+            <li>30–40% of adult women report occasional use</li>
+            <li>15–20% report weekly use</li>
+            <li>Usage rates among women have increased significantly in the past decade</li>
+          </ul>
+          <p>(Barna Group; Institute for Family Studies; Grubbs et al., 2019.)</p>
+          <p>Women more commonly report:</p>
+          <ul>
+            <li>Emotional or relational motivations</li>
+            <li>Consumption tied to stress or mood</li>
+            <li>Lower overall frequency but rising trends</li>
+          </ul>
+          <p>Compulsive use can affect both sexes, particularly with early exposure and frequent access (Kraus et al., 2016).</p>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>Porn Usage Among Christians</h2>
+          <p>One of the most overlooked pornography statistics involves church communities.</p>
+          <p>According to Barna Group research:</p>
+          <ul>
+            <li>64% of Christian men view pornography monthly</li>
+            <li>Over 75% of Christian men aged 18–30 report use</li>
+            <li>33% of Christian women under 30 report regular use</li>
+          </ul>
+          <p>More recent surveys indicate:</p>
+          <ul>
+            <li>50–60% of church-going men struggle with pornography</li>
+            <li>Only a minority feel comfortable discussing it openly</li>
+          </ul>
+          <p>(Source: Barna Group; Covenant Eyes summaries; Proven Men Ministries.)</p>
+          <p>Pornography is not isolated to secular culture. Church attendance does not eliminate exposure.</p>
+          <blockquote>For many believers, pornography becomes not only a habit issue — but a shame issue.</blockquote>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>Why Pornography Is So Addictive: The Neuroscience</h2>
+          <p>Pornography activates the brain's dopamine reward system, particularly the mesolimbic pathway (Voon et al., 2014; Kühn &amp; Gallinat, 2014).</p>
+          <p>Repeated exposure can lead to:</p>
+          <ul>
+            <li>Desensitization</li>
+            <li>Increased novelty-seeking</li>
+            <li>Reinforced habit loops</li>
+            <li>Reduced sensitivity to natural rewards</li>
+          </ul>
+          <p>Functional MRI studies show neural patterns in compulsive pornography users that mirror those seen in substance addiction (Voon et al., JAMA Psychiatry).</p>
+          <p>This helps explain why porn addiction statistics remain consistently high despite moral conviction or personal intention.</p>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>Cultural Trends Driving the Pornography Epidemic</h2>
+          <p>Several technological shifts have accelerated consumption:</p>
+          <p><strong>1. Smartphones</strong> — Private, on-demand access anywhere.</p>
+          <p><strong>2. Free Streaming Models</strong> — No financial barrier to entry.</p>
+          <p><strong>3. Algorithmic Personalization</strong> — Content tailored to individual preferences.</p>
+          <p><strong>4. Pandemic Acceleration</strong> — Major platforms reported traffic spikes of 11–25% during lockdown periods.</p>
+          <p>(Sources: Platform transparency reports; SimilarWeb analytics.)</p>
+          <blockquote>Pornography today is portable, private, and personalized — a powerful combination for habit formation.</blockquote>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>The Effects of Pornography on Relationships and Mental Health</h2>
+          <p>Research links higher pornography consumption with:</p>
+          <ul>
+            <li>Lower relationship satisfaction (Perry, 2020)</li>
+            <li>Increased sexual dissatisfaction</li>
+            <li>Unrealistic expectations</li>
+            <li>Greater internal conflict among religious users (Grubbs et al., 2015)</li>
+          </ul>
+          <p>While correlation does not always imply causation, consistent associations appear across multiple studies.</p>
+          <p>For Christian men, the tension between conviction and behavior often intensifies shame cycles.</p>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>The Real Meaning Behind the Numbers</h2>
+          <p>The data reveals several truths:</p>
+          <ul>
+            <li>Pornography consumption is widespread</li>
+            <li>Exposure begins young</li>
+            <li>Both men and women are affected</li>
+            <li>Church communities mirror broader culture</li>
+            <li>Neurological patterns reinforce repetition</li>
+          </ul>
+          <p>This is not a fringe issue.</p>
+          <blockquote>It is a normalized digital dependency.</blockquote>
+          <p>But normalization does not equal neutrality.</p>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="coloured-block gold">
+          <div class="block-heading">Is There Hope? Recovery and Neuroplasticity</div>
+          <div class="block-divider"></div>
+          <div class="block-text">
+            <p>The same brain that forms habits can reform them.</p>
+            <p>Neuroplasticity research confirms that sustained behavioral change can reshape neural pathways (Doidge, 2007).</p>
+            <p>Recovery outcomes improve when individuals combine:</p>
+            <ul>
+              <li>Environmental design</li>
+              <li>Accountability systems</li>
+              <li>Community support</li>
+              <li>Identity-level change</li>
+              <li>Spiritual formation</li>
+            </ul>
+            <p>Behavioral addiction research consistently shows that structure and support outperform willpower alone (Park et al., 2016).</p>
+            <p>For Christians, this intersects with theology:</p>
+            <p><strong>Grace interrupts shame.</strong></p>
+            <p>Shame isolates.<br>Grace restores.</p>
+            <p>The numbers describe the scale of the problem. They do not determine the outcome.</p>
+          </div>
+          <a href="index.html#pricing" class="blog-cta-button">Try The Narrow</a>
+        </div>
+
+        <div class="post-rich-text">
+          <h2>Frequently Asked Questions About Pornography Statistics</h2>
+          <h3>How common is pornography use today?</h3>
+          <p>Studies estimate that 60–70% of men and 30–40% of women consume pornography at least occasionally.</p>
+          <h3>Do Christians watch pornography?</h3>
+          <p>Yes. Surveys indicate over half of Christian men struggle with pornography use.</p>
+          <h3>Is pornography addictive?</h3>
+          <p>Neuroscience research shows that pornography activates the brain's reward system and can produce compulsive patterns similar to behavioral addictions.</p>
+        </div>
+
+        <hr class="section-break" />
+
+        <div class="post-rich-text">
+          <h2>Final Thoughts: A Modern Epidemic</h2>
+          <p>Pornography is one of the most consumed media forms in the world.</p>
+          <p>It affects adolescents, college students, married adults, and church communities alike.</p>
+          <p>But the story is not only about consumption.</p>
+          <p>It is about formation.</p>
+          <blockquote>What we repeatedly consume shapes who we become.</blockquote>
+          <p>The numbers expose the scale.<br>Truth opens the door to change.</p>
+        </div>
+
+        <div class="coloured-block gold">
+          <div class="block-heading">Ready to Take the Next Step?</div>
+          <div class="block-divider"></div>
+          <div class="block-text">
+            <p>The Narrow combines accountability, habit science, and daily reflection to help you break free. You don't have to walk this path alone.</p>
+          </div>
+          <a href="index.html#pricing" class="blog-cta-button">Get The Narrow</a>
+        </div>
+
+        <div class="post-divider"></div>
+        <div class="tags-wrap">
+          <span class="tags-label">Tags:</span>
+          <a href="guides.html" class="tag-link">Porn addiction</a>
+          <a href="guides.html" class="tag-link">Statistics</a>
+          <a href="guides.html" class="tag-link">Recovery</a>
+          <a href="guides.html" class="tag-link">Faith</a>
+        </div>
+        <a href="guides.html" class="article-back-link" style="margin-top: 2rem; margin-bottom: 0;">← Back to resources</a>
+      </article>
+
+      <aside class="post-sidebar">
+        <h3 class="related-heading">Related posts</h3>
+        <div class="related-list">
+          <a href="guides.html" class="related-item">
+            <div class="related-item-img"><img src="You're Not Alone- The Silent Struggle of Modern Men.png" alt="" /></div>
+            <div class="related-category">The basics</div>
+            <h4 class="related-item-title">You're Not Alone: The Silent Struggle of Modern Men</h4>
+          </a>
+          <a href="how-porn-rewires-your-brain.html" class="related-item">
+            <div class="related-item-img"><img src="How Porn Rewires Your Brain — and How to Recover.png" alt="" /></div>
+            <div class="related-category">Recovery</div>
+            <h4 class="related-item-title">How Porn Rewires Your Brain — and How to Recover</h4>
+          </a>
+          <a href="what-does-the-bible-say-about-pornography.html" class="related-item">
+            <div class="related-item-img"><img src="What Does the Bible Say About Pornography%3F.png" alt="" /></div>
+            <div class="related-category">Faith</div>
+            <h4 class="related-item-title">What Does the Bible Say About Pornography?</h4>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <ul class="footer-links">
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <div class="footer-app-btns">
+          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="Download App Store.png" alt="Download on the App Store" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="get it on google play.svg" alt="Get it on Google Play" /></a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 The Narrow. Choose the narrow path.</p>
+        <div class="footer-social-row">
+          <span class="footer-social-label">Follow us on social</span>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="instagram.png" alt="" /></a>
+            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="tiktok gg.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-logo-big">
+        <img src="THE.png" alt="The Narrow" />
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const nav = document.getElementById('nav');
+      const navWrap = document.getElementById('nav-wrap');
+      if (nav && navWrap) { nav.classList.add('scrolled'); navWrap.classList.add('scrolled'); }
+    })();
+  </script>
+</body>
+</html>
