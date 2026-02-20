@@ -233,7 +233,7 @@
       margin-inline: auto;
     }
     @media (min-width: 1024px) {
-      .our-model-inner { display: flex; gap: 30px; }
+      .our-model-inner { display: block; }
     }
     .our-model-title {
       font-family: var(--font-display);
@@ -242,13 +242,14 @@
       color: var(--page-text);
     }
     @media (min-width: 1024px) {
-      .our-model-title { font-size: 2.25rem; width: calc(50% - 15px); flex-shrink: 0; }
+      .our-model-title { font-size: 2.25rem; margin-bottom: 1.5rem; }
     }
     .our-model-body {
       margin-top: 1rem;
-      font-size: 1.5rem;
+      font-size: 1.0625rem;
       color: var(--page-text);
-      line-height: 1.5;
+      line-height: 1.6;
+      max-width: 100%;
     }
     .our-model-body p {
       margin: 0 0 1.25rem 0;
@@ -257,7 +258,7 @@
       margin-bottom: 0;
     }
     @media (min-width: 1024px) {
-      .our-model-body { margin-top: 0; width: calc(50% - 15px); font-size: 1.75rem; }
+      .our-model-body { margin-top: 0; width: 100%; max-width: 900px; font-size: 1.125rem; }
     }
 
     /* ── Video/Card Carousel ──────────────────────────────────── */
@@ -308,6 +309,15 @@
       justify-content: center;
       color: var(--page-muted);
       font-size: 0.9rem;
+      overflow: hidden;
+    }
+    .video-carousel-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      display: block;
+      transform: scale(1.4);
     }
     @media (min-width: 1024px) {
       .video-carousel-visual { margin-top: 6rem; }
@@ -352,6 +362,122 @@
       margin-inline: auto;
     }
     .references a { text-decoration: underline; }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer {
+      background: #111111;
+      padding: 3rem var(--px) 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 15px;
+      line-height: 1.35;
+      color: rgba(255,255,255,.95);
+      transition: opacity .2s;
+      text-underline-offset: 4px;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-app-btns {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .footer-app-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .2s;
+      line-height: 0;
+    }
+    .footer-app-btn:hover { opacity: .85; }
+    .footer-app-btn img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,.3);
+      margin: 1.75rem 0;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 17px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.95);
+    }
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .footer-social-label {
+      font-size: 17px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.95);
+    }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .footer-social a {
+      display: block;
+      line-height: 0;
+      opacity: .9;
+      transition: opacity .2s;
+    }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .footer-logo-big {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+    }
+    .footer-logo-big img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-social-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -363,8 +489,8 @@
         <ul class="nav-links">
           <li><a href="mission.html" class="active">✝ Our Mission</a></li>
           <li><a href="for-churches.html">For Churches</a></li>
-          <li><a href="guides.html">Learn</a></li>
           <li><a href="features.html">Features</a></li>
+          <li><a href="guides.html">Learn</a></li>
           <li><a class="nav-cta" href="index.html#">Try now for free</a></li>
         </ul>
       </nav>
@@ -394,8 +520,8 @@
     <!-- Text Block -->
     <section class="text-block">
       <div class="text-block-inner">
-        <p class="text-block-paragraph">One in two Christian men quietly battles pornography — losing motivation, intimacy, and spiritual fire. Meanwhile, the wide road promises ease but leads only to destruction.</p>
-        <p class="text-block-paragraph">We see a world where men step off that road and walk the narrow path. Step one: We build tools rooted in scripture and science — streak tracking, habit replacement, daily reflection, and brotherhood. Step two: We give men the clarity, discipline, and community to become who they were made to be. The Narrow exists for one purpose: to help men quit porn and live with freedom.</p>
+        <p class="text-block-paragraph">One in two Christian men quietly battle pornography — losing focus, intimacy, and drive. The wide road promises temporary ease, but it leads somewhere empty.</p>
+        <p class="text-block-paragraph">We believe men can choose a different path. So we build tools grounded in proven psychology and timeless truth — streak tracking, habit replacement, daily reflection, and real accountability. The Narrow exists for one purpose: to help men quit porn and reclaim the fullness of life.</p>
         <h2 class="text-block-headline">This is the narrow path.</h2>
       </div>
     </section>
@@ -417,26 +543,24 @@
     <section class="video-carousel">
       <div class="video-carousel-inner">
         <div class="video-carousel-slide">
-          <h2>World-class product</h2>
-          <div class="video-carousel-visual">Video 1</div>
+          <h2>Built on Grace</h2>
+          <div class="video-carousel-visual"><img src="sun.png" alt="" /></div>
           <div class="video-carousel-text">
-            We design and create tools rooted in scripture and science — streak tracking, habit replacement, daily reflection — to help men quit porn and build unshakeable character.
+            Freedom doesn't start with shame — it starts with grace. That's why every message inside The Narrow is grounded in truth, but delivered with grace.
           </div>
         </div>
         <div class="video-carousel-slide">
-          <h2>Brotherhood</h2>
-          <div class="video-carousel-visual">Video 2</div>
+          <h2>Based on Science</h2>
+          <div class="video-carousel-visual"><img src="brain.png" alt="" /></div>
           <div class="video-carousel-text">
-            This is not accountability as usual. The Narrow pairs you with a brother who walks the path with you — daily check-ins, real support, no judgment.
-            <a href="features.html">Read more</a>
+            Lasting change requires more than motivation. The Narrow applies behavioural science, habit formation, and neuroscience-backed principles to help you rewire patterns and build discipline that endures.
           </div>
         </div>
         <div class="video-carousel-slide">
-          <h2>Walking together</h2>
-          <div class="video-carousel-visual">Video 3</div>
+          <h2>Backed by Action</h2>
+          <div class="video-carousel-visual"><img src="Filipino.png" alt="" /></div>
           <div class="video-carousel-text">
-            We fund recovery ministries and counseling for men who cannot afford help. Your subscription doesn't just change you — it funds someone else's fight.
-            <a href="index.html">Back to home</a>
+            10% of profits are committed to organisations actively fighting child sexual exploitation — reducing demand, dismantling networks, and protecting the vulnerable.
           </div>
         </div>
       </div>
@@ -449,6 +573,36 @@
       </ol>
     </div>
   </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <ul class="footer-links">
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <div class="footer-app-btns">
+          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="Download App Store.png" alt="Download on the App Store" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="get it on google play.svg" alt="Get it on Google Play" /></a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 The Narrow. Choose the narrow path.</p>
+        <div class="footer-social-row">
+          <span class="footer-social-label">Follow us on social</span>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="instagram.png" alt="" /></a>
+            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="tiktok gg.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-logo-big">
+        <img src="THE.png" alt="The Narrow" />
+      </div>
+    </div>
+  </footer>
 
   <script>
     (function() {

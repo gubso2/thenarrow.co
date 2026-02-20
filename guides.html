@@ -243,6 +243,122 @@
       transition: opacity .2s;
     }
     .guides-back:hover { opacity: .8; }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer {
+      background: #111111;
+      padding: 3rem var(--px) 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 15px;
+      line-height: 1.35;
+      color: rgba(255,255,255,.95);
+      transition: opacity .2s;
+      text-underline-offset: 4px;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-app-btns {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .footer-app-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .2s;
+      line-height: 0;
+    }
+    .footer-app-btn:hover { opacity: .85; }
+    .footer-app-btn img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,.3);
+      margin: 1.75rem 0;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 17px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.95);
+    }
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .footer-social-label {
+      font-size: 17px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.95);
+    }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .footer-social a {
+      display: block;
+      line-height: 0;
+      opacity: .9;
+      transition: opacity .2s;
+    }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .footer-logo-big {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+    }
+    .footer-logo-big img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-social-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -254,8 +370,8 @@
         <ul class="nav-links">
           <li><a href="mission.html">✝ Our Mission</a></li>
           <li><a href="for-churches.html">For Churches</a></li>
-          <li><a href="guides.html" class="active">Learn</a></li>
           <li><a href="features.html">Features</a></li>
+          <li><a href="guides.html" class="active">Learn</a></li>
           <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
         </ul>
       </nav>
@@ -327,11 +443,39 @@
         </a>
       </div>
 
-      <a href="index.html#faq" class="guides-faq-link">View FAQ →</a>
-
       <a href="index.html" class="guides-back">← Back to home</a>
     </div>
   </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <ul class="footer-links">
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <div class="footer-app-btns">
+          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="Download App Store.png" alt="Download on the App Store" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="get it on google play.svg" alt="Get it on Google Play" /></a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 The Narrow. Choose the narrow path.</p>
+        <div class="footer-social-row">
+          <span class="footer-social-label">Follow us on social</span>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="instagram.png" alt="" /></a>
+            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="tiktok gg.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-logo-big">
+        <img src="THE.png" alt="The Narrow" />
+      </div>
+    </div>
+  </footer>
 
   <script>
     (function() {
