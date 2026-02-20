@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Post Title — The Narrow</title>
+  <link rel="icon" type="image/png" href="favicon 2.png" />
+  <meta name="description" content="Blog post description." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    :root {
+      --page-bg:    #111111;
+      --page-text:  #E8E6E1;
+      --page-muted: #A0A09A;
+      --page-gold:  #f2e3c3;
+      --gold-dark:  #A8916C;
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --max-w: 1100px;
+      --px: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    body {
+      background-color: var(--page-bg);
+      color: var(--page-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Navigation (reuse from guides) ─────────────────────────── */
+    .nav-wrap {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding-inline: var(--px);
+      pointer-events: none;
+    }
+    .nav-wrap.scrolled {
+      background: #f5f4f2;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .nav {
+      pointer-events: all;
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding: .75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img { height: 32px; width: auto; object-fit: contain; filter: brightness(0) saturate(100%); }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: #4b5563; padding: .5rem 1rem; border-radius: 1rem; transition: opacity .2s; }
+    .nav-links a:hover { opacity: .7; color: #111827; }
+    .nav-links a.active { color: #8c7a5a; font-weight: 600; }
+    .nav-cta { font-size: .875rem; font-weight: 500; background: rgba(0,0,0,0.06); color: #111827; padding: .5rem 1rem; border-radius: 1rem; }
+    .nav-cta:hover { background: rgba(0,0,0,0.12); }
+    .nav-mobile-btn { display: none; }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-mobile-btn { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+      .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: #4b5563; }
+    }
+
+    /* ── Blog layout ───────────────────────────────────────────── */
+    .blog-page {
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+      padding-inline: var(--px);
+      min-height: 100vh;
+    }
+    .blog-layout {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    @media (min-width: 900px) {
+      .blog-layout {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 3rem;
+      }
+    }
+
+    /* ── Post header ───────────────────────────────────────────── */
+    .post-header {
+      margin-bottom: 2.5rem;
+    }
+    .post-category {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--page-gold);
+      margin-bottom: .75rem;
+    }
+    .post-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+    }
+
+    /* ── Coloured block (callout) ───────────────────────────────── */
+    .coloured-block {
+      background: rgba(242,227,195,0.1);
+      border: 1px solid rgba(242,227,195,0.25);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin: 2rem 0;
+    }
+    .coloured-block.gold { border-color: rgba(242,227,195,0.35); background: rgba(242,227,195,0.08); }
+    .block-heading {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--page-text);
+      margin-bottom: .5rem;
+    }
+    .block-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--page-gold);
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .block-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--page-text);
+    }
+    .block-text p { margin: 0 0 1rem 0; }
+    .block-text p:last-child { margin-bottom: 0; }
+    .block-text a { color: var(--page-gold); text-decoration: underline; }
+    .block-text ul { margin: 0 0 1rem 0; padding-left: 1.25rem; }
+    .block-text li { margin-bottom: .5rem; }
+    .blog-cta-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: .75rem 1.5rem;
+      background: var(--page-gold);
+      color: #111;
+      font-size: .9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background .2s, transform .1s;
+    }
+    .blog-cta-button:hover { background: #e6d4a8; transform: translateY(-1px); }
+
+    /* ── Post rich text ────────────────────────────────────────── */
+    .post-rich-text {
+      margin: 2rem 0;
+    }
+    .post-rich-text h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1rem 0;
+      line-height: 1.3;
+    }
+    .post-rich-text h2:first-child { margin-top: 0; }
+    .post-rich-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.75rem 0 .75rem 0;
+    }
+    .post-rich-text p {
+      margin: 0 0 1rem 0;
+      color: var(--page-text);
+      line-height: 1.7;
+    }
+    .post-rich-text blockquote {
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      border-left: 4px solid var(--page-gold);
+      background: rgba(242,227,195,0.06);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--page-muted);
+    }
+
+    /* ── Interstitial CTA ──────────────────────────────────────── */
+    .interstitial-block {
+      display: block;
+      margin: 2rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .interstitial-block img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* ── Did You Know ──────────────────────────────────────────── */
+    .did-you-know {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .did-you-know-heading {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--page-gold);
+      margin-bottom: .75rem;
+    }
+    .did-you-know-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--page-text);
+    }
+    .did-you-know-text a { color: var(--page-gold); text-decoration: underline; }
+
+    /* ── Post divider & tags ───────────────────────────────────── */
+    .post-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 2.5rem 0 1.5rem 0;
+    }
+    .tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .5rem 1rem;
+    }
+    .tags-label {
+      font-size: .85rem;
+      color: var(--page-muted);
+    }
+    .tag-link {
+      font-size: .8rem;
+      color: var(--page-gold);
+      padding: .25rem .6rem;
+      background: rgba(242,227,195,0.1);
+      border-radius: 6px;
+      transition: background .2s;
+    }
+    .tag-link:hover { background: rgba(242,227,195,0.2); }
+
+    /* ── Sidebar ───────────────────────────────────────────────── */
+    .post-sidebar {
+      margin-top: 2rem;
+    }
+    @media (min-width: 900px) {
+      .post-sidebar {
+        margin-top: 0;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+    .related-heading {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+    .related-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .related-item {
+      display: block;
+    }
+    .related-item-img {
+      display: block;
+      aspect-ratio: 3/2;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      margin-bottom: .5rem;
+      overflow: hidden;
+    }
+    .related-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .related-category {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--page-gold);
+      margin-bottom: .25rem;
+    }
+    .related-item-title {
+      font-family: var(--font-display);
+      font-size: .95rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--page-text);
+    }
+    .related-item:hover .related-item-title { text-decoration: underline; }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    .footer {
+      background: #111111;
+      padding: 3rem var(--px) 2rem;
+    }
+    .footer-inner { max-width: var(--max-w); margin-inline: auto; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 2.5rem; list-style: none; }
+    .footer-links a { font-size: 15px; color: rgba(255,255,255,.95); }
+    .footer-app-btns { display: flex; gap: .5rem; }
+    .footer-app-btn img { height: 48px; width: auto; }
+    .footer-divider { height: 1px; background: rgba(255,255,255,.3); margin: 1.75rem 0; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 17px; color: rgba(255,255,255,.95); }
+    .footer-social { display: flex; gap: 1.5rem; }
+    .footer-social img { width: 36px; height: 36px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap scrolled" id="nav-wrap">
+    <header class="nav scrolled" id="nav">
+      <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="mission.html">✝ Our Mission</a></li>
+          <li><a href="for-churches.html">For Churches</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="guides.html" class="active">Learn</a></li>
+          <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
+        </ul>
+      </nav>
+      <button class="nav-mobile-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </header>
+  </div>
+
+  <main class="blog-page">
+    <div class="blog-layout">
+      <div class="post-content">
+        <header class="post-header">
+          <div class="post-category">Category</div>
+          <h1 class="post-title">Blog Post Title</h1>
+        </header>
+
+        <!-- Intro CTA block -->
+        <div class="coloured-block gold">
+          <div class="block-heading">Struggling With Porn?</div>
+          <div class="block-divider"></div>
+          <div class="block-text">
+            <p>The Narrow can help. We combine accountability, habit science, and daily reflection to help you break free and reclaim your life.</p>
+          </div>
+          <a href="index.html#pricing" class="blog-cta-button">Try The Narrow</a>
+        </div>
+
+        <!-- Main article content -->
+        <div class="post-rich-text">
+          <h2>Section Heading</h2>
+          <h3>Subheading</h3>
+          <p>Paragraph text goes here. Add your main content with proper structure.</p>
+          <blockquote>Quote or key point to highlight.</blockquote>
+          <h3>Another Subheading</h3>
+          <p>More paragraph content.</p>
+        </div>
+
+        <!-- Interstitial CTA (optional) -->
+        <a href="index.html#pricing" class="interstitial-block">
+          <img src="Download App Store.png" alt="Download The Narrow" />
+        </a>
+
+        <div class="post-rich-text">
+          <h2>Another Section</h2>
+          <p>Continue your article content here.</p>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="coloured-block">
+          <div class="block-heading">Key Takeaways</div>
+          <div class="block-divider"></div>
+          <div class="block-text">
+            <ul>
+              <li>First key point.</li>
+              <li>Second key point.</li>
+              <li>Third key point.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="did-you-know">
+          <div class="did-you-know-heading">Did You Know?</div>
+          <div class="did-you-know-text">
+            <p>Fact or statistic with optional <a href="#">link</a>.</p>
+          </div>
+        </div>
+
+        <!-- Trust block -->
+        <div class="coloured-block gold">
+          <div class="block-heading">Why Trust The Narrow</div>
+          <div class="block-divider"></div>
+          <div class="block-text">
+            <p>The Narrow exists to help men break free from pornography and walk the narrow path. Built on scripture and science, we offer accountability, habit tracking, and daily reflection to support your journey.</p>
+          </div>
+          <a href="index.html#pricing" class="blog-cta-button">Get The Narrow</a>
+        </div>
+
+        <!-- More article sections... -->
+        <div class="post-rich-text">
+          <h2>How The Narrow Can Help</h2>
+          <h3>Streak Tracking</h3>
+          <p>Track your progress and build momentum.</p>
+          <h3>Accountability</h3>
+          <p>Connect with a brother who walks the path with you.</p>
+          <h3>Daily Reflection</h3>
+          <p>Reflect on scripture and build discipline.</p>
+        </div>
+
+        <!-- Action plan -->
+        <div class="coloured-block">
+          <div class="block-heading">Action Plan: What To Do Now</div>
+          <div class="block-divider"></div>
+          <div class="block-text">
+            <ul>
+              <li><strong>Download The Narrow</strong> — Start your journey today.</li>
+              <li><strong>Set daily goals</strong> — Small steps add up.</li>
+              <li><strong>Find accountability</strong> — Don't walk alone.</li>
+              <li><strong>Reflect and pray</strong> — Ground yourself in truth.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="post-divider"></div>
+        <div class="tags-wrap">
+          <span class="tags-label">Tags:</span>
+          <a href="guides.html" class="tag-link">Porn addiction</a>
+          <a href="guides.html" class="tag-link">Recovery</a>
+          <a href="guides.html" class="tag-link">Faith</a>
+        </div>
+      </div>
+
+      <aside class="post-sidebar">
+        <h3 class="related-heading">Related posts</h3>
+        <div class="related-list">
+          <a href="#" class="related-item">
+            <div class="related-item-img"><img src="Pornography by the Numbers- A Modern Epidemic.png" alt="" /></div>
+            <div class="related-category">The basics</div>
+            <h4 class="related-item-title">Pornography by the Numbers: A Modern Epidemic</h4>
+          </a>
+          <a href="#" class="related-item">
+            <div class="related-item-img"></div>
+            <div class="related-category">The basics</div>
+            <h4 class="related-item-title">You're Not Alone: The Silent Struggle</h4>
+          </a>
+          <a href="#" class="related-item">
+            <div class="related-item-img"></div>
+            <div class="related-category">Recovery</div>
+            <h4 class="related-item-title">How Porn Rewires Your Brain — and How to Recover</h4>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <ul class="footer-links">
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <div class="footer-app-btns">
+          <a href="#" class="footer-app-btn"><img src="Download App Store.png" alt="App Store" /></a>
+          <a href="#" class="footer-app-btn"><img src="get it on google play.svg" alt="Google Play" /></a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 The Narrow. Choose the narrow path.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/thenarrow.app/" target="_blank" rel="noopener"><img src="instagram.png" alt="Instagram" /></a>
+          <a href="https://www.tiktok.com/@thenarrow.app" target="_blank" rel="noopener"><img src="tiktok gg.png" alt="TikTok" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const nav = document.getElementById('nav');
+      const navWrap = document.getElementById('nav-wrap');
+      if (nav && navWrap) { nav.classList.add('scrolled'); navWrap.classList.add('scrolled'); }
+    })();
+  </script>
+</body>
+</html>

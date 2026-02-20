@@ -394,8 +394,18 @@
     /* Phone mockup */
     .hero-visual {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 1.5rem;
+    }
+    .hero-quote {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink-mid);
+      text-align: center;
+      margin: 0;
     }
 
     .phone-frame {
@@ -893,7 +903,7 @@
     }
     .battle-plan-stats-box {
       background: var(--gold);
-      border-radius: 9999px;
+      border-radius: 16px;
       padding: 2.25rem 2.5rem;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -2091,6 +2101,7 @@
             </div>
           </div>
         </div>
+        <p class="hero-quote">"This changed everything." — Ollie</p>
       </div>
     </section>
 
@@ -2111,7 +2122,7 @@
             <cite>Galatians 5:1</cite>
           </div>
           <div class="scroll-highlight-image" id="scroll-highlight-image" aria-hidden="true">
-            <img src="young man.png" alt="" />
+            <img src="banana ggg.png" alt="" />
           </div>
         </div>
       </div>

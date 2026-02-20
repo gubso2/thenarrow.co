@@ -233,7 +233,12 @@
       margin-inline: auto;
     }
     @media (min-width: 1024px) {
-      .our-model-inner { display: block; }
+      .our-model-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 3rem;
+      }
+      .our-model-text { flex: 1; min-width: 0; }
     }
     .our-model-title {
       font-family: var(--font-display);
@@ -258,7 +263,27 @@
       margin-bottom: 0;
     }
     @media (min-width: 1024px) {
-      .our-model-body { margin-top: 0; width: 100%; max-width: 900px; font-size: 1.125rem; }
+      .our-model-body { margin-top: 0; font-size: 1.125rem; }
+    }
+    .our-model-visual {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 400px;
+      background: #e8e6e1;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .our-model-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      display: block;
+      transform: scale(1.4);
+    }
+    @media (max-width: 1023px) {
+      .our-model-visual { margin-top: 2rem; }
     }
 
     /* ── Video/Card Carousel ──────────────────────────────────── */
@@ -529,12 +554,17 @@
     <!-- Our Story -->
     <section class="our-model">
       <div class="our-model-inner">
+        <div class="our-model-text">
         <h2 class="our-model-title">Our Story</h2>
         <div class="our-model-body">
           <p>Cam has served as a Christian youth leader for years. He watched young men who loved God quietly struggle with pornography — trapped in shame, secrecy, and confusion. The silence around it was costing them their confidence, relationships, and spiritual fire.</p>
           <p>Yujin's story is harder. Regrettably, 10 years ago, he made criminal choices that led to prison for consuming illegal content — something Yujin regrets daily and feels deep remorse for.</p>
           <p>Through accountability, repentance, and radical change, his life was rebuilt. Today, he is committed to stopping others from engaging in this destructive industry.</p>
           <p>The Narrow exists because God's grace is stronger than shame — and you were never meant to live chained to secrecy, guilt, and compulsive desire.</p>
+        </div>
+        </div>
+        <div class="our-model-visual">
+          <img src="mission background.png" alt="" />
         </div>
       </div>
     </section>
