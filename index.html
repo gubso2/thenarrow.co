@@ -258,6 +258,46 @@
       .nav-cta { display: none; }
       .nav-mobile-btn { display: flex; }
     }
+    body.nav-open { overflow: hidden; }
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 199;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+    body.nav-open .nav-mobile-overlay { display: block; opacity: 1; pointer-events: auto; }
+    .nav-mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(300px, 85vw);
+      background: #f5f4f2;
+      z-index: 200;
+      padding: 5rem 1.5rem 2rem;
+      transform: translateX(100%);
+      transition: transform .3s ease;
+      box-shadow: -4px 0 24px rgba(0,0,0,.15);
+    }
+    body.nav-open .nav-mobile-drawer { transform: translateX(0); }
+    .nav-mobile-drawer nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .nav-mobile-drawer a {
+      display: block;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #111827;
+      border-radius: 8px;
+    }
+    .nav-mobile-drawer a:hover, .nav-mobile-drawer a:focus { background: rgba(0,0,0,.06); }
+    .nav-mobile-drawer .nav-cta { background: rgba(0,0,0,.08); font-weight: 600; }
 
     @media (min-width: 1024px) {
       .nav { padding: .75rem 3rem; }
@@ -577,6 +617,7 @@
         grid-template-columns: 1fr;
         min-height: auto;
         padding-top: 7rem;
+        padding-bottom: 4rem;
         text-align: center;
       }
       .hero-content { max-width: 100%; }
@@ -584,6 +625,17 @@
       .hero-actions { justify-content: center; }
       .hero-trust { justify-content: center; }
       .hero-visual { order: -1; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding-top: 6rem; padding-bottom: 3rem; }
+      .phone-frame { width: 240px; height: 480px; border-width: 8px; border-radius: 36px; }
+      .section { padding: 4rem var(--px); }
+      .how-narrow-works { padding: 4rem var(--px); }
+      .features { padding: 4rem var(--px); }
+      .testimonials { padding: 4rem var(--px); }
+      .pricing { padding: 4rem var(--px); }
+      .faq { padding: 4rem var(--px); }
+      .final-cta { padding: 5rem var(--px); }
     }
 
     /* ── Scroll Highlight ─────────────────────────────────────── */
@@ -1982,10 +2034,20 @@
         <li><a class="nav-cta" href="#">Try now for free</a></li>
       </ul>
     </nav>
-    <button class="nav-mobile-btn" aria-label="Menu">
+    <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </header>
+  </div>
+  <div class="nav-mobile-overlay" id="nav-mobile-overlay" aria-hidden="true"></div>
+  <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-hidden="true">
+    <nav>
+      <a href="mission.html">✝ Our Mission</a>
+      <a href="for-churches.html">For Churches</a>
+      <a href="features.html">Features</a>
+      <a href="guides.html">Learn</a>
+      <a href="index.html#pricing" class="nav-cta">Try now for free</a>
+    </nav>
   </div>
 
   <!-- ── Hero ───────────────────────────────────────────────── -->
@@ -2394,6 +2456,28 @@
   </footer>
 
   <script>
+    // Mobile nav toggle
+    (function() {
+      const btn = document.getElementById('nav-mobile-btn');
+      const overlay = document.getElementById('nav-mobile-overlay');
+      const drawer = document.getElementById('nav-mobile-drawer');
+      function openNav() {
+        document.body.classList.add('nav-open');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        if (overlay) overlay.setAttribute('aria-hidden', 'false');
+        if (drawer) drawer.setAttribute('aria-hidden', 'false');
+      }
+      function closeNav() {
+        document.body.classList.remove('nav-open');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (overlay) overlay.setAttribute('aria-hidden', 'true');
+        if (drawer) drawer.setAttribute('aria-hidden', 'true');
+      }
+      if (btn) btn.addEventListener('click', function() { document.body.classList.contains('nav-open') ? closeNav() : openNav(); });
+      if (overlay) overlay.addEventListener('click', closeNav);
+      drawer && drawer.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
+    })();
+
     // Sticky nav scroll state
     const nav = document.getElementById('nav');
     const navWrap = nav.closest('.nav-wrap');
