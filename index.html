@@ -640,7 +640,7 @@
 
     /* ── Scroll Highlight ─────────────────────────────────────── */
     .scroll-highlight {
-      background: #D8D2C8;
+      background: #fff;
       min-height: 200vh;
       position: relative;
     }
@@ -940,6 +940,11 @@
       text-align: center;
       padding-top: 3.5rem;
       padding-bottom: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
     }
     .battle-plan-cta .btn-primary {
       border-radius: 9999px;
@@ -947,6 +952,23 @@
       font-weight: 700;
       font-size: 1.1rem;
     }
+    .btn-features-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #000;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: .875rem 1.75rem;
+      border: 2px solid #fff;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background .2s, border-color .2s, transform .15s;
+    }
+    .btn-features-outline:hover { background: #222; border-color: rgba(255,255,255,.9); transform: translateY(-1px); }
 
     .battle-plan-stats {
       max-width: var(--max-w);
@@ -1384,7 +1406,7 @@
 
     /* ── Philosophy (cream verse + CTA) ────────────────────────── */
     .philosophy-section {
-      background: #D8D2C8;
+      background: #fff;
       padding: 5rem 0;
       text-align: center;
       overflow-x: hidden;
@@ -2231,20 +2253,21 @@
 
       <div class="battle-plan-cta fade-up">
         <a href="#" class="btn-primary gold-fill">Download</a>
+        <a href="features.html" class="btn-features-outline">All Features →</a>
       </div>
 
-      <div class="battle-plan-stats fade-up">
+      <div class="battle-plan-stats fade-up" id="battle-plan-stats">
         <div class="battle-plan-stats-box">
           <div class="battle-plan-stat-item">
-            <div class="battle-plan-stat-number">78%</div>
+            <div class="battle-plan-stat-number" data-target="78" data-suffix="%">0%</div>
             <div class="battle-plan-stat-label">Report improvement<br>in life quality</div>
           </div>
           <div class="battle-plan-stat-item">
-            <div class="battle-plan-stat-number">47</div>
+            <div class="battle-plan-stat-number" data-target="47" data-suffix="">0</div>
             <div class="battle-plan-stat-label">Average streak length<br>with The Narrow</div>
           </div>
           <div class="battle-plan-stat-item">
-            <div class="battle-plan-stat-number">10%</div>
+            <div class="battle-plan-stat-number" data-target="10" data-suffix="%">0%</div>
             <div class="battle-plan-stat-label">Of every subscription<br>donated to ministries</div>
           </div>
         </div>
@@ -2631,6 +2654,52 @@
     } else {
       fadeEls.forEach(el => el.classList.add('visible'));
     }
+
+    // Count-up stats when scrolled into view
+    (function() {
+      const statsEl = document.getElementById('battle-plan-stats');
+      if (!statsEl) return;
+      const numberEls = statsEl.querySelectorAll('.battle-plan-stat-number[data-target]');
+      if (!numberEls.length) return;
+
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      function animateNumber(el) {
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 1800;
+        const startTime = performance.now();
+
+        function update(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = easeOutQuart(progress);
+          const value = Math.round(target * eased);
+          el.textContent = value + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target + suffix;
+          }
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      const statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            numberEls.forEach(animateNumber);
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      statsObserver.observe(statsEl);
+    })();
   </script>
 </body>
 </html>

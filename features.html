@@ -108,20 +108,23 @@
 
     /* ── Page content ─────────────────────────────────────────── */
     .features-page {
-      padding-top: 8rem;
-      padding-bottom: 6rem;
+      padding-top: 6rem;
+      padding-bottom: 4rem;
       padding-inline: var(--px);
       min-height: 100vh;
+      background: #f5f4f2;
     }
 
-    .features-inner {
-      max-width: var(--max-w);
-      margin-inline: auto;
+    .features-section {
+      padding: 3rem 1rem 4rem;
+    }
+    @media (min-width: 1024px) {
+      .features-section { padding: 4rem 1rem; }
     }
 
     .features-header {
       text-align: center;
-      margin-bottom: 3.5rem;
+      margin-bottom: 3rem;
     }
 
     .features-label {
@@ -130,7 +133,7 @@
       font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--page-gold);
+      color: #8c7a5a;
       margin-bottom: 0.75rem;
     }
 
@@ -138,7 +141,7 @@
       font-family: var(--font-display);
       font-size: clamp(2.25rem, 4vw, 3.25rem);
       font-weight: 700;
-      color: var(--page-text);
+      color: #1C1C1E;
       margin-bottom: 1rem;
       letter-spacing: -.01em;
       line-height: 1.1;
@@ -146,7 +149,7 @@
 
     .features-intro {
       font-size: 1.1rem;
-      color: var(--page-muted);
+      color: #5a5752;
       line-height: 1.7;
       max-width: 600px;
       margin-inline: auto;
@@ -154,53 +157,125 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+      max-width: 72rem;
+      margin-inline: auto;
+    }
+    @media (min-width: 1024px) {
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+
+    .features-visual {
+      position: relative;
+      margin-inline: auto;
+      width: fit-content;
+    }
+    @media (min-width: 1024px) {
+      .features-visual { margin-inline: 0; }
+    }
+
+    .features-visual img {
+      width: 300px;
+      height: auto;
+      margin-inline: auto;
+      transition: opacity 0.3s ease-in-out;
+    }
+    @media (min-width: 1024px) {
+      .features-visual img { width: 350px; }
+    }
+
+    .feature-dots {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .feature-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      background: #d1d5db;
+      transition: all 0.3s;
+    }
+    .feature-dot.active {
+      background: #1f2937;
+    }
+    .feature-dot:hover {
+      background: #9ca3af;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    @media (min-width: 1024px) {
+      .feature-list { gap: 0.625rem; }
+    }
+
+    .feature-section-heading {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1C1C1E;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .feature-section-heading:first-child {
+      margin-top: 0;
     }
 
     .feature-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: border-color .2s, box-shadow .2s;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
     }
     .feature-card:hover {
-      border-color: rgba(242,227,195,.3);
-      box-shadow: 0 0 0 1px rgba(242,227,195,.15);
+      border-color: #d1d5db;
     }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      line-height: 1;
-      margin-bottom: 1rem;
+    .feature-card.active {
+      transform: scale(1.02);
+      border-color: #1C1C1E;
+      background: #f3f4f6;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
 
     .feature-title {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--page-text);
-      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1C1C1E;
+      margin-bottom: 0.25rem;
+    }
+    @media (min-width: 1024px) {
+      .feature-title { font-size: 1rem; }
     }
 
     .feature-body {
-      font-size: 0.95rem;
-      color: var(--page-muted);
-      line-height: 1.65;
-      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: rgba(28,28,30,0.7);
     }
-
-    .feature-outcome {
-      font-size: .85rem;
-      color: var(--page-gold);
-      font-weight: 500;
+    @media (min-width: 1024px) {
+      .feature-body { font-size: 0.875rem; }
     }
-    .feature-outcome::before { content: '→ '; }
 
     .features-cta {
       text-align: center;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
     }
 
     .features-cta a {
@@ -227,17 +302,10 @@
       margin-top: 2.5rem;
       font-size: .9rem;
       font-weight: 500;
-      color: var(--page-gold);
+      color: #8c7a5a;
       transition: opacity .2s;
     }
     .features-back:hover { opacity: .8; }
-
-    @media (max-width: 900px) {
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 600px) {
-      .features-grid { grid-template-columns: 1fr; }
-    }
 
     /* ── Footer ───────────────────────────────────────────────── */
     .footer {
@@ -387,77 +455,73 @@
   </div>
 
   <main class="features-page">
-    <div class="features-inner">
+    <section class="features-section">
       <div class="features-header">
-        <span class="features-label">The System</span>
-        <h1 class="features-headline">Built for the fight you're actually in</h1>
-        <p class="features-intro">
-          Every feature in The Narrow exists for a single reason: to help you become who you are called to be.
-        </p>
+        <span class="features-label">Features</span>
+        <h1 class="features-headline">What does The Narrow include?</h1>
+        <p class="features-intro">Every feature exists to help you resist temptation and replace it with something stronger.</p>
       </div>
 
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🔥</div>
-          <div class="feature-title">Streak System</div>
-          <p class="feature-body">
-            Track your days of clarity with a streak counter that makes your progress feel real. Each day is a decision. Each number is evidence that you are capable.
-          </p>
-          <div class="feature-outcome">Builds momentum and identity over time</div>
+        <div class="features-visual">
+          <img id="feature-img" src="Greater Motivation.png" alt="The Narrow app preview" class="features-img" />
+          <div id="feature-dots" class="feature-dots">
+            <button type="button" class="feature-dot active" data-index="0" aria-label="Go to feature: Porn Blocker"></button>
+            <button type="button" class="feature-dot" data-index="1" aria-label="Go to feature: Routines"></button>
+            <button type="button" class="feature-dot" data-index="2" aria-label="Go to feature: Community"></button>
+            <button type="button" class="feature-dot" data-index="3" aria-label="Go to feature: Panic Button"></button>
+            <button type="button" class="feature-dot" data-index="4" aria-label="Go to feature: Daily Accountability"></button>
+            <button type="button" class="feature-dot" data-index="5" aria-label="Go to feature: Accountability Brother"></button>
+            <button type="button" class="feature-dot" data-index="6" aria-label="Go to feature: Daily Scripture"></button>
+            <button type="button" class="feature-dot" data-index="7" aria-label="Go to feature: Cognitive Behavioural Therapy"></button>
+          </div>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">⚔️</div>
-          <div class="feature-title">Replace the Temptation</div>
-          <p class="feature-body">
-            In moments of temptation, the app provides an immediate redirect — a specific action, a scripture, a workout, a prayer — chosen by you in advance for exactly this moment.
-          </p>
-          <div class="feature-outcome">Breaks the pattern before it starts</div>
-        </div>
+        <div id="feature-list" class="feature-list">
+          <h3 class="feature-section-heading">Remove & Replace Temptation</h3>
+          <div class="feature-card active" data-index="0">
+            <h4 class="feature-title">Porn Blocker</h4>
+            <p class="feature-body">Block access to pornography across your devices. A first line of defense that removes temptation before it reaches you.</p>
+          </div>
+          <div class="feature-card" data-index="1">
+            <h4 class="feature-title">Routines</h4>
+            <p class="feature-body">Build healthy habits that replace temptation with intentional actions — scripture, prayer, exercise, or connection with a brother.</p>
+          </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">📖</div>
-          <div class="feature-title">Daily Reflection</div>
-          <p class="feature-body">
-            A short, daily practice of honest self-examination rooted in scripture and stoic discipline. Not journaling for its own sake — reflection as a weapon of awareness.
-          </p>
-          <div class="feature-outcome">Cultivates self-knowledge and clarity</div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🤝</div>
-          <div class="feature-title">Brotherhood & Accountability</div>
-          <p class="feature-body">
-            Invite a trusted brother to walk alongside you. Share your streak, send an SOS when you're struggling, and receive accountability check-ins. Real relationships, not anonymous feeds.
-          </p>
-          <div class="feature-outcome">Removes the isolation that enables relapse</div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <div class="feature-title">Progress Intelligence</div>
-          <p class="feature-body">
-            See your patterns over time — when you struggle most, how your streaks have grown, what's working. Understanding your cycle is how you break it.
-          </p>
-          <div class="feature-outcome">Turns data into strategy</div>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">✦</div>
-          <div class="feature-title">Curated Scripture & Wisdom</div>
-          <p class="feature-body">
-            Daily verses, historical Christian writing on self-mastery, and meditations from men who have walked hard roads. Truth delivered when you need it most.
-          </p>
-          <div class="feature-outcome">Anchors discipline in something bigger than willpower</div>
+          <h3 class="feature-section-heading">Resist Temptation</h3>
+          <div class="feature-card" data-index="2">
+            <h4 class="feature-title">Community</h4>
+            <p class="feature-body">Connect with brothers walking the same path. Share your journey, encourage one another, and fight together.</p>
+          </div>
+          <div class="feature-card" data-index="3">
+            <h4 class="feature-title">Panic Button</h4>
+            <p class="feature-body">When temptation hits, one tap brings immediate help — scripture, a redirect, or a prompt to reach your accountability brother.</p>
+          </div>
+          <div class="feature-card" data-index="4">
+            <h4 class="feature-title">Daily Accountability</h4>
+            <p class="feature-body">Check in daily with your progress. Consistent accountability builds the discipline that keeps you on the narrow path.</p>
+          </div>
+          <div class="feature-card" data-index="5">
+            <h4 class="feature-title">Accountability Brother</h4>
+            <p class="feature-body">Invite a trusted brother to walk alongside you. Share your streak, send an SOS when you're struggling, and receive real accountability.</p>
+          </div>
+          <div class="feature-card" data-index="6">
+            <h4 class="feature-title">Daily Scripture</h4>
+            <p class="feature-body">Truth delivered when you need it most. Daily verses and wisdom to anchor your heart and mind.</p>
+          </div>
+          <div class="feature-card" data-index="7">
+            <h4 class="feature-title">Cognitive Behavioural Therapy (CBT)</h4>
+            <p class="feature-body">Evidence-based exercises to identify triggers, challenge harmful thought patterns, and build lasting change.</p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="features-cta">
-        <a href="index.html#pricing">Try now for free →</a>
-      </div>
-
-      <a href="index.html" class="features-back">← Back to home</a>
+    <div class="features-cta">
+      <a href="index.html#pricing">Try now for free →</a>
     </div>
+
+    <a href="index.html" class="features-back">← Back to home</a>
   </main>
 
   <footer class="footer">
@@ -502,6 +566,35 @@
       if (btn) btn.addEventListener('click',function(){ document.body.classList.toggle('nav-open'); btn.setAttribute('aria-expanded',document.body.classList.contains('nav-open')); overlay&&overlay.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); drawer&&drawer.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); });
       if (overlay) overlay.addEventListener('click',closeNav);
       if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeNav); });
+    })();
+
+    (function() {
+      var cards = document.querySelectorAll('.feature-card');
+      var dots = document.querySelectorAll('.feature-dot');
+      var img = document.getElementById('feature-img');
+
+      function setActive(i) {
+        cards.forEach(function(c, idx) {
+          c.classList.toggle('active', idx === i);
+        });
+        dots.forEach(function(d, idx) {
+          d.classList.toggle('active', idx === i);
+        });
+      }
+
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          var i = parseInt(card.getAttribute('data-index'), 10);
+          setActive(i);
+        });
+      });
+
+      dots.forEach(function(dot) {
+        dot.addEventListener('click', function() {
+          var i = parseInt(dot.getAttribute('data-index'), 10);
+          setActive(i);
+        });
+      });
     })();
   </script>
 </body>
