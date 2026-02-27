@@ -6,6 +6,9 @@
   <title>Guides — The Narrow</title>
   <link rel="icon" type="image/svg+xml" href="favicon 3.svg" />
   <meta name="description" content="Guides and resources to help you walk the narrow path. Learn how to break free and become the man you're called to be." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://flagcdn.com; connect-src 'self' https://ip-api.com; base-uri 'self'; form-action 'self'; object-src 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,7 +41,7 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* ── Navigation ───────────────────────────────────────────── */
+    /* ── Navigation (same as homepage) ────────────────────────── */
     .nav-wrap {
       position: fixed;
       top: 0;
@@ -51,6 +54,7 @@
     }
     .nav-wrap.scrolled {
       top: 0;
+      padding-inline: var(--px);
       background: #f5f4f2;
       border-bottom: 1px solid rgba(0,0,0,0.08);
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
@@ -66,57 +70,42 @@
       justify-content: space-between;
       background: transparent;
       transition: all .4s ease;
+      border: none;
+      border-radius: 0;
     }
-    .nav.scrolled { padding: .75rem 1.5rem; }
-
-    .nav-logo img {
-      height: 32px;
-      width: auto;
-      object-fit: contain;
-      filter: brightness(0);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: .875rem;
-      font-weight: 500;
-      color: #4b5563;
-      padding: .5rem 1rem;
-      border-radius: 1rem;
-      transition: opacity .2s;
-    }
-    .nav-links a:hover { opacity: .7; color: #111827; }
-    .nav-links a.active { color: #8c7a5a; font-weight: 600; }
-
-    .nav-cta {
-      font-size: .875rem;
-      font-weight: 500;
-      background: rgba(0,0,0,0.06);
-      color: #111827;
-      padding: .5rem 1rem;
-      border-radius: 1rem;
-      transition: background .2s;
-    }
-    .nav-cta:hover { background: rgba(0,0,0,0.12); }
-
-    .nav-mobile-btn { display: none; }
-
+    .nav.scrolled { background: transparent; padding: .75rem 1.5rem; border-bottom: none; box-shadow: none; }
+    .nav-logo { display: flex; align-items: center; cursor: pointer; transition: opacity .2s; }
+    .nav-logo:hover { opacity: .8; }
+    .nav-logo img { height: 32px; width: auto; object-fit: contain; transition: filter .4s; }
+    .nav.scrolled .nav-logo img { filter: brightness(0) saturate(100%); }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.85); padding: .5rem 1rem; border-radius: 1rem; transition: all .4s; cursor: pointer; }
+    .nav-links a:hover { opacity: .7; }
+    .nav.scrolled .nav-links a { color: #4b5563; }
+    .nav.scrolled .nav-links a:hover { color: #111827; opacity: 1; }
+    .nav-links a.active { color: var(--page-gold); font-weight: 600; }
+    .nav-cta { font-size: .875rem; font-weight: 500; background: transparent; color: rgba(255,255,255,.85); padding: .5rem 1rem; border-radius: 1rem; border: 1px solid rgba(255,255,255,.85); transition: all .4s; white-space: nowrap; cursor: pointer; }
+    .nav-cta:hover { background: rgba(255,255,255,.85); color: var(--cream); }
+    .nav.scrolled .nav-cta { background: rgba(0,0,0,0.06); color: #111827; border-color: transparent; }
+    .nav.scrolled .nav-cta:hover { background: rgba(0,0,0,0.12); }
+    .nav-country-wrap { display: flex; align-items: center; margin-left: auto; margin-right: 1.25rem; }
+    .nav-country-select { font-family: inherit; font-size: 0.8125rem; font-weight: 500; color: rgba(255,255,255,.9); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 0.5rem; padding: 0.35rem 0.6rem; cursor: pointer; min-width: 4rem; }
+    .nav.scrolled .nav-country-select { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.12); color: #111827; }
+    .nav-country-select:hover { border-color: rgba(255,255,255,0.5); }
+    .nav.scrolled .nav-country-select:hover { border-color: rgba(0,0,0,0.2); }
+    .nav-country-select:focus { outline: none; border-color: var(--page-gold); }
+    .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.8); transition: all .4s; }
+    .nav.scrolled .nav-mobile-btn span { background: #4b5563; }
     @media (max-width: 768px) {
       .nav-wrap { pointer-events: all; }
       .nav { padding: .75rem 1.5rem; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
-      .nav-mobile-btn { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; touch-action: manipulation; }
-      .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: #4b5563; }
-    }
-    @media (max-width: 540px) {
-      .guides-grid { grid-template-columns: 1fr; }
-      .guides-page { padding-top: 6rem; padding-bottom: 4rem; }
+      .nav-mobile-btn { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; touch-action: manipulation; }
+      .nav-country-wrap { margin-right: 0.5rem; }
+      .nav-country-btn { padding: 0.3rem 0.4rem; font-size: 0.75rem; }
+      .nav-country-btn img { width: 18px; height: 14px; }
     }
     body.nav-open { overflow: hidden; }
     .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199; opacity: 0; transition: opacity .25s ease; }
@@ -127,10 +116,8 @@
     .nav-mobile-drawer a { display: block; padding: 1rem 1.25rem; font-size: 1rem; font-weight: 500; color: #111827; border-radius: 8px; }
     .nav-mobile-drawer a:hover, .nav-mobile-drawer a:focus { background: rgba(0,0,0,.06); }
     .nav-mobile-drawer .nav-cta { background: rgba(0,0,0,.08); font-weight: 600; }
-    @media (min-width: 1024px) {
-      .nav { padding: .75rem 3rem; }
-      .nav.scrolled { padding: .75rem 3rem; }
-    }
+    @media (min-width: 1024px) { .nav { padding: .75rem 3rem; } .nav.scrolled { padding: .75rem 3rem; } }
+    @media (max-width: 540px) { .guides-grid { grid-template-columns: 1fr; } .guides-page { padding-top: 6rem; padding-bottom: 4rem; } }
 
     /* ── Page content ─────────────────────────────────────────── */
     .guides-page {
@@ -314,6 +301,15 @@
       width: auto;
       object-fit: contain;
     }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .footer-join { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .footer-join-heading { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,.95); }
+    .footer-join-form { display: flex; align-items: center; max-width: 360px; width: 100%; border: 1px solid rgba(255,255,255,.3); border-radius: 9999px; background: rgba(255,255,255,.06); overflow: hidden; }
+    .footer-join-input { flex: 1; min-width: 0; padding: 0.75rem 1rem 0.75rem 1.25rem; font-family: inherit; font-size: 0.9375rem; color: rgba(255,255,255,.95); background: none; border: none; outline: none; }
+    .footer-join-input::placeholder { color: rgba(255,255,255,.5); }
+    .footer-join-btn { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; background: none; border: none; color: rgba(255,255,255,.9); cursor: pointer; transition: color .2s, opacity .2s; }
+    .footer-join-btn:hover { color: #fff; opacity: 1; }
+    .footer-join-btn svg { width: 20px; height: 20px; }
     .footer-divider {
       width: 100%;
       height: 1px;
@@ -393,9 +389,24 @@
           <li><a href="for-churches.html">For Churches</a></li>
           <li><a href="features.html">Features</a></li>
           <li><a href="guides.html" class="active">Learn</a></li>
-          <li><a class="nav-cta" href="index.html#pricing">Try now for free</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a class="nav-cta" href="pricing.html">Try now for free</a></li>
         </ul>
       </nav>
+      <div class="nav-country-wrap" id="nav-country-wrap">
+        <button type="button" class="nav-country-btn" id="nav-country-btn" aria-expanded="false" aria-haspopup="listbox" aria-label="Change region. Current: US">
+          <img id="nav-country-flag" src="https://flagcdn.com/w20/us.png" alt="" width="20" height="15" loading="lazy">
+          <span id="nav-country-code">US</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="nav-country-dropdown" role="listbox" id="nav-country-dropdown" aria-label="Select region">
+          <button type="button" class="nav-country-option" role="option" data-value="US" data-flag="https://flagcdn.com/w20/us.png" data-code="US"><img src="https://flagcdn.com/w20/us.png" alt="" width="20" height="15"> US</button>
+          <button type="button" class="nav-country-option" role="option" data-value="AUS" data-flag="https://flagcdn.com/w20/au.png" data-code="AU"><img src="https://flagcdn.com/w20/au.png" alt="" width="20" height="15"> AU</button>
+          <button type="button" class="nav-country-option" role="option" data-value="NZ" data-flag="https://flagcdn.com/w20/nz.png" data-code="NZ"><img src="https://flagcdn.com/w20/nz.png" alt="" width="20" height="15"> NZ</button>
+          <button type="button" class="nav-country-option" role="option" data-value="CAN" data-flag="https://flagcdn.com/w20/ca.png" data-code="CA"><img src="https://flagcdn.com/w20/ca.png" alt="" width="20" height="15"> CA</button>
+          <button type="button" class="nav-country-option" role="option" data-value="UK" data-flag="https://flagcdn.com/w20/gb.png" data-code="UK"><img src="https://flagcdn.com/w20/gb.png" alt="" width="20" height="15"> UK</button>
+        </div>
+      </div>
       <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -408,7 +419,8 @@
       <a href="for-churches.html">For Churches</a>
       <a href="features.html">Features</a>
       <a href="guides.html">Learn</a>
-      <a href="index.html#pricing" class="nav-cta">Try now for free</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pricing.html" class="nav-cta">Try now for free</a>
     </nav>
   </div>
 
@@ -491,6 +503,16 @@
           <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="get it on google play.svg" alt="Get it on Google Play" /></a>
         </div>
       </div>
+      <div class="footer-join">
+        <h2 class="footer-join-heading">Join the Movement</h2>
+        <form class="footer-join-form" action="#" method="post" aria-label="Email signup">
+          <label for="footer-join-email-guides" class="visually-hidden">Email</label>
+          <input id="footer-join-email-guides" class="footer-join-input" type="email" name="email" placeholder="Enter your email …" autocomplete="email" required>
+          <button type="submit" class="footer-join-btn" aria-label="Sign up">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="m11.246 5.318.032-.078.084-.147.148-.201.066-.054.143-.09.226-.107.168-.012.25.013.155.07.214.129 4.104 4.104c.048.048.086.104.112.167.025.062.039.129.039.196 0 .068-.013.134-.039.197-.026.062-.064.119-.112.166l-4.104 4.104c-.096.096-.227.15-.363.15s-.267-.054-.363-.15-.15-.227-.15-.363.054-.267.15-.363l3.229-3.228H2.575c-.136 0-.267-.054-.363-.15-.096-.096-.15-.227-.15-.363 0-.136.054-.266.15-.362.096-.097.227-.15.363-.15h11.074l-3.229-3.228c-.096-.096-.15-.227-.15-.363s.054-.267.15-.363.227-.15.363-.15.267.054.363.15l4.104 4.104Z"/></svg>
+          </button>
+        </form>
+      </div>
       <div class="footer-divider"></div>
       <div class="footer-bottom">
         <p class="footer-copy">© 2026 The Narrow. Choose the narrow path.</p>
@@ -521,6 +543,7 @@
       if (overlay) overlay.addEventListener('click',closeNav);
       if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeNav); });
     })();
+    (function(){ var wrap=document.getElementById('nav-country-wrap'); var btn=document.getElementById('nav-country-btn'); var dropdown=document.getElementById('nav-country-dropdown'); var flagEl=document.getElementById('nav-country-flag'); var codeEl=document.getElementById('nav-country-code'); if(!wrap||!btn||!dropdown||!flagEl||!codeEl) return; var KEY='thenarrow_region'; var MAP={US:'US',AU:'AUS',NZ:'NZ',CA:'CAN',GB:'UK'}; var OPTS=['US','AUS','NZ','CAN','UK']; function set(v){ if(!OPTS.includes(v)) return; var opt=dropdown.querySelector('[data-value="'+v+'"]'); if(opt){ flagEl.src=opt.getAttribute('data-flag'); codeEl.textContent=opt.getAttribute('data-code'); btn.setAttribute('aria-label','Change region. Current: '+opt.getAttribute('data-code')); dropdown.querySelectorAll('.nav-country-option').forEach(function(o){ o.classList.remove('active'); }); opt.classList.add('active'); } try{ localStorage.setItem(KEY,v); }catch(e){} } function close(){ wrap.classList.remove('open'); btn.setAttribute('aria-expanded','false'); } btn.addEventListener('click',function(){ var open=wrap.classList.toggle('open'); btn.setAttribute('aria-expanded',open?'true':'false'); }); dropdown.querySelectorAll('.nav-country-option').forEach(function(opt){ opt.addEventListener('click',function(){ set(opt.getAttribute('data-value')); close(); }); }); document.addEventListener('click',function(e){ if(wrap.contains(e.target)) return; close(); }); try{ var s=localStorage.getItem(KEY); if(s&&OPTS.includes(s)){ set(s); return; } }catch(e){} var xhr=new XMLHttpRequest(); xhr.open('GET','https://ip-api.com/json/?fields=countryCode',true); xhr.onreadystatechange=function(){ if(xhr.readyState!==4) return; try{ var d=JSON.parse(xhr.responseText); set(d&&d.countryCode?(MAP[d.countryCode]||'US'):'US'); }catch(e){ set('US'); } }; xhr.onerror=function(){ set('US'); }; xhr.send(); set('US'); })();
   </script>
 </body>
 </html>
