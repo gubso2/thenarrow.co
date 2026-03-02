@@ -119,7 +119,7 @@
     .nav-mobile-drawer .nav-cta { background: rgba(0,0,0,.08); font-weight: 600; }
     @media (min-width: 1024px) { .nav { padding: .75rem 3rem; } .nav.scrolled { padding: .75rem 3rem; } }
 
-    /* ── Pricing page ───────────────────────────────────────── */
+    /* ── Pricing page (Heidi-style layout) ──────────────────── */
     .pricing-page {
       padding-top: 8rem;
       padding-bottom: 6rem;
@@ -131,7 +131,7 @@
       display: flex;
       flex-direction: column;
       gap: 3.5rem;
-      max-width: var(--max-w-lg);
+      max-width: 1200px;
       margin-inline: auto;
     }
 
@@ -154,15 +154,7 @@
     }
     .pricing-headline em { font-style: italic; color: #8c7a5a; }
 
-    .pricing-why {
-      max-width: 36em;
-      margin-inline: auto;
-      font-size: 1rem;
-      line-height: 1.65;
-      color: #4b5563;
-    }
-
-    .pricing-tabs-wrap {
+    .pricing-header-controls {
       display: flex;
       flex-direction: column-reverse;
       align-items: center;
@@ -170,7 +162,7 @@
       margin-top: 0.75rem;
     }
     @media (min-width: 640px) {
-      .pricing-tabs-wrap { flex-direction: row; }
+      .pricing-header-controls { flex-direction: row; }
     }
 
     .pricing-tabs {
@@ -180,11 +172,11 @@
       gap: 0.25rem;
       padding: 0.25rem;
       border-radius: 0.5rem;
-      background: #e8e6e1;
+      background: #e5e4e0;
     }
 
     .pricing-tab {
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.75rem;
       font-size: 0.875rem;
       font-weight: 500;
       color: #5a5752;
@@ -192,7 +184,7 @@
       border: none;
       border-radius: 0.375rem;
       cursor: pointer;
-      transition: background .2s, color .2s;
+      transition: background .2s, color .2s, box-shadow .2s;
     }
     .pricing-tab:hover { color: #1C1C1E; background: rgba(255,255,255,0.6); }
     .pricing-tab.active {
@@ -201,6 +193,57 @@
       font-weight: 600;
       box-shadow: 0 1px 2px rgba(0,0,0,0.06);
     }
+
+    .pricing-currency {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #1C1C1E;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      min-width: fit-content;
+    }
+    .pricing-currency:hover { border-color: #d1d5db; }
+    .pricing-currency svg { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
+
+    .pricing-currency-wrap { position: relative; }
+    .pricing-currency-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      min-width: 140px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      z-index: 150;
+      padding: 0.25rem;
+      display: none;
+    }
+    .pricing-currency-wrap.open .pricing-currency-dropdown { display: block; }
+    .pricing-currency-option {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #1C1C1E;
+      background: none;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background .2s;
+    }
+    .pricing-currency-option:hover { background: #f3f4f6; }
 
     .pricing-grid {
       display: grid;
@@ -212,37 +255,25 @@
     @media (min-width: 640px) {
       .pricing-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (min-width: 992px) {
-      .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+    @media (min-width: 1024px) {
+      .pricing-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     }
+
+    .pricing-card-wrap { height: 100%; }
 
     .pricing-card {
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
-      padding: 1.5rem;
-      max-width: 320px;
+      padding: 1.25rem;
+      max-width: 305px;
       margin-inline: auto;
       width: 100%;
       height: 100%;
       background: #fff;
       border: 1px solid #e5e7eb;
-      border-radius: 0.75rem;
+      border-radius: 12px;
       position: relative;
-    }
-    .pricing-card.popular { border-color: #1C1C1E; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-
-    .pricing-card-badge {
-      position: absolute;
-      top: -0.75rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(140,122,90,0.2);
-      color: #1C1C1E;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
     }
 
     .pricing-card-header {
@@ -253,7 +284,7 @@
 
     .pricing-card-title {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-weight: 700;
       color: #1C1C1E;
     }
@@ -267,13 +298,13 @@
     .pricing-card-price-wrap {
       display: flex;
       flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.25rem 0.5rem;
+      align-items: flex-end;
+      gap: 0 0.375rem;
     }
 
     .pricing-card-price {
       font-family: var(--font-display);
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-weight: 700;
       color: #1C1C1E;
     }
@@ -293,7 +324,6 @@
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      margin-top: 0.25rem;
     }
 
     .pricing-card-cta {
@@ -305,7 +335,7 @@
       font-size: 0.9375rem;
       font-weight: 600;
       border-radius: 0.5rem;
-      border: none;
+      text-decoration: none;
       cursor: pointer;
       transition: background .2s, transform .1s;
     }
@@ -323,6 +353,7 @@
       background: transparent;
       color: #1C1C1E;
       font-weight: 500;
+      font-size: 0.875rem;
     }
     .pricing-card-cta.ghost:hover { text-decoration: underline; }
 
@@ -330,7 +361,6 @@
       width: 100%;
       height: 1px;
       background: #e5e7eb;
-      margin: 0.25rem 0 0;
     }
 
     .pricing-card-features {
@@ -338,14 +368,14 @@
       flex-direction: column;
       gap: 0.625rem;
       flex-grow: 1;
-      min-height: 10rem;
+      min-height: 13rem;
     }
 
     .pricing-card-features-title {
       font-size: 0.875rem;
       font-weight: 600;
       color: #1C1C1E;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.125rem;
     }
 
     .pricing-feature {
@@ -361,9 +391,25 @@
       flex-shrink: 0;
       width: 20px;
       height: 20px;
-      margin-top: 0.1rem;
-      stroke: #22c55e;
+      margin-top: 0.05rem;
+      stroke: currentColor;
     }
+
+    .pricing-see-more {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      background: transparent;
+      color: #1C1C1E;
+      border: none;
+      cursor: pointer;
+      margin-top: auto;
+      margin-left: -0.5rem;
+    }
+    .pricing-see-more:hover { text-decoration: underline; }
 
     .pricing-billing-toggle {
       display: inline-flex;
@@ -386,18 +432,7 @@
     }
     .pricing-billing-btn.active { background: #fff; color: #1C1C1E; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
 
-    .pricing-save-badge {
-      display: inline-block;
-      background: rgba(34,197,94,0.15);
-      color: #15803d;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.25rem 0.5rem;
-      border-radius: 9999px;
-      margin-left: auto;
-    }
-
-    /* Add-on strip ───────────────────────────────────────────── */
+    /* Add-on strip (Heidi-style dark banner) ─────────────────── */
     .pricing-addon {
       display: grid;
       grid-template-columns: 1fr;
@@ -405,18 +440,19 @@
       align-items: start;
       width: 100%;
       padding: 1.5rem;
-      border-radius: 0.75rem;
+      border-radius: 12px;
       background: #1C1C1E;
       color: #fff;
     }
     @media (min-width: 768px) {
-      .pricing-addon { grid-template-columns: 1fr auto; align-items: center; }
+      .pricing-addon { grid-template-columns: 1fr 1fr; align-items: center; gap: 2rem; }
     }
 
     .pricing-addon-content h3 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       font-weight: 700;
+      color: #fff;
       margin-bottom: 0.5rem;
     }
 
@@ -448,18 +484,19 @@
       background: #f2e3c3;
       color: #111;
       white-space: nowrap;
+      text-decoration: none;
       transition: background .2s;
     }
     .pricing-addon-cta:hover { background: #e6d4a8; }
 
-    /* Bottom callout ─────────────────────────────────────────── */
+    /* Bottom callout (Heidi-style trainee block) ──────────────── */
     .pricing-callout {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 1rem;
       padding: 1.5rem;
-      border-radius: 0.75rem;
+      border-radius: 12px;
       background: #fff;
       border: 1px solid #e5e7eb;
       max-width: 32rem;
@@ -467,9 +504,10 @@
       width: 100%;
     }
     @media (min-width: 768px) {
-      .pricing-callout { flex-direction: row; align-items: center; justify-content: space-between; }
+      .pricing-callout { flex-direction: row; align-items: center; justify-content: space-between; gap: 1.5rem; }
     }
 
+    .pricing-callout-content { flex: 1; }
     .pricing-callout-content strong { font-size: 1rem; color: #1C1C1E; }
     .pricing-callout-content p { font-size: 0.9375rem; color: #5a5752; margin-top: 0.25rem; }
 
@@ -484,7 +522,8 @@
       background: #f2e3c3;
       color: #111;
       white-space: nowrap;
-      margin-left: auto;
+      text-decoration: none;
+      flex-shrink: 0;
     }
     .pricing-callout-cta:hover { background: #e6d4a8; }
 
@@ -582,144 +621,170 @@
     <section class="pricing-section">
       <div class="pricing-header">
         <h1 class="pricing-headline">There's a plan that's right for <em>you</em></h1>
-        <p class="pricing-why">We charge because commitment changes behaviour. Research shows that when people invest financially, they're more likely to follow through (Arkes &amp; Blumer, 1985).</p>
-        <p class="pricing-why">Your investment also helps us reach more people, build a better product, and meaningfully support Christian ministries.</p>
-        <div class="pricing-tabs-wrap">
+        <div class="pricing-header-controls">
           <div class="pricing-tabs" role="tablist" aria-label="Plan type">
             <button type="button" class="pricing-tab active" role="tab" aria-selected="true" data-tab="individual">For Individuals</button>
             <button type="button" class="pricing-tab" role="tab" aria-selected="false" data-tab="churches">For Churches &amp; Ministries</button>
+          </div>
+          <div class="pricing-currency-wrap" id="pricing-currency-wrap">
+            <button type="button" class="pricing-currency" id="pricing-currency-btn" aria-expanded="false" aria-haspopup="listbox" aria-label="Select currency">
+              <span id="pricing-currency-label">USD ($)</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="pricing-currency-dropdown" role="listbox" id="pricing-currency-dropdown" aria-label="Select currency">
+              <button type="button" class="pricing-currency-option" role="option" data-currency="USD" data-label="USD ($)">USD ($)</button>
+              <button type="button" class="pricing-currency-option" role="option" data-currency="AUD" data-label="AUD ($)">AUD ($)</button>
+              <button type="button" class="pricing-currency-option" role="option" data-currency="NZD" data-label="NZD ($)">NZD ($)</button>
+              <button type="button" class="pricing-currency-option" role="option" data-currency="CAD" data-label="CAD ($)">CAD ($)</button>
+              <button type="button" class="pricing-currency-option" role="option" data-currency="GBP" data-label="GBP (£)">GBP (£)</button>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="pricing-grid" id="pricing-cards">
         <!-- Free -->
-        <div class="pricing-card" data-plan="individual">
-          <div class="pricing-card-header">
-            <h2 class="pricing-card-title">Free</h2>
-            <p class="pricing-card-tagline">Start with the basics. Stay focused on the path.</p>
-          </div>
-          <div class="pricing-card-price-wrap">
-            <span class="pricing-card-price">$0</span>
-          </div>
-          <div class="pricing-card-cta-wrap">
-            <a href="#" class="pricing-card-cta secondary">Get started free</a>
-          </div>
-          <div class="pricing-card-divider" aria-hidden="true"></div>
-          <div class="pricing-card-features">
-            <p class="pricing-card-features-title">Free for everyone</p>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Streak tracking &amp; daily check-in</span>
-            </span>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Daily scripture &amp; reflection</span>
-            </span>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Panic button &amp; redirects</span>
-            </span>
+        <div class="pricing-card-wrap" data-plan="individual">
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <h2 class="pricing-card-title">Free</h2>
+              <p class="pricing-card-tagline">Start with the basics. Stay focused on the path.</p>
+            </div>
+            <div class="pricing-card-price-wrap">
+              <h2 class="pricing-card-price">$0</h2>
+            </div>
+            <p class="pricing-card-note">Billed annually. Excludes applicable taxes.</p>
+            <div class="pricing-card-cta-wrap">
+              <a href="#" class="pricing-card-cta secondary">Get started free</a>
+            </div>
+            <div class="pricing-card-divider" role="separator"></div>
+            <div class="pricing-card-features">
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Streak tracking &amp; daily check-in</span>
+              </span>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Daily scripture &amp; reflection</span>
+              </span>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Panic button &amp; redirects</span>
+              </span>
+              <a href="features.html" class="pricing-see-more">See more</a>
+            </div>
           </div>
         </div>
 
-        <!-- Premium (Most Popular) -->
-        <div class="pricing-card popular" data-plan="individual">
-          <span class="pricing-card-badge">Most Popular</span>
-          <div class="pricing-card-header">
-            <h2 class="pricing-card-title">Premium</h2>
-            <p class="pricing-card-tagline">Full access. Accountability. The narrow path, fully equipped.</p>
-          </div>
-          <div class="pricing-card-price-wrap">
-            <span class="pricing-card-price" data-interval="annual">$49</span>
-            <span class="pricing-card-price" data-interval="3month" style="display:none;">$29</span>
-            <span class="pricing-card-period">/ year</span>
-          </div>
-          <div class="pricing-billing-toggle">
-            <button type="button" class="pricing-billing-btn" data-interval="3month">3 months</button>
-            <button type="button" class="pricing-billing-btn active" data-interval="annual">Annual</button>
-          </div>
-          <span class="pricing-save-badge">Best value</span>
-          <div class="pricing-card-cta-wrap">
-            <a href="#" class="pricing-card-cta primary">Try free for 7 days</a>
-            <a href="for-churches.html" class="pricing-card-cta ghost">For churches →</a>
-          </div>
-          <div class="pricing-card-divider" aria-hidden="true"></div>
-          <div class="pricing-card-features">
-            <p class="pricing-card-features-title">Everything in Free, plus:</p>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Porn blocker &amp; routines</span>
-            </span>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Accountability brother</span>
-            </span>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>CBT exercises &amp; progress insights</span>
-            </span>
+        <!-- Premium -->
+        <div class="pricing-card-wrap" data-plan="individual">
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <h2 class="pricing-card-title">Premium</h2>
+              <p class="pricing-card-tagline">Full access. Accountability. The narrow path, fully equipped.</p>
+            </div>
+            <div class="pricing-card-price-wrap">
+              <h2 class="pricing-card-price" data-interval="annual" data-usd="$49" data-aud="$79" data-nzd="$79" data-cad="$65" data-gbp="£39">$49</h2>
+              <h2 class="pricing-card-price" data-interval="3month" style="display:none;" data-usd="$29" data-aud="$49" data-nzd="$49" data-cad="$39" data-gbp="£24">$29</h2>
+              <p class="pricing-card-period">/ year</p>
+            </div>
+            <div class="pricing-billing-toggle">
+              <button type="button" class="pricing-billing-btn" data-interval="3month">3 months</button>
+              <button type="button" class="pricing-billing-btn active" data-interval="annual">Annual</button>
+            </div>
+            <p class="pricing-card-note">Billed annually. Excludes applicable taxes.</p>
+            <div class="pricing-card-cta-wrap">
+              <a href="#" class="pricing-card-cta primary">Try free for 7 days</a>
+              <a href="for-churches.html" class="pricing-card-cta ghost">For churches →</a>
+            </div>
+            <div class="pricing-card-divider" role="separator"></div>
+            <div class="pricing-card-features">
+              <p class="pricing-card-features-title">Everything in Free, plus:</p>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Porn blocker &amp; routines</span>
+              </span>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Accountability brother</span>
+              </span>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>CBT exercises &amp; progress insights</span>
+              </span>
+              <a href="features.html" class="pricing-see-more">See more</a>
+            </div>
           </div>
         </div>
 
         <!-- For Churches -->
-        <div class="pricing-card" data-plan="churches">
-          <div class="pricing-card-header">
-            <h2 class="pricing-card-title">For Churches</h2>
-            <p class="pricing-card-tagline">Partner with The Narrow for your ministry or men's group.</p>
-          </div>
-          <div class="pricing-card-price-wrap">
-            <span class="pricing-card-price">Custom</span>
-          </div>
-          <p class="pricing-card-note">Pricing for groups and organisations.</p>
-          <div class="pricing-card-cta-wrap">
-            <a href="for-churches.html" class="pricing-card-cta primary">Contact us</a>
-          </div>
-          <div class="pricing-card-divider" aria-hidden="true"></div>
-          <div class="pricing-card-features">
-            <p class="pricing-card-features-title">What you get</p>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Bulk licences for your men</span>
-            </span>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Resources for leaders</span>
-            </span>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Dedicated support</span>
-            </span>
+        <div class="pricing-card-wrap" data-plan="churches">
+          <div class="pricing-card">
+            <div class="pricing-card-header">
+              <h2 class="pricing-card-title">For Churches</h2>
+              <p class="pricing-card-tagline">Partner with The Narrow for your ministry or men's group.</p>
+            </div>
+            <div class="pricing-card-price-wrap">
+              <h2 class="pricing-card-price">Custom</h2>
+            </div>
+            <p class="pricing-card-note">Flexible billing for groups and organisations.</p>
+            <div class="pricing-card-cta-wrap">
+              <a href="for-churches.html" class="pricing-card-cta primary">Talk to us</a>
+            </div>
+            <div class="pricing-card-divider" role="separator"></div>
+            <div class="pricing-card-features">
+              <p class="pricing-card-features-title">Everything in Premium, plus:</p>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Bulk licences for your men</span>
+              </span>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Resources for leaders</span>
+              </span>
+              <span class="pricing-feature">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Dedicated support</span>
+              </span>
+              <a href="for-churches.html" class="pricing-see-more">See more</a>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Add-on: Church partnerships -->
+      <!-- Add-on: Church partnerships (Heidi-style dark banner) -->
       <div class="pricing-addon">
         <div class="pricing-addon-content">
           <h3>Church &amp; ministry partnerships</h3>
           <p>Give your men access to The Narrow. We work with churches and ministries to provide group pricing and support.</p>
-          <div class="pricing-addon-features">
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Bulk pricing for your congregation or men's group</span>
-            </span>
-            <span class="pricing-feature">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-              <span>Leader resources and discussion guides</span>
-            </span>
-          </div>
+          <a href="for-churches.html" class="pricing-addon-cta">Talk to us</a>
         </div>
-        <a href="for-churches.html" class="pricing-addon-cta">Talk to us</a>
+        <div class="pricing-addon-features">
+          <span class="pricing-feature">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Bulk pricing for your congregation or men's group</span>
+          </span>
+          <span class="pricing-feature">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Leader resources and discussion guides</span>
+          </span>
+          <span class="pricing-feature">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>Dedicated support for your ministry</span>
+          </span>
+        </div>
       </div>
 
-      <!-- Callout: 100% profits donated -->
+      <!-- Callout: 50% profits donated (Heidi-style trainee block) -->
       <div class="pricing-callout">
         <div class="pricing-callout-content">
-          <strong>100% of profits go to ministry</strong>
-          <p>We give all profits to verified Christian recovery ministries and organisations providing counselling for men who can't afford help.</p>
+          <div class="pricing-callout-heading">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-callout-icon" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+            <strong>50% of profits go to ministry</strong>
+          </div>
+          <p>We give to verified Christian recovery ministries and organisations providing counselling for men who can't afford help.</p>
         </div>
-        <a href="mission.html" class="pricing-callout-cta">Our mission →</a>
+        <a href="mission.html" class="pricing-callout-cta">Learn more</a>
       </div>
 
       <a href="index.html" class="pricing-back">← Back to home</a>
@@ -811,6 +876,7 @@
           opt.classList.add('active');
         }
         try { localStorage.setItem(KEY, v); } catch (e) {}
+        try { window.dispatchEvent(new CustomEvent('thenarrow:regionChanged', { detail: { region: v } })); } catch (e2) {}
       }
       function close() { wrap.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
       btn.addEventListener('click', function() { var open = wrap.classList.toggle('open'); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); });
@@ -829,8 +895,71 @@
     })();
 
     (function() {
+      var wrap = document.getElementById('pricing-currency-wrap');
+      var btn = document.getElementById('pricing-currency-btn');
+      var labelEl = document.getElementById('pricing-currency-label');
+      var dropdown = document.getElementById('pricing-currency-dropdown');
+      if (!wrap || !btn || !labelEl || !dropdown) return;
+      var KEY = 'thenarrow_currency';
+      var CURRENCIES = ['USD', 'AUD', 'NZD', 'CAD', 'GBP'];
+      function setCurrency(currency) {
+        if (!CURRENCIES.includes(currency)) return;
+        var opt = dropdown.querySelector('[data-currency="' + currency + '"]');
+        if (opt) labelEl.textContent = opt.getAttribute('data-label');
+        btn.setAttribute('aria-label', 'Select currency. Current: ' + currency);
+        dropdown.querySelectorAll('.pricing-currency-option').forEach(function(o) { o.setAttribute('aria-selected', o.getAttribute('data-currency') === currency ? 'true' : 'false'); });
+        var dataKey = 'data-' + currency.toLowerCase();
+        document.querySelectorAll('.pricing-card-price[' + dataKey + ']').forEach(function(el) {
+          var val = el.getAttribute(dataKey);
+          if (val) el.textContent = val;
+        });
+        try { localStorage.setItem(KEY, currency); } catch (e) {}
+      }
+      function closeDropdown() { wrap.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = wrap.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+      dropdown.querySelectorAll('.pricing-currency-option').forEach(function(opt) {
+        opt.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          setCurrency(opt.getAttribute('data-currency'));
+          closeDropdown();
+        });
+      });
+      document.addEventListener('click', function(e) {
+        if (!wrap.contains(e.target)) closeDropdown();
+      });
+      var regionToCurrency = { US: 'USD', AUS: 'AUD', NZ: 'NZD', CAN: 'CAD', UK: 'GBP' };
+      function applyFromRegion() {
+        try {
+          var region = localStorage.getItem('thenarrow_region');
+          if (region && regionToCurrency[region]) {
+            setCurrency(regionToCurrency[region]);
+            return true;
+          }
+        } catch (err) {}
+        return false;
+      }
+      try {
+        if (!applyFromRegion()) {
+          var saved = localStorage.getItem(KEY);
+          if (saved && CURRENCIES.includes(saved)) setCurrency(saved);
+          else setCurrency('USD');
+        }
+      } catch (err) { setCurrency('USD'); }
+      window.addEventListener('thenarrow:regionChanged', function(e) {
+        var region = e.detail && e.detail.region;
+        if (region && regionToCurrency[region]) setCurrency(regionToCurrency[region]);
+      });
+    })();
+
+    (function() {
       var tabs = document.querySelectorAll('.pricing-tab');
-      var cards = document.querySelectorAll('.pricing-card[data-plan]');
+      var cards = document.querySelectorAll('.pricing-card-wrap[data-plan]');
       tabs.forEach(function(tab) {
         tab.addEventListener('click', function() {
           var plan = tab.getAttribute('data-tab');

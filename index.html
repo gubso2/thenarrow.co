@@ -733,6 +733,57 @@
       .final-cta { padding: 5rem var(--px); }
     }
 
+    /* ── Marquee ───────────────────────────────────────────────── */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--gold);
+      padding: 1rem 0;
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .marquee-inner {
+      display: flex;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      align-items: center;
+      gap: 2.5rem;
+      width: max-content;
+      animation: marquee-scroll 80s linear infinite;
+    }
+    .marquee-inner:hover { animation-play-state: paused; }
+    .marquee-item {
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--cream);
+      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .marquee-dot {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+    }
+    .marquee-dot--circle {
+      border-radius: 50%;
+      background: #fff;
+    }
+    .marquee-dot--square {
+      border-radius: 2px;
+      background: #fff;
+    }
+    .marquee-dot--diamond {
+      transform: rotate(45deg);
+      background: #fff;
+    }
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-inner { animation: none; }
+    }
+
     /* ── Scroll Highlight ─────────────────────────────────────── */
     .scroll-highlight {
       background: #fff;
@@ -915,6 +966,35 @@
     .battle-plan-subtitle em {
       font-style: italic;
       color: var(--gold);
+    }
+
+    .profits-blob-wrap {
+      padding: 3rem 0 5rem;
+      width: 100vw;
+      max-width: 100%;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+    }
+    .profits-blob {
+      position: relative;
+      min-height: 220px;
+      display: flex;
+    }
+    .profits-blob svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .profits-blob svg > path {
+      fill: #f5f0e6;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,.15));
+    }
+    .profits-blob-text {
+      fill: var(--cream);
+      font-family: var(--font-display), system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -.02em;
     }
 
     .battle-plan-section {
@@ -1497,6 +1577,67 @@
 
     @media (max-width: 860px) {
       .reframe-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* ── Why The Narrow (3 cards above verse) ──────────────────── */
+    .why-narrow {
+      padding: 5rem var(--px) 4rem;
+      max-width: 1200px;
+      margin-inline: auto;
+    }
+    .why-narrow-tagline {
+      text-align: center;
+      font-size: 1.125rem;
+      color: var(--ink-mid);
+      margin-bottom: 3rem;
+      max-width: 36rem;
+      margin-inline: auto;
+      line-height: 1.6;
+    }
+    .why-narrow-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-inline: 1rem;
+    }
+    @media (min-width: 768px) {
+      .why-narrow-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .why-narrow-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    }
+    .why-narrow-card {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 30px;
+      box-shadow: 0 1px 20px 1px rgba(0, 0, 0, 0.08);
+    }
+    .why-narrow-card-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: #f5f4f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.75rem;
+    }
+    .why-narrow-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #262626;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .why-narrow-card p {
+      font-size: 0.875rem;
+      color: #4b5563;
+      line-height: 1.6;
+      margin: 0;
     }
 
     /* ── Philosophy (cream verse + CTA) ────────────────────────── */
@@ -2332,6 +2473,36 @@
       </div>
     </section>
 
+    <!-- ── Marquee ────────────────────────────────────────────── -->
+    <section class="marquee-wrap" role="marquee" aria-label="Marquee content, playing. Click or hover to pause">
+      <div class="marquee-inner">
+        <p class="marquee-item">50% of profits donated</p>
+        <span class="marquee-dot marquee-dot--circle" aria-hidden="true"></span>
+        <p class="marquee-item">Faith-based accountability</p>
+        <span class="marquee-dot marquee-dot--square" aria-hidden="true"></span>
+        <p class="marquee-item">100% Money Back Guarantee</p>
+        <span class="marquee-dot marquee-dot--diamond" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">50% of profits donated</p>
+        <span class="marquee-dot marquee-dot--circle" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">Faith-based accountability</p>
+        <span class="marquee-dot marquee-dot--square" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">100% Money Back Guarantee</p>
+        <span class="marquee-dot marquee-dot--diamond" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">50% of profits donated</p>
+        <span class="marquee-dot marquee-dot--circle" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">Faith-based accountability</p>
+        <span class="marquee-dot marquee-dot--square" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">100% Money Back Guarantee</p>
+        <span class="marquee-dot marquee-dot--diamond" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">50% of profits donated</p>
+        <span class="marquee-dot marquee-dot--circle" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">Faith-based accountability</p>
+        <span class="marquee-dot marquee-dot--square" aria-hidden="true"></span>
+        <p class="marquee-item" aria-hidden="true">100% Money Back Guarantee</p>
+        <span class="marquee-dot marquee-dot--diamond" aria-hidden="true"></span>
+      </div>
+    </section>
+
     <!-- ── Scroll Highlight + Verse (combined) ────────────────── -->
     <section class="scroll-highlight" id="scroll-highlight">
       <div class="scroll-highlight-sticky">
@@ -2432,6 +2603,23 @@
           </div>
         </div>
       </div>
+
+      <!-- Cream winding path: 50% profits donated -->
+      <div class="profits-blob-wrap">
+        <div class="profits-blob fade-up">
+          <svg viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="false" role="img" aria-label="50% of profits are donated">
+            <defs>
+              <path id="profits-text-path" d="M0,110 C125,50 250,170 375,110 C500,50 625,170 750,110 C875,50 1000,170 1000,110"/>
+            </defs>
+            <!-- Four waves, strong winding -->
+            <path fill="#f5f0e6" d="M0,75 C125,15 250,135 375,75 C500,15 625,135 750,75 C875,15 1000,135 1000,75
+                     L1000,145 C875,85 750,205 625,145 C500,85 375,205 250,145 C125,85 0,205 0,145 Z"/>
+            <text class="profits-blob-text">
+              <textPath href="#profits-text-path" startOffset="50%" text-anchor="middle">50% of profits are donated</textPath>
+            </text>
+          </svg>
+        </div>
+      </div>
     </section>
 
     <!-- ── Join The Movement ──────────────────────────────────── -->
@@ -2520,6 +2708,28 @@
 
     <div class="divider"></div>
 
+    <!-- ── Why The Narrow (3 cards) ────────────────────────────── -->
+    <section class="why-narrow">
+      <p class="why-narrow-tagline fade-up">The Narrow is the most effective way to quit pornography for good.</p>
+      <div class="why-narrow-grid">
+        <div class="why-narrow-card fade-up">
+          <div class="why-narrow-card-icon" aria-hidden="true">🛡️</div>
+          <h3>Built-in accountability</h3>
+          <p>Daily check-ins, an accountability brother, and a panic button keep you on track when temptation hits. You're not fighting alone.</p>
+        </div>
+        <div class="why-narrow-card fade-up">
+          <div class="why-narrow-card-icon" aria-hidden="true">📖</div>
+          <h3>Rooted in Scripture</h3>
+          <p>Reflection prompts and verses are built into the path so you rebuild on truth, not willpower alone. Faith and discipline work together.</p>
+        </div>
+        <div class="why-narrow-card fade-up">
+          <div class="why-narrow-card-icon" aria-hidden="true">🔄</div>
+          <h3>Replace, don't just resist</h3>
+          <p>Blockers and routines help you remove triggers and fill the gap with habits that stick. The Narrow gives you a battle plan, not just a counter.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Philosophy (cream verse + CTA) ──────────────────────── -->
     <section class="philosophy-section" id="philosophy">
       <div class="philosophy-inner fade-up">
@@ -2590,7 +2800,7 @@
             <span class="faq-chevron">▾</span>
           </button>
           <div class="faq-answer">
-            100% of profits are donated to verified Christian men's recovery ministries and organizations providing counseling for men who cannot afford professional help. We publish our giving annually. You'll see exactly where it goes.
+            50% of profits are donated to verified Christian men's recovery ministries and organizations providing counseling for men who cannot afford professional help. We publish our giving annually. You'll see exactly where it goes.
           </div>
         </div>
 
