@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!-- Path ribbon (no background) -->
+  <path d="M -200 860
+       C  80 720,  220 980,  470 905
+       C  720 830,  560 560,  840 520
+       C 1120 480,  980 780, 1260 760
+       C 1540 740, 1400 420, 1660 360
+       C 1880 310, 1960 210, 2140 120" fill="none" stroke="#E8E6E1" stroke-width="240" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

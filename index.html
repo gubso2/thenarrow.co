@@ -200,8 +200,27 @@
       border-radius: 1rem;
       transition: all .4s;
       cursor: pointer;
+      position: relative;
+      text-decoration: none;
     }
-    .nav-links a:hover { opacity: .7; }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width .35s ease;
+    }
+    .nav-links a:hover {
+      opacity: .7;
+    }
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 100%;
+    }
     .nav.scrolled .nav-links a {
       color: #4b5563;
     }
@@ -737,7 +756,7 @@
     .marquee-wrap {
       overflow: hidden;
       background: var(--gold);
-      padding: 1rem 0;
+      padding: 1.25rem 0;
       border-top: 1px solid rgba(0,0,0,.06);
       border-bottom: 1px solid rgba(0,0,0,.06);
     }
@@ -746,13 +765,13 @@
       flex-wrap: nowrap;
       white-space: nowrap;
       align-items: center;
-      gap: 2.5rem;
+      gap: 3rem;
       width: max-content;
       animation: marquee-scroll 80s linear infinite;
     }
     .marquee-inner:hover { animation-play-state: paused; }
     .marquee-item {
-      font-size: 1.625rem;
+      font-size: 2.25rem;
       font-weight: 700;
       color: var(--cream);
       flex-shrink: 0;
@@ -968,35 +987,6 @@
       color: var(--gold);
     }
 
-    .profits-blob-wrap {
-      padding: 3rem 0 5rem;
-      width: 100vw;
-      max-width: 100%;
-      margin-left: calc(-50vw + 50%);
-      margin-right: calc(-50vw + 50%);
-    }
-    .profits-blob {
-      position: relative;
-      min-height: 220px;
-      display: flex;
-    }
-    .profits-blob svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .profits-blob svg > path {
-      fill: #f5f0e6;
-      filter: drop-shadow(0 4px 24px rgba(0,0,0,.15));
-    }
-    .profits-blob-text {
-      fill: var(--cream);
-      font-family: var(--font-display), system-ui, sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -.02em;
-    }
-
     .battle-plan-section {
       max-width: var(--max-w);
       margin-inline: auto;
@@ -1193,7 +1183,7 @@
     .stats-bar {
       position: relative;
       isolation: isolate;
-      background: var(--dark-bg);
+      background: #111111;
       padding: 3rem var(--px);
       text-align: center;
     }
@@ -1202,7 +1192,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: url("%27walk%20with%20us%27.png") center center / cover no-repeat;
+      background: url("path svg.svg") center center / cover no-repeat;
       opacity: 0.7;
     }
     .stats-inner {
@@ -1316,6 +1306,57 @@
     }
     @media (max-width: 768px) {
       .movement-testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Our Commitment ───────────────────────────────────────── */
+    .our-commitment {
+      background: #E8E6E1;
+      padding: 4rem var(--px);
+    }
+    .our-commitment-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      text-align: left;
+    }
+    .our-commitment-label {
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #6b6b6b;
+      margin-bottom: 0.75rem;
+    }
+    .our-commitment-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.3rem);
+      font-weight: 700;
+      color: #111111;
+      margin-bottom: 0.75rem;
+    }
+    .our-commitment-subtitle {
+      font-size: 0.98rem;
+      color: #4b5563;
+      max-width: 40rem;
+      margin-bottom: 1.75rem;
+    }
+    .our-commitment-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .our-commitment-list { grid-template-columns: 1fr; }
+    }
+    .our-commitment-item-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111111;
+      margin-bottom: 0.35rem;
+    }
+    .our-commitment-item-text {
+      font-size: 0.9rem;
+      color: #4b5563;
+      line-height: 1.6;
     }
 
     /* ── Problem Section ──────────────────────────────────────── */
@@ -2523,7 +2564,7 @@
         </div>
       </div>
       <div class="scroll-highlight-mountain" id="scroll-highlight-mountain" aria-hidden="true">
-        <img src="mountain.png" alt="" />
+        <img src="cream mountain good.png" alt="" />
       </div>
     </section>
 
@@ -2603,23 +2644,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Cream winding path: 50% profits donated -->
-      <div class="profits-blob-wrap">
-        <div class="profits-blob fade-up">
-          <svg viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="false" role="img" aria-label="50% of profits are donated">
-            <defs>
-              <path id="profits-text-path" d="M0,110 C125,50 250,170 375,110 C500,50 625,170 750,110 C875,50 1000,170 1000,110"/>
-            </defs>
-            <!-- Four waves, strong winding -->
-            <path fill="#f5f0e6" d="M0,75 C125,15 250,135 375,75 C500,15 625,135 750,75 C875,15 1000,135 1000,75
-                     L1000,145 C875,85 750,205 625,145 C500,85 375,205 250,145 C125,85 0,205 0,145 Z"/>
-            <text class="profits-blob-text">
-              <textPath href="#profits-text-path" startOffset="50%" text-anchor="middle">50% of profits are donated</textPath>
-            </text>
-          </svg>
-        </div>
-      </div>
     </section>
 
     <!-- ── Join The Movement ──────────────────────────────────── -->
@@ -2668,6 +2692,37 @@
         </div>
       </div>
     </div>
+
+    <!-- ── Our Commitment ─────────────────────────────────────── -->
+    <section class="our-commitment">
+      <div class="our-commitment-inner">
+        <p class="our-commitment-label">Our Commitment</p>
+        <h2 class="our-commitment-title">Built for men, accountable to something higher.</h2>
+        <p class="our-commitment-subtitle">
+          The Narrow exists to help Christian men walk in freedom with integrity. Here’s what you can expect from us.
+        </p>
+        <div class="our-commitment-list">
+          <div class="our-commitment-item">
+            <h3 class="our-commitment-item-title">Gospel-centered design</h3>
+            <p class="our-commitment-item-text">
+              Every feature is shaped by Scripture and historic Christian teaching on holiness, repentance, and grace — not trends or shortcuts.
+            </p>
+          </div>
+          <div class="our-commitment-item">
+            <h3 class="our-commitment-item-title">Honest results, not hype</h3>
+            <p class="our-commitment-item-text">
+              We refuse manipulative marketing or exaggerated claims. We’ll share what works, what doesn’t, and keep improving with real data.
+            </p>
+          </div>
+          <div class="our-commitment-item">
+            <h3 class="our-commitment-item-title">Stewardship of your trust</h3>
+            <p class="our-commitment-item-text">
+              Your story, data, and finances are treated as stewardship. We aim for transparency in how we build, charge, and give.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ── Life Changing Benefits ─────────────────────────────── -->
     <div class="benefits-section-wrap">
