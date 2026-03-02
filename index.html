@@ -1316,7 +1316,32 @@
     .our-commitment-inner {
       max-width: var(--max-w);
       margin-inline: auto;
-      text-align: left;
+      text-align: center;
+      position: relative;
+    }
+    .our-commitment-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      pointer-events: auto;
+      padding: 1.5rem;
+    }
+    .our-commitment-overlay p {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #ffffff;
+      max-width: 40rem;
+    }
+    .our-commitment-overlay a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: underline;
     }
     .our-commitment-label {
       font-size: .8rem;
@@ -2696,30 +2721,10 @@
     <!-- ── Our Commitment ─────────────────────────────────────── -->
     <section class="our-commitment">
       <div class="our-commitment-inner">
-        <p class="our-commitment-label">Our Commitment</p>
-        <h2 class="our-commitment-title">Built for men, accountable to something higher.</h2>
-        <p class="our-commitment-subtitle">
-          The Narrow exists to help Christian men walk in freedom with integrity. Here’s what you can expect from us.
-        </p>
-        <div class="our-commitment-list">
-          <div class="our-commitment-item">
-            <h3 class="our-commitment-item-title">Gospel-centered design</h3>
-            <p class="our-commitment-item-text">
-              Every feature is shaped by Scripture and historic Christian teaching on holiness, repentance, and grace — not trends or shortcuts.
-            </p>
-          </div>
-          <div class="our-commitment-item">
-            <h3 class="our-commitment-item-title">Honest results, not hype</h3>
-            <p class="our-commitment-item-text">
-              We refuse manipulative marketing or exaggerated claims. We’ll share what works, what doesn’t, and keep improving with real data.
-            </p>
-          </div>
-          <div class="our-commitment-item">
-            <h3 class="our-commitment-item-title">Stewardship of your trust</h3>
-            <p class="our-commitment-item-text">
-              Your story, data, and finances are treated as stewardship. We aim for transparency in how we build, charge, and give.
-            </p>
-          </div>
+        <img src="black background image.svg" alt="Our commitment" style="width:100%;height:auto;display:block;" />
+        <div class="our-commitment-overlay">
+          <p>50% of profits are donated to help XXX</p>
+          <a href="mission.html">Our Mission</a>
         </div>
       </div>
     </section>
