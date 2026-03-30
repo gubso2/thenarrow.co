@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>if (location.protocol === 'http:') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
+  <script>if (location.protocol === 'http:' && location.hostname !== 'localhost') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Narrow — #1 App for Christian and Catholic Men Quitting Porn</title>
@@ -140,7 +140,6 @@
       z-index: 100;
       background: #171717;
       border-bottom: 1px solid rgba(255,255,255,0.06);
-      pointer-events: none;
     }
     .nav-wrap.scrolled {
       background: #171717;
@@ -148,15 +147,15 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
     .nav {
-      pointer-events: all;
       width: 100%;
-      max-width: var(--max-w);
+      max-width: 1400px;
       margin-inline: auto;
-      padding: .85rem 1.5rem;
+      padding: .85rem 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: transparent;
+      position: relative;
     }
     .nav.scrolled {
       background: transparent;
@@ -184,6 +183,10 @@
       align-items: center;
       gap: .15rem;
       list-style: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
     }
     .nav-links a {
       font-size: .875rem;
@@ -194,6 +197,8 @@
       transition: color .2s, background .2s;
       cursor: pointer;
       text-decoration: none;
+      position: relative;
+      z-index: 10;
     }
     .nav-links a:hover {
       color: #fff;
@@ -345,7 +350,7 @@
     .hero-sub {
       font-size: 1.1rem;
       line-height: 1.7;
-      color: var(--ink-mid);
+      color: #C2C0BA;
       margin-bottom: 2.5rem;
       max-width: 540px;
       margin-inline: auto;
@@ -2293,13 +2298,13 @@
     <nav>
       <ul class="nav-links">
         <li><a href="mission.html">✝ Our Mission</a></li>
-        <li><a href="for-churches.html">For Churches</a></li>
+        <li><a href="for-churches.html">Churches &amp; Organizations</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="guides.html">Learn</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a class="nav-cta" href="pricing.html">Try now for free</a></li>
       </ul>
     </nav>
+    <a class="nav-cta" href="pricing.html">Try now for free</a>
     <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -2309,7 +2314,7 @@
   <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-hidden="true">
     <nav>
       <a href="mission.html">✝ Our Mission</a>
-      <a href="for-churches.html">For Churches</a>
+      <a href="for-churches.html">Churches &amp; Organizations</a>
       <a href="features.html">Features</a>
       <a href="guides.html">Learn</a>
       <a href="pricing.html">Pricing</a>
@@ -2333,7 +2338,7 @@
           Quit Porn Forever<br>With <em>THE NARROW</em>
         </h1>
         <p class="hero-sub">
-          Meet THE NARROW, the #1 app for Christian men ready to quit porn for life — built on faith, discipline, and scientifically proven systems.
+          The #1 app for Christian men ready to quit porn for life — built on faith, discipline, and scientifically proven systems.
         </p>
         <div class="hero-actions">
           <a class="store-badge" href="#" target="_blank" rel="noopener">

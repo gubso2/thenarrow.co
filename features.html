@@ -49,24 +49,23 @@
       left: 0;
       right: 0;
       z-index: 100;
-      pointer-events: none;
       transition: top .3s, padding .3s;
       background: #171717;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .nav-wrap.scrolled { top: 0; background: #171717; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
     .nav {
-      pointer-events: all;
       width: 100%;
-      max-width: var(--max-w);
+      max-width: 1400px;
       margin-inline: auto;
-      padding: .85rem 1.5rem;
+      padding: .85rem 2.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: transparent;
       transition: all .4s ease;
       border: none;
+      position: relative;
     }
     .nav.scrolled {
       background: transparent;
@@ -78,8 +77,8 @@
     .nav-logo:hover { opacity: .8; }
     .nav-logo img { height: 28px; width: auto; object-fit: contain; }
     .nav.scrolled .nav-logo img { filter: none; }
-    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; }
-    .nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.7); padding: .5rem 1rem; border-radius: 6px; transition: all .4s; cursor: pointer; }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.7); padding: .5rem 1rem; border-radius: 6px; transition: all .4s; cursor: pointer; position: relative; z-index: 10; }
     .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     .nav.scrolled .nav-links a { color: rgba(255,255,255,.7); }
     .nav.scrolled .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
@@ -92,7 +91,7 @@
     .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.8); transition: all .4s; }
     .nav.scrolled .nav-mobile-btn span { background: rgba(255,255,255,.8); }
     @media (max-width: 768px) {
-      .nav-wrap { pointer-events: all; }
+      .nav-wrap { }
       .nav { padding: .85rem 1.5rem; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
@@ -449,13 +448,13 @@
       <nav>
         <ul class="nav-links">
           <li><a href="mission.html">✝ Our Mission</a></li>
-          <li><a href="for-churches.html">For Churches</a></li>
+          <li><a href="for-churches.html">Churches &amp; Organizations</a></li>
           <li><a href="features.html" class="active">Features</a></li>
           <li><a href="guides.html">Learn</a></li>
           <li><a href="pricing.html">Pricing</a></li>
-        <li><a class="nav-cta" href="pricing.html">Try now for free</a></li>
       </ul>
     </nav>
+    <a class="nav-cta" href="pricing.html">Try now for free</a>
     <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -465,7 +464,7 @@
   <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-hidden="true">
     <nav>
       <a href="mission.html">✝ Our Mission</a>
-      <a href="for-churches.html">For Churches</a>
+      <a href="for-churches.html">Churches &amp; Organizations</a>
       <a href="features.html">Features</a>
       <a href="guides.html">Learn</a>
       <a href="pricing.html">Pricing</a>
