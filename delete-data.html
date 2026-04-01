@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if (location.protocol === 'http:' && location.hostname !== 'localhost') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Your Account &amp; Data — The Narrow</title>
+  <link rel="icon" type="image/svg+xml" href="favicon 3.svg" />
+  <meta name="description" content="Request deletion of your The Narrow account and all associated data. Learn what data is deleted and how to submit your request." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    :root {
+      --page-bg:      #f5f4f2;
+      --page-text:    #1C1C1E;
+      --page-muted:   #5a5752;
+      --page-gold:    #8c7a5a;
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --max-w: 1100px;
+      --px: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    body {
+      background-color: var(--page-bg);
+      min-height: 100vh;
+      color: var(--page-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--px);
+    }
+
+    /* ── Navigation ───────────────────────────────────────────── */
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: #171717;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-wrap.scrolled { background: #171717; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+    .nav {
+      width: 100%;
+      max-width: 1400px;
+      margin-inline: auto;
+      padding: .85rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      position: relative;
+    }
+    .nav.scrolled { background: transparent; padding: .85rem 1.5rem; }
+    .nav-logo { display: flex; align-items: center; cursor: pointer; transition: opacity .2s; }
+    .nav-logo:hover { opacity: .8; }
+    .nav-logo img { height: 28px; width: auto; object-fit: contain; }
+    .nav.scrolled .nav-logo img { filter: none; }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.7); padding: .5rem 1rem; border-radius: 6px; transition: all .4s; cursor: pointer; position: relative; z-index: 10; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav-cta { font-size: .875rem; font-weight: 600; background: #fff; color: #171717; padding: .5rem 1rem; border-radius: 6px; border: none; transition: all .4s; white-space: nowrap; cursor: pointer; }
+    .nav-cta:hover { background: rgba(255,255,255,.88); transform: translateY(-1px); }
+    .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.8); transition: all .4s; }
+    @media (max-width: 768px) {
+      .nav { padding: .85rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-btn { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    }
+    body.nav-open { overflow: hidden; }
+    .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199; opacity: 0; transition: opacity .25s ease; }
+    body.nav-open .nav-mobile-overlay { display: block; opacity: 1; pointer-events: auto; }
+    .nav-mobile-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(300px, 85vw); background: #f5f4f2; z-index: 200; padding: 5rem 1.5rem 2rem; transform: translateX(100%); transition: transform .3s ease; box-shadow: -4px 0 24px rgba(0,0,0,.15); }
+    body.nav-open .nav-mobile-drawer { transform: translateX(0); }
+    .nav-mobile-drawer nav { display: flex; flex-direction: column; gap: .25rem; }
+    .nav-mobile-drawer a { display: block; padding: 1rem 1.25rem; font-size: 1rem; font-weight: 500; color: #111827; border-radius: 8px; }
+    .nav-mobile-drawer a:hover, .nav-mobile-drawer a:focus { background: rgba(0,0,0,.06); }
+    .nav-mobile-drawer .nav-cta { background: rgba(0,0,0,.08); font-weight: 600; }
+    @media (min-width: 1024px) {
+      .nav { padding: .85rem 3rem; }
+      .nav.scrolled { padding: .85rem 3rem; }
+    }
+
+    /* ── Page Content ─────────────────────────────────────────── */
+    .delete-page {
+      padding: 8rem var(--px) 4rem;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+    .delete-page h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .delete-page .page-intro {
+      font-size: 1.1rem;
+      color: var(--page-muted);
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+    .delete-page h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: .75rem;
+    }
+    .delete-page p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    .delete-page a {
+      color: var(--page-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .delete-page a:hover {
+      color: var(--page-text);
+    }
+
+    .steps-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .steps-list {
+      list-style: none;
+      counter-reset: steps;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .steps-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .steps-list li::before {
+      content: counter(steps);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      background: var(--page-text);
+      color: #fff;
+      font-size: .875rem;
+      font-weight: 700;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      font-size: .9375rem;
+    }
+    .data-table th,
+    .data-table td {
+      text-align: left;
+      padding: .85rem 1rem;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+    .data-table th {
+      font-weight: 700;
+      background: #fff;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--page-muted);
+    }
+    .data-table td {
+      background: #fff;
+    }
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    .badge-deleted {
+      display: inline-block;
+      padding: .15rem .6rem;
+      font-size: .75rem;
+      font-weight: 600;
+      border-radius: 4px;
+      background: #dcfce7;
+      color: #166534;
+    }
+    .badge-retained {
+      display: inline-block;
+      padding: .15rem .6rem;
+      font-size: .75rem;
+      font-weight: 600;
+      border-radius: 4px;
+      background: #fef9c3;
+      color: #854d0e;
+    }
+
+    .warning-card {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .warning-card p {
+      color: #991b1b;
+      margin-bottom: 0;
+    }
+
+    .email-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 2rem;
+      font-family: inherit;
+      font-size: .9375rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--page-text);
+      border-radius: 8px;
+      transition: background .2s, transform .15s;
+      margin-top: .5rem;
+    }
+    .email-cta:hover {
+      background: #333;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer { background: #111111; padding: 3rem var(--px) 2rem; position: relative; overflow: hidden; }
+    .footer-inner { max-width: var(--max-w); margin-inline: auto; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .footer-links a { font-size: 15px; line-height: 1.35; color: rgba(255,255,255,.95); transition: opacity .2s; text-underline-offset: 4px; }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-app-btns { display: flex; gap: 0.5rem; }
+    .footer-app-btn { display: inline-flex; align-items: center; justify-content: center; transition: opacity .2s; line-height: 0; }
+    .footer-app-btn:hover { opacity: .85; }
+    .footer-app-btn img { height: 48px; width: auto; object-fit: contain; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .footer-join { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .footer-join-heading { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,.95); }
+    .footer-join-form { display: flex; align-items: center; max-width: 360px; width: 100%; border: 1px solid rgba(255,255,255,.3); border-radius: 9999px; background: rgba(255,255,255,.06); overflow: hidden; }
+    .footer-join-input { flex: 1; min-width: 0; padding: 0.75rem 1rem 0.75rem 1.25rem; font-family: inherit; font-size: 0.9375rem; color: rgba(255,255,255,.95); background: none; border: none; outline: none; }
+    .footer-join-input::placeholder { color: rgba(255,255,255,.5); }
+    .footer-join-btn { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; background: none; border: none; color: rgba(255,255,255,.9); cursor: pointer; transition: color .2s, opacity .2s; }
+    .footer-join-btn:hover { color: #fff; opacity: 1; }
+    .footer-join-btn svg { width: 20px; height: 20px; }
+    .footer-divider { width: 100%; height: 1px; background: rgba(255,255,255,.3); margin: 1.75rem 0; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 17px; line-height: 1.4; color: rgba(255,255,255,.95); }
+    .footer-social-row { display: flex; align-items: center; gap: 2rem; }
+    .footer-social-label { font-size: 17px; line-height: 1.4; color: rgba(255,255,255,.95); }
+    .footer-social { display: flex; align-items: center; gap: 1.5rem; }
+    .footer-social a { display: block; line-height: 0; opacity: .9; transition: opacity .2s; }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social img { width: 36px; height: 36px; object-fit: contain; }
+    .footer-logo-big { width: 100vw; margin-left: calc(-50vw + 50%); margin-top: 1.5rem; padding-top: 1rem; pointer-events: none; display: flex; justify-content: center; }
+    .footer-logo-big img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
+    @media (max-width: 768px) {
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-social-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <div class="nav-wrap scrolled" id="nav-wrap">
+  <header class="nav scrolled" id="nav">
+    <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="mission.html">&#10013; Our Mission</a></li>
+        <li><a href="for-churches.html">Churches &amp; Organizations</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="guides.html">Learn</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="pricing.html">Try now for free</a>
+    <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  </div>
+  <div class="nav-mobile-overlay" id="nav-mobile-overlay" aria-hidden="true"></div>
+  <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-hidden="true">
+    <nav>
+      <a href="mission.html">&#10013; Our Mission</a>
+      <a href="for-churches.html">Churches &amp; Organizations</a>
+      <a href="features.html">Features</a>
+      <a href="guides.html">Learn</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pricing.html" class="nav-cta">Try now for free</a>
+    </nav>
+  </div>
+
+  <!-- ── Page Content ───────────────────────────────────────── -->
+  <div class="delete-page">
+    <h1>Delete Your Account &amp; Data</h1>
+    <p class="page-intro">The Narrow by Woodside Education Pty Ltd gives you full control over your data. You can request permanent deletion of your account and all associated data at any time.</p>
+
+    <h2>How to Delete Your Account</h2>
+    <div class="steps-card">
+      <ol class="steps-list">
+        <li>Open <strong>The Narrow</strong> app on your device</li>
+        <li>Go to <strong>Settings</strong> (tap your profile icon)</li>
+        <li>Scroll down and tap <strong>Delete Account</strong></li>
+        <li>Confirm the deletion when prompted</li>
+      </ol>
+    </div>
+
+    <p>Alternatively, you can request account deletion by emailing us:</p>
+    <a href="mailto:support@thenarrow.co?subject=Account%20Deletion%20Request" class="email-cta">Email support@thenarrow.co</a>
+
+    <h2>What Data Is Deleted</h2>
+    <p>When you delete your account, the following data is <strong>permanently removed</strong> from our systems:</p>
+
+    <div style="overflow-x: auto;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Action</th>
+            <th>Timeframe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Account information (email, username, profile photo)</td>
+            <td><span class="badge-deleted">Permanently Deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Behavioural &amp; progress data (streaks, habits, urges, relapses)</td>
+            <td><span class="badge-deleted">Permanently Deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Reflections &amp; journal entries</td>
+            <td><span class="badge-deleted">Permanently Deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Accountability partner connections</td>
+            <td><span class="badge-deleted">Permanently Deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Community posts &amp; messages</td>
+            <td><span class="badge-retained">Anonymised</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Payment &amp; transaction records</td>
+            <td><span class="badge-retained">Retained for legal compliance</span></td>
+            <td>Up to 7 years (tax/legal)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning-card">
+      <p><strong>This action is permanent and cannot be undone.</strong> Once your account is deleted, your data cannot be recovered. Please cancel any active subscriptions before deleting your account.</p>
+    </div>
+
+    <h2>Cancel Your Subscription First</h2>
+    <p>Deleting your account does not automatically cancel your subscription. Please cancel your subscription before requesting deletion:</p>
+    <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem;">
+      <li style="margin-bottom: .5rem; line-height: 1.7;"><strong>iPhone/iPad:</strong> Settings &rarr; Apple ID &rarr; Subscriptions &rarr; The Narrow &rarr; Cancel</li>
+      <li style="margin-bottom: .5rem; line-height: 1.7;"><strong>Web:</strong> Log into your account at thenarrow.co and cancel in billing settings</li>
+    </ul>
+
+    <h2>Processing Time</h2>
+    <p>Account deletion requests are processed within <strong>30 days</strong>. You will receive a confirmation email once your data has been removed.</p>
+
+    <h2>Questions?</h2>
+    <p>If you have any questions about data deletion, contact us at <a href="mailto:support@thenarrow.co">support@thenarrow.co</a>.</p>
+    <p>For full details on how we handle your data, see our <a href="privacy.html">Privacy Policy</a>.</p>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <ul class="footer-links">
+          <li><a href="support.html">Support</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="delete-data.html">Delete Data</a></li>
+        </ul>
+        <div class="footer-app-btns">
+          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="Download App Store.png" alt="Download on the App Store" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="get it on google play.svg" alt="Get it on Google Play" /></a>
+        </div>
+      </div>
+      <div class="footer-join">
+        <h2 class="footer-join-heading">Join the Movement</h2>
+        <form class="footer-join-form" action="#" method="post" aria-label="Email signup">
+          <label for="footer-join-email-delete" class="visually-hidden">Email</label>
+          <input id="footer-join-email-delete" class="footer-join-input" type="email" name="email" placeholder="Enter your email ..." autocomplete="email" required>
+          <button type="submit" class="footer-join-btn" aria-label="Sign up">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="m11.246 5.318.032-.078.084-.147.148-.201.066-.054.143-.09.226-.107.168-.012.25.013.155.07.214.129 4.104 4.104c.048.048.086.104.112.167.025.062.039.129.039.196 0 .068-.013.134-.039.197-.026.062-.064.119-.112.166l-4.104 4.104c-.096.096-.227.15-.363.15s-.267-.054-.363-.15-.15-.227-.15-.363.054-.267.15-.363l3.229-3.228H2.575c-.136 0-.267-.054-.363-.15-.096-.096-.15-.227-.15-.363 0-.136.054-.266.15-.362.096-.097.227-.15.363-.15h11.074l-3.229-3.228c-.096-.096-.15-.227-.15-.363s.054-.267.15-.363.227-.15.363-.15.267.054.363.15l4.104 4.104Z"/></svg>
+          </button>
+        </form>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 The Narrow. Choose the narrow path.<br>Woodside Education Pty Ltd</p>
+        <div class="footer-social-row">
+          <span class="footer-social-label">Follow us on social</span>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="instagram.png" alt="" /></a>
+            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="TikTok gg.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-logo-big">
+        <img src="THE.png" alt="The Narrow" />
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('nav-mobile-btn');
+      const overlay = document.getElementById('nav-mobile-overlay');
+      const drawer = document.getElementById('nav-mobile-drawer');
+      function closeNav() { document.body.classList.remove('nav-open'); if (btn) btn.setAttribute('aria-expanded','false'); if (overlay) overlay.setAttribute('aria-hidden','true'); if (drawer) drawer.setAttribute('aria-hidden','true'); }
+      if (btn) btn.addEventListener('click',function(){ document.body.classList.toggle('nav-open'); btn.setAttribute('aria-expanded',document.body.classList.contains('nav-open')); overlay&&overlay.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); drawer&&drawer.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); });
+      if (overlay) overlay.addEventListener('click',closeNav);
+      if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeNav); });
+    })();
+  </script>
+</body>
+</html>

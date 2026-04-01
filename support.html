@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if (location.protocol === 'http:' && location.hostname !== 'localhost') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — The Narrow</title>
+  <link rel="icon" type="image/svg+xml" href="favicon 3.svg" />
+  <meta name="description" content="Get help with The Narrow app. Find answers to common questions or contact our support team." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    :root {
+      --page-bg:      #f5f4f2;
+      --page-text:    #1C1C1E;
+      --page-muted:   #5a5752;
+      --page-gold:    #8c7a5a;
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --max-w: 1100px;
+      --px: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    body {
+      background-color: var(--page-bg);
+      min-height: 100vh;
+      color: var(--page-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--px);
+    }
+
+    /* ── Navigation ───────────────────────────────────────────── */
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: #171717;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-wrap.scrolled { background: #171717; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+    .nav {
+      width: 100%;
+      max-width: 1400px;
+      margin-inline: auto;
+      padding: .85rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      position: relative;
+    }
+    .nav.scrolled { background: transparent; padding: .85rem 1.5rem; }
+    .nav-logo { display: flex; align-items: center; cursor: pointer; transition: opacity .2s; }
+    .nav-logo:hover { opacity: .8; }
+    .nav-logo img { height: 28px; width: auto; object-fit: contain; }
+    .nav.scrolled .nav-logo img { filter: none; }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.7); padding: .5rem 1rem; border-radius: 6px; transition: all .4s; cursor: pointer; position: relative; z-index: 10; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav-cta { font-size: .875rem; font-weight: 600; background: #fff; color: #171717; padding: .5rem 1rem; border-radius: 6px; border: none; transition: all .4s; white-space: nowrap; cursor: pointer; }
+    .nav-cta:hover { background: rgba(255,255,255,.88); transform: translateY(-1px); }
+    .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.8); transition: all .4s; }
+    @media (max-width: 768px) {
+      .nav { padding: .85rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-btn { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    }
+    body.nav-open { overflow: hidden; }
+    .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199; opacity: 0; transition: opacity .25s ease; }
+    body.nav-open .nav-mobile-overlay { display: block; opacity: 1; pointer-events: auto; }
+    .nav-mobile-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(300px, 85vw); background: #f5f4f2; z-index: 200; padding: 5rem 1.5rem 2rem; transform: translateX(100%); transition: transform .3s ease; box-shadow: -4px 0 24px rgba(0,0,0,.15); }
+    body.nav-open .nav-mobile-drawer { transform: translateX(0); }
+    .nav-mobile-drawer nav { display: flex; flex-direction: column; gap: .25rem; }
+    .nav-mobile-drawer a { display: block; padding: 1rem 1.25rem; font-size: 1rem; font-weight: 500; color: #111827; border-radius: 8px; }
+    .nav-mobile-drawer a:hover, .nav-mobile-drawer a:focus { background: rgba(0,0,0,.06); }
+    .nav-mobile-drawer .nav-cta { background: rgba(0,0,0,.08); font-weight: 600; }
+    @media (min-width: 1024px) {
+      .nav { padding: .85rem 3rem; }
+      .nav.scrolled { padding: .85rem 3rem; }
+    }
+
+    /* ── Page Content ─────────────────────────────────────────── */
+    .support-page {
+      padding: 8rem var(--px) 4rem;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+    .support-page h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    .support-page .support-intro {
+      font-size: 1.1rem;
+      color: var(--page-muted);
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .support-section {
+      margin-bottom: 3rem;
+    }
+    .support-section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .support-section p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    .support-section a {
+      color: var(--page-gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .support-section a:hover {
+      color: var(--page-text);
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .faq-item {
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--page-text);
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .faq-question:hover {
+      background: #fafaf9;
+    }
+    .faq-question svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 1.25rem 1rem;
+      background: #fff;
+      line-height: 1.7;
+      color: var(--page-muted);
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .contact-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .contact-card p {
+      margin-bottom: .75rem;
+    }
+    .contact-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form label {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--page-text);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      font-family: inherit;
+      font-size: .9375rem;
+      color: var(--page-text);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.15);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--page-gold);
+    }
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    .contact-form .form-hint {
+      font-size: .8rem;
+      color: var(--page-muted);
+      margin-top: -.5rem;
+    }
+    .contact-form button {
+      align-self: flex-start;
+      padding: .75rem 2rem;
+      font-family: inherit;
+      font-size: .9375rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--page-text);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .contact-form button:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer { background: #111111; padding: 3rem var(--px) 2rem; position: relative; overflow: hidden; }
+    .footer-inner { max-width: var(--max-w); margin-inline: auto; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .footer-links a { font-size: 15px; line-height: 1.35; color: rgba(255,255,255,.95); transition: opacity .2s; text-underline-offset: 4px; }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-app-btns { display: flex; gap: 0.5rem; }
+    .footer-app-btn { display: inline-flex; align-items: center; justify-content: center; transition: opacity .2s; line-height: 0; }
+    .footer-app-btn:hover { opacity: .85; }
+    .footer-app-btn img { height: 48px; width: auto; object-fit: contain; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .footer-join { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .footer-join-heading { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,.95); }
+    .footer-join-form { display: flex; align-items: center; max-width: 360px; width: 100%; border: 1px solid rgba(255,255,255,.3); border-radius: 9999px; background: rgba(255,255,255,.06); overflow: hidden; }
+    .footer-join-input { flex: 1; min-width: 0; padding: 0.75rem 1rem 0.75rem 1.25rem; font-family: inherit; font-size: 0.9375rem; color: rgba(255,255,255,.95); background: none; border: none; outline: none; }
+    .footer-join-input::placeholder { color: rgba(255,255,255,.5); }
+    .footer-join-btn { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; background: none; border: none; color: rgba(255,255,255,.9); cursor: pointer; transition: color .2s, opacity .2s; }
+    .footer-join-btn:hover { color: #fff; opacity: 1; }
+    .footer-join-btn svg { width: 20px; height: 20px; }
+    .footer-divider { width: 100%; height: 1px; background: rgba(255,255,255,.3); margin: 1.75rem 0; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 17px; line-height: 1.4; color: rgba(255,255,255,.95); }
+    .footer-social-row { display: flex; align-items: center; gap: 2rem; }
+    .footer-social-label { font-size: 17px; line-height: 1.4; color: rgba(255,255,255,.95); }
+    .footer-social { display: flex; align-items: center; gap: 1.5rem; }
+    .footer-social a { display: block; line-height: 0; opacity: .9; transition: opacity .2s; }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social img { width: 36px; height: 36px; object-fit: contain; }
+    .footer-logo-big { width: 100vw; margin-left: calc(-50vw + 50%); margin-top: 1.5rem; padding-top: 1rem; pointer-events: none; display: flex; justify-content: center; }
+    .footer-logo-big img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
+    @media (max-width: 768px) {
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-social-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <div class="nav-wrap scrolled" id="nav-wrap">
+  <header class="nav scrolled" id="nav">
+    <a class="nav-logo" href="index.html"><img src="THE.png" alt="The Narrow" /></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="mission.html">&#10013; Our Mission</a></li>
+        <li><a href="for-churches.html">Churches &amp; Organizations</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="guides.html">Learn</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="pricing.html">Try now for free</a>
+    <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+  </div>
+  <div class="nav-mobile-overlay" id="nav-mobile-overlay" aria-hidden="true"></div>
+  <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-hidden="true">
+    <nav>
+      <a href="mission.html">&#10013; Our Mission</a>
+      <a href="for-churches.html">Churches &amp; Organizations</a>
+      <a href="features.html">Features</a>
+      <a href="guides.html">Learn</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pricing.html" class="nav-cta">Try now for free</a>
+    </nav>
+  </div>
+
+  <!-- ── Page Content ───────────────────────────────────────── -->
+  <div class="support-page">
+    <h1>Support</h1>
+    <p class="support-intro">Need Help?<br>If you're having issues, questions, or feedback — we're here to help.</p>
+    <div class="support-section">
+      <div class="contact-card">
+        <p><strong>Email:</strong> <a href="mailto:support@thenarrow.co">support@thenarrow.co</a></p>
+        <p>We aim to respond within 24–48 hours.</p>
+      </div>
+    </div>
+
+    <div class="support-section">
+      <h2>Contact Form</h2>
+      <div class="contact-card">
+        <form class="contact-form" action="#" method="post" aria-label="Contact form">
+          <div>
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" name="name" required />
+          </div>
+          <div>
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email" required />
+          </div>
+          <div>
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" required></textarea>
+            <p class="form-hint">Include as much detail as possible so we can help you faster.</p>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="support-section">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            How do I cancel my subscription?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p><strong>iPhone:</strong> Go to Settings &rarr; Apple ID &rarr; Subscriptions</p>
+            <p><strong>Web:</strong> Log into your account and cancel in billing settings</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            Can I get a refund?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">We do not offer refunds unless required by law. Apple purchases are handled directly by Apple.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            How do I delete my account?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">You can delete your account in the app settings. This permanently removes your data.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            Is my data private?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">Yes. Your data is encrypted and never sold. You control what is shared with others.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false">
+            What if I'm struggling?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">The Narrow is a tool to support better habits, but it is not a substitute for professional help. If you need support, consider reaching out to a qualified professional.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <ul class="footer-links">
+          <li><a href="support.html">Support</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="delete-data.html">Delete Data</a></li>
+        </ul>
+        <div class="footer-app-btns">
+          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="Download App Store.png" alt="Download on the App Store" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="get it on google play.svg" alt="Get it on Google Play" /></a>
+        </div>
+      </div>
+      <div class="footer-join">
+        <h2 class="footer-join-heading">Join the Movement</h2>
+        <form class="footer-join-form" action="#" method="post" aria-label="Email signup">
+          <label for="footer-join-email-support" class="visually-hidden">Email</label>
+          <input id="footer-join-email-support" class="footer-join-input" type="email" name="email" placeholder="Enter your email ..." autocomplete="email" required>
+          <button type="submit" class="footer-join-btn" aria-label="Sign up">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="m11.246 5.318.032-.078.084-.147.148-.201.066-.054.143-.09.226-.107.168-.012.25.013.155.07.214.129 4.104 4.104c.048.048.086.104.112.167.025.062.039.129.039.196 0 .068-.013.134-.039.197-.026.062-.064.119-.112.166l-4.104 4.104c-.096.096-.227.15-.363.15s-.267-.054-.363-.15-.15-.227-.15-.363.054-.267.15-.363l3.229-3.228H2.575c-.136 0-.267-.054-.363-.15-.096-.096-.15-.227-.15-.363 0-.136.054-.266.15-.362.096-.097.227-.15.363-.15h11.074l-3.229-3.228c-.096-.096-.15-.227-.15-.363s.054-.267.15-.363.227-.15.363-.15.267.054.363.15l4.104 4.104Z"/></svg>
+          </button>
+        </form>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 The Narrow. Choose the narrow path.<br>Woodside Education Pty Ltd</p>
+        <div class="footer-social-row">
+          <span class="footer-social-label">Follow us on social</span>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="instagram.png" alt="" /></a>
+            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="TikTok gg.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-logo-big">
+        <img src="THE.png" alt="The Narrow" />
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('nav-mobile-btn');
+      const overlay = document.getElementById('nav-mobile-overlay');
+      const drawer = document.getElementById('nav-mobile-drawer');
+      function closeNav() { document.body.classList.remove('nav-open'); if (btn) btn.setAttribute('aria-expanded','false'); if (overlay) overlay.setAttribute('aria-hidden','true'); if (drawer) drawer.setAttribute('aria-hidden','true'); }
+      if (btn) btn.addEventListener('click',function(){ document.body.classList.toggle('nav-open'); btn.setAttribute('aria-expanded',document.body.classList.contains('nav-open')); overlay&&overlay.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); drawer&&drawer.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); });
+      if (overlay) overlay.addEventListener('click',closeNav);
+      if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeNav); });
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var item = btn.closest('.faq-item');
+          var isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); i.querySelector('.faq-question').setAttribute('aria-expanded','false'); });
+          if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
