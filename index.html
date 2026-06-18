@@ -2551,28 +2551,6 @@
     <div class="stats-bar">
       <div class="stats-inner">
         <p class="stats-bar-tagline fade-up">Walk with Us</p>
-        <div class="movement-carousel fade-up" id="movement-carousel">
-          <div class="movement-carousel-item">
-            <video muted loop playsinline data-movement-video></video>
-            <div class="movement-carousel-placeholder">Portrait video 1</div>
-          </div>
-          <div class="movement-carousel-item">
-            <video muted loop playsinline data-movement-video></video>
-            <div class="movement-carousel-placeholder">Portrait video 2</div>
-          </div>
-          <div class="movement-carousel-item">
-            <video muted loop playsinline data-movement-video></video>
-            <div class="movement-carousel-placeholder">Portrait video 3</div>
-          </div>
-          <div class="movement-carousel-item">
-            <video muted loop playsinline data-movement-video></video>
-            <div class="movement-carousel-placeholder">Portrait video 4</div>
-          </div>
-          <div class="movement-carousel-item">
-            <video muted loop playsinline data-movement-video></video>
-            <div class="movement-carousel-placeholder">Portrait video 5</div>
-          </div>
-        </div>
         <p class="movement-testimonials-label fade-up">— What People Are Saying —</p>
         <div class="movement-testimonials-grid fade-up">
           <div class="movement-testimonial-box">
@@ -2868,15 +2846,6 @@
       window.addEventListener('scroll', updateHighlight, { passive: true });
       updateHighlight();
     })();
-
-    // Join The Movement carousel — pause video on hover, play on mouse leave
-    document.querySelectorAll('[data-movement-video]').forEach(video => {
-      const item = video.closest('.movement-carousel-item');
-      if (!item) return;
-      if (video.src) item.classList.add('has-video');
-      item.addEventListener('mouseenter', () => { video.pause(); });
-      item.addEventListener('mouseleave', () => { if (video.src) video.play(); });
-    });
 
     // Life Changing Benefits — constant slow vertical scroll, active rotates with position
     (function() {
