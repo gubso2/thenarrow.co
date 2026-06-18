@@ -4,9 +4,9 @@
   <script>if (location.protocol === 'http:') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features — The Narrow</title>
-  <link rel="icon" type="image/svg+xml" href="favicon 3.svg" />
-  <meta name="description" content="Every feature in The Narrow exists to help you become who you are called to be. Built for the fight you're actually in." />
+  <title>Our Mission — The Narrow</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon 3.svg" />
+  <meta name="description" content="The Narrow exists to equip men with clarity, discipline, and community to break free from pornography and live with purpose." />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()" />
@@ -20,10 +20,10 @@
     html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 
     :root {
-      --page-bg:    #111111;
-      --page-text:  #E8E6E1;
-      --page-muted: #A0A09A;
-      --page-gold:  #f2e3c3;
+      --page-bg:      #f5f4f2;
+      --page-text:    #1C1C1E;
+      --page-muted:   #5a5752;
+      --page-gold:    #8c7a5a;
       --font-display: 'Inter', system-ui, sans-serif;
       --font-body:    'Inter', system-ui, sans-serif;
       --max-w: 1100px;
@@ -32,17 +32,24 @@
 
     body {
       background-color: var(--page-bg);
+      min-height: 100vh;
       color: var(--page-text);
       font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
+      position: relative;
     }
-
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* ── Navigation (same as homepage) ────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--px);
+    }
+
+    /* ── Navigation (same as home) ────────────────────────────── */
     .nav-wrap {
       position: fixed;
       top: 0;
@@ -80,22 +87,18 @@
     .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; white-space: nowrap; }
     .nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.7); padding: .5rem 1rem; border-radius: 6px; transition: all .4s; cursor: pointer; position: relative; z-index: 10; }
     .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
-    .nav.scrolled .nav-links a { color: rgba(255,255,255,.7); }
-    .nav.scrolled .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
     .nav-links a.active { color: var(--page-gold); font-weight: 600; }
     .nav-cta { font-size: .875rem; font-weight: 600; background: #fff; color: #171717; padding: .5rem 1rem; border-radius: 6px; border: none; transition: all .4s; white-space: nowrap; cursor: pointer; }
     .nav-cta:hover { background: rgba(255,255,255,.88); transform: translateY(-1px); }
-    .nav.scrolled .nav-cta { background: #fff; color: #171717; border-color: transparent; }
-    .nav.scrolled .nav-cta:hover { background: rgba(255,255,255,.88); transform: translateY(-1px); }
     .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.8); transition: all .4s; }
-    .nav.scrolled .nav-mobile-btn span { background: rgba(255,255,255,.8); }
     @media (max-width: 768px) {
       .nav-wrap { }
       .nav { padding: .85rem 1.5rem; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-mobile-btn { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; touch-action: manipulation; }
+      .nav-mobile-btn span { background: rgba(255,255,255,.8); }
     }
     body.nav-open { overflow: hidden; }
     .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199; opacity: 0; transition: opacity .25s ease; }
@@ -110,209 +113,287 @@
       .nav { padding: .85rem 3rem; }
       .nav.scrolled { padding: .85rem 3rem; }
     }
-    @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr; } .features-page { padding-top: 6rem; padding-bottom: 4rem; } }
-    @media (min-width: 769px) and (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    /* ── Page content ─────────────────────────────────────────── */
-    .features-page {
-      padding-top: 6rem;
-      padding-bottom: 4rem;
-      padding-inline: var(--px);
-      min-height: 100vh;
-      background: #f5f4f2;
-    }
-
-    .features-section {
-      padding: 3rem 1rem 4rem;
-    }
-    @media (min-width: 1024px) {
-      .features-section { padding: 4rem 1rem; }
-    }
-
-    .features-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .features-label {
-      display: inline-block;
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: #8c7a5a;
-      margin-bottom: 0.75rem;
-    }
-
-    .features-headline {
-      font-family: var(--font-display);
-      font-size: clamp(2.25rem, 4vw, 3.25rem);
-      font-weight: 700;
-      color: #1C1C1E;
-      margin-bottom: 1rem;
-      letter-spacing: -.01em;
-      line-height: 1.1;
-    }
-
-    .features-intro {
-      font-size: 1.1rem;
-      color: #5a5752;
-      line-height: 1.7;
-      max-width: 600px;
-      margin-inline: auto;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: center;
-      max-width: 72rem;
-      margin-inline: auto;
-    }
-    @media (min-width: 1024px) {
-      .features-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-    }
-
-    .features-visual {
+    /* ── Hero Banner ──────────────────────────────────────────── */
+    .cms-banner {
       position: relative;
-      margin-inline: auto;
-      width: fit-content;
+      width: 100%;
+      --text-color: #f5f4ef;
     }
-    @media (min-width: 1024px) {
-      .features-visual { margin-inline: 0; }
+    .cms-banner-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 376 / 492;
     }
-
-    .features-visual img {
-      width: 300px;
-      height: auto;
-      margin-inline: auto;
-      transition: opacity 0.3s ease-in-out;
+    @media (min-width: 768px) {
+      .cms-banner-inner { aspect-ratio: 1440 / 698; }
     }
-    @media (min-width: 1024px) {
-      .features-visual img { width: 350px; }
-    }
-
-    .feature-dots {
+    .cms-banner-image {
       position: absolute;
-      bottom: -30px;
-      left: 50%;
-      transform: translateX(-50%);
+      inset: 0;
+      overflow: hidden;
+    }
+    .cms-banner-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cms-banner-image-mobile { display: block; }
+    .cms-banner-image-desktop { display: none; }
+    @media (min-width: 768px) {
+      .cms-banner-image-mobile { display: none; }
+      .cms-banner-image-desktop { display: block; }
+    }
+    .cms-banner-overlay {
+      position: absolute;
+      inset: 0;
       display: flex;
-      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .cms-banner-content {
+      max-width: 1012px;
+      padding: 2.25rem var(--px) 3.5rem;
+      text-align: center;
+    }
+    @media (min-width: 1024px) {
+      .cms-banner-content { padding: 3.5rem var(--px) 3.5rem; }
+    }
+    .cms-banner-label {
+      font-size: 1.125rem;
+      color: var(--text-color);
+      letter-spacing: 0.05em;
+    }
+    @media (min-width: 1024px) {
+      .cms-banner-label { font-size: 1.25rem; }
+    }
+    .cms-banner-headline {
+      margin-top: 1rem;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-color);
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 1024px) {
+      .cms-banner-headline { margin-top: 1.5rem; font-size: clamp(3rem, 4vw, 4rem); }
     }
 
-    .feature-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      background: #d1d5db;
-      transition: all 0.3s;
+    /* ── Text Block (black) ───────────────────────────────────── */
+    .text-block {
+      background: #171717;
+      padding: 3rem var(--px) 6rem;
     }
-    .feature-dot.active {
-      background: #1f2937;
+    @media (min-width: 1024px) {
+      .text-block { padding: 6rem var(--px); }
     }
-    .feature-dot:hover {
-      background: #9ca3af;
+    .text-block-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .text-block-paragraph {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 2rem;
+      line-height: 1.5;
+    }
+    .text-block-paragraph:first-child { margin-top: 0; }
+    @media (min-width: 1024px) {
+      .text-block-paragraph {
+        width: calc(50% - 15px);
+        font-size: 1.75rem;
+        margin-top: 2rem;
+      }
+      .text-block-paragraph:nth-child(even) {
+        margin-left: auto;
+        padding-left: 3rem;
+      }
+      .text-block-paragraph:nth-child(odd):not(:first-child) {
+        padding-right: 3rem;
+      }
+    }
+    .text-block-headline {
+      margin-top: 2rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 1024px) {
+      .text-block-headline { margin-top: 5.875rem; }
     }
 
-    .feature-list {
+    /* ── Our Story ────────────────────────────────────────────── */
+    .our-model {
+      background: var(--page-bg);
+      padding: 3rem var(--px) 3rem;
+    }
+    @media (min-width: 1024px) {
+      .our-model { padding: 7.75rem var(--px) 6.25rem; }
+    }
+    .our-model-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    @media (min-width: 1024px) {
+      .our-model-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 3rem;
+      }
+      .our-model-text { flex: 1; min-width: 0; }
+    }
+    .our-model-title {
+      font-family: var(--font-display);
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--page-text);
+    }
+    @media (min-width: 1024px) {
+      .our-model-title { font-size: 2.25rem; margin-bottom: 1.5rem; }
+    }
+    .our-model-body {
+      margin-top: 1rem;
+      font-size: 1.0625rem;
+      color: var(--page-text);
+      line-height: 1.6;
+      max-width: 100%;
+    }
+    .our-model-body p {
+      margin: 0 0 1.25rem 0;
+    }
+    .our-model-body p:last-child {
+      margin-bottom: 0;
+    }
+    @media (min-width: 1024px) {
+      .our-model-body { margin-top: 0; font-size: 1.125rem; }
+    }
+    .our-model-visual {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 400px;
+      background: #e8e6e1;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .our-model-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      display: block;
+      transform: scale(1.4);
+    }
+    @media (max-width: 1023px) {
+      .our-model-visual { margin-top: 2rem; }
+    }
+
+    /* ── Video/Card Carousel ──────────────────────────────────── */
+    .video-carousel {
+      border-top: 1px solid rgba(0,0,0,0.1);
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+    .video-carousel-inner {
+      display: flex;
+      gap: 0;
+      padding: 2rem 0;
+    }
+    .video-carousel-slide {
+      flex: 0 0 min(85vw, 400px);
+      scroll-snap-align: start;
+      padding: 2rem var(--px);
+      border-left: 1px solid rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+    }
+    @media (min-width: 768px) {
+      .video-carousel-slide { flex: 0 0 min(45vw, 440px); padding: 2rem 3rem; }
     }
     @media (min-width: 1024px) {
-      .feature-list { gap: 0.625rem; }
+      .video-carousel-slide { flex: 0 0 calc(33.333% - 1px); }
     }
-
-    .feature-section-heading {
+    .video-carousel-slide h2 {
       font-family: var(--font-display);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #1C1C1E;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.875rem;
+      font-weight: 700;
+      min-height: 76px;
+      color: var(--page-text);
     }
-    .feature-section-heading:first-child {
+    @media (min-width: 1024px) {
+      .video-carousel-slide h2 { font-size: 2.25rem; min-height: 88px; }
+    }
+    .video-carousel-visual {
+      margin-top: 2rem;
+      width: 100%;
+      aspect-ratio: 1;
+      background: #e8e6e1;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--page-muted);
+      font-size: 0.9rem;
+      overflow: hidden;
+    }
+    .video-carousel-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      display: block;
+      transform: scale(1.4);
+    }
+    @media (min-width: 1024px) {
+      .video-carousel-visual { margin-top: 6rem; }
+    }
+    .video-carousel-text {
+      margin-top: 2rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--page-text);
+      flex: 1;
+    }
+    @media (min-width: 1024px) {
+      .video-carousel-text { margin-top: 6rem; }
+    }
+    .video-carousel-text a {
+      display: block;
+      margin-top: 1.5rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      color: var(--page-text);
+    }
+    .video-carousel-text a:hover { opacity: 0.8; }
+
+    /* ── References ───────────────────────────────────────────── */
+    .references {
+      padding: 2rem var(--px) 2rem;
       margin-top: 0;
     }
-
-    .feature-card {
-      padding: 0.875rem 1rem;
-      border-radius: 0.75rem;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .feature-card:hover {
-      border-color: #d1d5db;
-    }
-    .feature-card.active {
-      transform: scale(1.02);
-      border-color: #1C1C1E;
-      background: #f3f4f6;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-
-    .feature-title {
-      font-family: var(--font-display);
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #1C1C1E;
-      margin-bottom: 0.25rem;
-    }
     @media (min-width: 1024px) {
-      .feature-title { font-size: 1rem; }
+      .references { padding: 3.5rem var(--px) 2rem; }
     }
-
-    .feature-body {
-      font-size: 0.8rem;
-      line-height: 1.5;
-      color: rgba(28,28,30,0.7);
+    .references ol {
+      font-size: 0.75rem;
+      color: var(--page-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      list-style: decimal;
+      padding-left: 1.5rem;
+      max-width: var(--max-w);
+      margin-inline: auto;
     }
-    @media (min-width: 1024px) {
-      .feature-body { font-size: 0.875rem; }
-    }
-
-    .features-cta {
-      text-align: center;
-      margin-top: 2.5rem;
-    }
-
-    .features-cta a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #111111;
-      background: var(--page-gold);
-      padding: 0.875rem 2rem;
-      border-radius: 9999px;
-      transition: background .2s, transform .15s;
-    }
-    .features-cta a:hover {
-      background: #e6d4a8;
-      transform: translateY(-1px);
-    }
-
-    .features-back {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      margin-top: 2.5rem;
-      font-size: .9rem;
-      font-weight: 500;
-      color: #8c7a5a;
-      transition: opacity .2s;
-    }
-    .features-back:hover { opacity: .8; }
+    .references a { text-decoration: underline; }
 
     /* ── Footer ───────────────────────────────────────────────── */
     .footer {
@@ -444,17 +525,17 @@
 
   <div class="nav-wrap scrolled" id="nav-wrap">
     <header class="nav scrolled" id="nav">
-      <a class="nav-logo" href="/"><img src="THE.png" alt="The Narrow" /></a>
+      <a class="nav-logo" href="/"><img src="/THE.png" alt="The Narrow" /></a>
       <nav>
         <ul class="nav-links">
-          <li><a href="/mission">✝ Our Mission</a></li>
+          <li><a href="/mission" class="active">✝ Our Mission</a></li>
           <li><a href="/for-churches">Churches &amp; Organizations</a></li>
-          <li><a href="/features" class="active">Features</a></li>
+          <li><a href="/features">Features</a></li>
           <li><a href="/guides">Learn</a></li>
-      </ul>
-    </nav>
-    <a class="nav-cta" href="#">Try now for free</a>
-    <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
+        </ul>
+      </nav>
+      <a class="nav-cta" href="#">Try now for free</a>
+      <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </header>
@@ -470,74 +551,83 @@
     </nav>
   </div>
 
-  <main class="features-page">
-    <section class="features-section">
-      <div class="features-header">
-        <span class="features-label">Features</span>
-        <h1 class="features-headline">What does The Narrow include?</h1>
-        <p class="features-intro">Every feature exists to help you resist temptation and replace it with something stronger.</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="features-visual">
-          <img id="feature-img" src="Greater Motivation.png" alt="The Narrow app preview" class="features-img" />
-          <div id="feature-dots" class="feature-dots">
-            <button type="button" class="feature-dot active" data-index="0" aria-label="Go to feature: Porn Blocker"></button>
-            <button type="button" class="feature-dot" data-index="1" aria-label="Go to feature: Routines"></button>
-            <button type="button" class="feature-dot" data-index="2" aria-label="Go to feature: Community"></button>
-            <button type="button" class="feature-dot" data-index="3" aria-label="Go to feature: Panic Button"></button>
-            <button type="button" class="feature-dot" data-index="4" aria-label="Go to feature: Daily Accountability"></button>
-            <button type="button" class="feature-dot" data-index="5" aria-label="Go to feature: Accountability Brother"></button>
-            <button type="button" class="feature-dot" data-index="6" aria-label="Go to feature: Daily Scripture"></button>
-            <button type="button" class="feature-dot" data-index="7" aria-label="Go to feature: Cognitive Behavioural Therapy"></button>
-          </div>
+  <main id="MainContent" role="main" tabindex="-1" class="outline-none" style="background: var(--page-bg);">
+    <!-- Hero Banner -->
+    <section class="cms-banner">
+      <div class="cms-banner-inner">
+        <div class="cms-banner-image">
+          <img class="cms-banner-image-mobile" src="/mission background.png" alt="" />
+          <img class="cms-banner-image-desktop" src="/mission background.png" alt="" />
         </div>
-
-        <div id="feature-list" class="feature-list">
-          <h3 class="feature-section-heading">Remove & Replace Temptation</h3>
-          <div class="feature-card active" data-index="0">
-            <h4 class="feature-title">Porn Blocker</h4>
-            <p class="feature-body">Block access to pornography across your devices. A first line of defense that removes temptation before it reaches you.</p>
-          </div>
-          <div class="feature-card" data-index="1">
-            <h4 class="feature-title">Routines</h4>
-            <p class="feature-body">Build healthy habits that replace temptation with intentional actions — scripture, prayer, exercise, or connection with a brother.</p>
-          </div>
-
-          <h3 class="feature-section-heading">Resist Temptation</h3>
-          <div class="feature-card" data-index="2">
-            <h4 class="feature-title">Community</h4>
-            <p class="feature-body">Connect with brothers walking the same path. Share your journey, encourage one another, and fight together.</p>
-          </div>
-          <div class="feature-card" data-index="3">
-            <h4 class="feature-title">Panic Button</h4>
-            <p class="feature-body">When temptation hits, one tap brings immediate help — scripture, a redirect, or a prompt to reach your accountability brother.</p>
-          </div>
-          <div class="feature-card" data-index="4">
-            <h4 class="feature-title">Daily Accountability</h4>
-            <p class="feature-body">Check in daily with your progress. Consistent accountability builds the discipline that keeps you on the narrow path.</p>
-          </div>
-          <div class="feature-card" data-index="5">
-            <h4 class="feature-title">Accountability Brother</h4>
-            <p class="feature-body">Invite a trusted brother to walk alongside you. Share your streak, send an SOS when you're struggling, and receive real accountability.</p>
-          </div>
-          <div class="feature-card" data-index="6">
-            <h4 class="feature-title">Daily Scripture</h4>
-            <p class="feature-body">Truth delivered when you need it most. Daily verses and wisdom to anchor your heart and mind.</p>
-          </div>
-          <div class="feature-card" data-index="7">
-            <h4 class="feature-title">Cognitive Behavioural Therapy (CBT)</h4>
-            <p class="feature-body">Evidence-based exercises to identify triggers, challenge harmful thought patterns, and build lasting change.</p>
+        <div class="cms-banner-overlay">
+          <div class="cms-banner-content">
+            <p class="cms-banner-label">OUR MISSION</p>
+            <h1 class="cms-banner-headline">To call men off the wide road of pornography and onto the Narrow Path — into strength, freedom, and the fullness of God's design.</h1>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="features-cta">
-      <a href="/#pricing">Try now for free →</a>
-    </div>
+    <!-- Text Block -->
+    <section class="text-block">
+      <div class="text-block-inner">
+        <p class="text-block-paragraph">One in two Christian men quietly battle pornography — losing focus, intimacy, and drive. The wide road promises temporary ease, but it leads somewhere empty.</p>
+        <p class="text-block-paragraph">We believe men can choose a different path. So we build tools grounded in proven psychology and timeless truth — streak tracking, habit replacement, daily reflection, and real accountability. The Narrow exists for one purpose: to help men quit porn and reclaim the fullness of life.</p>
+        <h2 class="text-block-headline">This is the narrow path.</h2>
+      </div>
+    </section>
 
-    <a href="/" class="features-back">← Back to home</a>
+    <!-- Our Story -->
+    <section class="our-model">
+      <div class="our-model-inner">
+        <div class="our-model-text">
+        <h2 class="our-model-title">Our Story</h2>
+        <div class="our-model-body">
+          <p>Cam has served as a Christian youth leader for years. He watched young men who loved God quietly struggle with pornography — trapped in shame, secrecy, and confusion. The silence around it was costing them their confidence, relationships, and spiritual fire.</p>
+          <p>Yujin's story is harder. Regrettably, 10 years ago, he made criminal choices that led to prison for consuming illegal content — something Yujin regrets daily and feels deep remorse for.</p>
+          <p>Through accountability, repentance, and radical change, his life was rebuilt. Today, he is committed to stopping others from engaging in this destructive industry.</p>
+          <p>The Narrow exists because God's grace is stronger than shame — and you were never meant to live chained to secrecy, guilt, and compulsive desire.</p>
+        </div>
+        </div>
+        <div class="our-model-visual">
+          <img src="/mission background.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Video / Card Carousel -->
+    <section class="video-carousel">
+      <div class="video-carousel-inner">
+        <div class="video-carousel-slide">
+          <h2>Built on Grace</h2>
+          <div class="video-carousel-visual"><img src="/Grace.jpg" alt="" /></div>
+          <div class="video-carousel-text">
+            Freedom doesn't start with shame — it starts with grace. That's why every message inside The Narrow is grounded in truth, but delivered with grace.
+          </div>
+        </div>
+        <div class="video-carousel-slide">
+          <h2>Based on Science</h2>
+          <div class="video-carousel-visual"><img src="/brain.jpg" alt="" /></div>
+          <div class="video-carousel-text">
+            Lasting change requires more than motivation. The Narrow applies behavioural science, habit formation, and neuroscience-backed principles to help you rewire patterns and build discipline that endures.
+          </div>
+        </div>
+        <div class="video-carousel-slide">
+          <h2>Backed by Action</h2>
+          <div class="video-carousel-visual"><img src="/child.png" alt="" /></div>
+          <div class="video-carousel-text">
+            50% of profits are committed to organisations actively fighting child sexual exploitation — reducing demand, dismantling networks, and protecting the vulnerable.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- References (optional) -->
+    <div class="references">
+      <ol>
+        <li>Statistics on Christian men and pornography vary by study. One in two is a commonly cited figure in ministry contexts.</li>
+      </ol>
+    </div>
   </main>
 
   <footer class="footer">
@@ -550,15 +640,15 @@
           <li><a href="/delete-data">Delete Data</a></li>
         </ul>
         <div class="footer-app-btns">
-          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="Download App Store.png" alt="Download on the App Store" /></a>
-          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="get it on google play.svg" alt="Get it on Google Play" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="/Download App Store.png" alt="Download on the App Store" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="/get it on google play.svg" alt="Get it on Google Play" /></a>
         </div>
       </div>
       <div class="footer-join">
         <h2 class="footer-join-heading">Join the Movement</h2>
-        <form class="footer-join-form" action="#" method="post" id="footer-newsletter-form" aria-label="Email signup">
-          <label for="footer-join-email" class="visually-hidden">Email</label>
-          <input id="footer-join-email" class="footer-join-input" type="email" name="email" placeholder="Enter your email …" autocomplete="email" required>
+        <form class="footer-join-form" action="#" method="post" aria-label="Email signup">
+          <label for="footer-join-email-mission" class="visually-hidden">Email</label>
+          <input id="footer-join-email-mission" class="footer-join-input" type="email" name="email" placeholder="Enter your email …" autocomplete="email" required>
           <button type="submit" class="footer-join-btn" aria-label="Sign up">
             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="m11.246 5.318.032-.078.084-.147.148-.201.066-.054.143-.09.226-.107.168-.012.25.013.155.07.214.129 4.104 4.104c.048.048.086.104.112.167.025.062.039.129.039.196 0 .068-.013.134-.039.197-.026.062-.064.119-.112.166l-4.104 4.104c-.096.096-.227.15-.363.15s-.267-.054-.363-.15-.15-.227-.15-.363.054-.267.15-.363l3.229-3.228H2.575c-.136 0-.267-.054-.363-.15-.096-.096-.15-.227-.15-.363 0-.136.054-.266.15-.362.096-.097.227-.15.363-.15h11.074l-3.229-3.228c-.096-.096-.15-.227-.15-.363s.054-.267.15-.363.227-.15.363-.15.267.054.363.15l4.104 4.104Z"/></svg>
           </button>
@@ -570,13 +660,13 @@
         <div class="footer-social-row">
           <span class="footer-social-label">Follow us on social</span>
           <div class="footer-social">
-            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="instagram.png" alt="" /></a>
-            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="TikTok gg.png" alt="" /></a>
+            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="/instagram.png" alt="" /></a>
+            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="/TikTok gg.png" alt="" /></a>
           </div>
         </div>
       </div>
       <div class="footer-logo-big">
-        <img src="THE.png" alt="The Narrow" />
+        <img src="/THE.png" alt="The Narrow" />
       </div>
     </div>
   </footer>
@@ -593,35 +683,6 @@
       if (btn) btn.addEventListener('click',function(){ document.body.classList.toggle('nav-open'); btn.setAttribute('aria-expanded',document.body.classList.contains('nav-open')); overlay&&overlay.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); drawer&&drawer.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); });
       if (overlay) overlay.addEventListener('click',closeNav);
       if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeNav); });
-    })();
-
-    (function() {
-      var cards = document.querySelectorAll('.feature-card');
-      var dots = document.querySelectorAll('.feature-dot');
-      var img = document.getElementById('feature-img');
-
-      function setActive(i) {
-        cards.forEach(function(c, idx) {
-          c.classList.toggle('active', idx === i);
-        });
-        dots.forEach(function(d, idx) {
-          d.classList.toggle('active', idx === i);
-        });
-      }
-
-      cards.forEach(function(card) {
-        card.addEventListener('click', function() {
-          var i = parseInt(card.getAttribute('data-index'), 10);
-          setActive(i);
-        });
-      });
-
-      dots.forEach(function(dot) {
-        dot.addEventListener('click', function() {
-          var i = parseInt(dot.getAttribute('data-index'), 10);
-          setActive(i);
-        });
-      });
     })();
   </script>
 </body>

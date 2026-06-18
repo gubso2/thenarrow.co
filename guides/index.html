@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>if (location.protocol === 'http:') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guides — The Narrow</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon 3.svg" />
+  <meta name="description" content="Guides and resources to help you walk the narrow path. Learn how to break free and become the man you're called to be." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    :root {
+      --page-bg:    #f5f4f2;
+      --page-text:  #1C1C1E;
+      --page-muted: #5a5752;
+      --page-gold:  #8c7a5a;
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --max-w: 1100px;
+      --px: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    body {
+      background-color: var(--page-bg);
+      color: var(--page-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Navigation (same as homepage) ────────────────────────── */
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: top .3s, padding .3s;
+      background: #171717;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-wrap.scrolled { top: 0; background: #171717; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+    .nav {
+      width: 100%;
+      max-width: 1400px;
+      margin-inline: auto;
+      padding: .85rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      transition: all .4s ease;
+      border: none;
+      position: relative;
+    }
+    .nav.scrolled { background: transparent; padding: .85rem 1.5rem; border-bottom: none; box-shadow: none; }
+    .nav-logo { display: flex; align-items: center; cursor: pointer; transition: opacity .2s; }
+    .nav-logo:hover { opacity: .8; }
+    .nav-logo img { height: 28px; width: auto; object-fit: contain; }
+    .nav.scrolled .nav-logo img { filter: none; }
+    .nav-links { display: flex; align-items: center; gap: .5rem; list-style: none; white-space: nowrap; }
+    .nav-links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.7); padding: .5rem 1rem; border-radius: 6px; transition: all .4s; cursor: pointer; position: relative; z-index: 10; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav.scrolled .nav-links a { color: rgba(255,255,255,.7); }
+    .nav.scrolled .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav-links a.active { color: var(--page-gold); font-weight: 600; }
+    .nav-cta { font-size: .875rem; font-weight: 600; background: #fff; color: #171717; padding: .5rem 1rem; border-radius: 6px; border: none; transition: all .4s; white-space: nowrap; cursor: pointer; }
+    .nav-cta:hover { background: rgba(255,255,255,.88); transform: translateY(-1px); }
+    .nav.scrolled .nav-cta { background: #fff; color: #171717; border-color: transparent; }
+    .nav.scrolled .nav-cta:hover { background: rgba(255,255,255,.88); transform: translateY(-1px); }
+    .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.8); transition: all .4s; }
+    .nav.scrolled .nav-mobile-btn span { background: rgba(255,255,255,.8); }
+    @media (max-width: 768px) {
+      .nav-wrap { }
+      .nav { padding: .85rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-mobile-btn { display: flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; touch-action: manipulation; }
+    }
+    body.nav-open { overflow: hidden; }
+    .nav-mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199; opacity: 0; transition: opacity .25s ease; }
+    body.nav-open .nav-mobile-overlay { display: block; opacity: 1; pointer-events: auto; }
+    .nav-mobile-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(300px, 85vw); background: #f5f4f2; z-index: 200; padding: 5rem 1.5rem 2rem; transform: translateX(100%); transition: transform .3s ease; box-shadow: -4px 0 24px rgba(0,0,0,.15); }
+    body.nav-open .nav-mobile-drawer { transform: translateX(0); }
+    .nav-mobile-drawer nav { display: flex; flex-direction: column; gap: .25rem; }
+    .nav-mobile-drawer a { display: block; padding: 1rem 1.25rem; font-size: 1rem; font-weight: 500; color: #111827; border-radius: 8px; }
+    .nav-mobile-drawer a:hover, .nav-mobile-drawer a:focus { background: rgba(0,0,0,.06); }
+    .nav-mobile-drawer .nav-cta { background: rgba(0,0,0,.08); font-weight: 600; }
+    @media (min-width: 1024px) { .nav { padding: .85rem 3rem; } .nav.scrolled { padding: .85rem 3rem; } }
+    @media (max-width: 540px) { .guides-grid { grid-template-columns: 1fr; } .guides-page { padding-top: 6rem; padding-bottom: 4rem; } }
+
+    /* ── Page content ─────────────────────────────────────────── */
+    .guides-page {
+      padding-top: 8rem;
+      padding-bottom: 6rem;
+      padding-inline: var(--px);
+      min-height: 100vh;
+    }
+
+    .guides-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .guides-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .guides-label {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--page-gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .guides-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 3.25rem);
+      font-weight: 700;
+      color: var(--page-text);
+      margin-bottom: 1rem;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+    }
+
+    .guides-intro {
+      font-size: 1.1rem;
+      color: var(--page-muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .guides-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .guide-block {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s, background .2s;
+    }
+    .guide-block:hover {
+      border-color: rgba(140,122,90,.3);
+      background: rgba(255,255,255,0.95);
+    }
+
+    .guide-block-artwork {
+      aspect-ratio: 3 / 2;
+      background: rgba(0,0,0,0.06);
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+    }
+    .guide-block-artwork img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .guide-block-body {
+      padding: 0.75rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .guide-block-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--page-text);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .guide-block-meta {
+      font-size: 0.875rem;
+      color: var(--page-muted);
+      line-height: 1.3;
+    }
+
+    .guides-faq-link {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--page-gold);
+      margin-top: 1.5rem;
+      transition: opacity .2s;
+    }
+    .guides-faq-link:hover { opacity: .85; }
+
+    .guides-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 2rem;
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--page-gold);
+      transition: opacity .2s;
+    }
+    .guides-back:hover { opacity: .8; }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer {
+      background: #111111;
+      padding: 3rem var(--px) 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 15px;
+      line-height: 1.35;
+      color: rgba(255,255,255,.95);
+      transition: opacity .2s;
+      text-underline-offset: 4px;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-app-btns {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .footer-app-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .2s;
+      line-height: 0;
+    }
+    .footer-app-btn:hover { opacity: .85; }
+    .footer-app-btn img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .footer-join { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+    .footer-join-heading { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,.95); }
+    .footer-join-form { display: flex; align-items: center; max-width: 360px; width: 100%; border: 1px solid rgba(255,255,255,.3); border-radius: 9999px; background: rgba(255,255,255,.06); overflow: hidden; }
+    .footer-join-input { flex: 1; min-width: 0; padding: 0.75rem 1rem 0.75rem 1.25rem; font-family: inherit; font-size: 0.9375rem; color: rgba(255,255,255,.95); background: none; border: none; outline: none; }
+    .footer-join-input::placeholder { color: rgba(255,255,255,.5); }
+    .footer-join-btn { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; background: none; border: none; color: rgba(255,255,255,.9); cursor: pointer; transition: color .2s, opacity .2s; }
+    .footer-join-btn:hover { color: #fff; opacity: 1; }
+    .footer-join-btn svg { width: 20px; height: 20px; }
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,.3);
+      margin: 1.75rem 0;
+    }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: 17px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.95);
+    }
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .footer-social-label {
+      font-size: 17px;
+      line-height: 1.4;
+      color: rgba(255,255,255,.95);
+    }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .footer-social a {
+      display: block;
+      line-height: 0;
+      opacity: .9;
+      transition: opacity .2s;
+    }
+    .footer-social a:hover { opacity: 1; }
+    .footer-social img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+    .footer-logo-big {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      pointer-events: none;
+      display: flex;
+      justify-content: center;
+    }
+    .footer-logo-big img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-social-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap scrolled" id="nav-wrap">
+    <header class="nav scrolled" id="nav">
+      <a class="nav-logo" href="/"><img src="/THE.png" alt="The Narrow" /></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/mission">✝ Our Mission</a></li>
+          <li><a href="/for-churches">Churches &amp; Organizations</a></li>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/guides" class="active">Learn</a></li>
+        </ul>
+      </nav>
+      <a class="nav-cta" href="#">Try now for free</a>
+      <button type="button" class="nav-mobile-btn" id="nav-mobile-btn" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+  </div>
+  <div class="nav-mobile-overlay" id="nav-mobile-overlay" aria-hidden="true"></div>
+  <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-hidden="true">
+    <nav>
+      <a href="/mission">✝ Our Mission</a>
+      <a href="/for-churches">Churches &amp; Organizations</a>
+      <a href="/features">Features</a>
+      <a href="/guides">Learn</a>
+      <a href="#" class="nav-cta">Try now for free</a>
+    </nav>
+  </div>
+
+  <main class="guides-page">
+    <div class="guides-inner">
+      <div class="guides-header">
+        <span class="guides-label">Learn</span>
+        <h1 class="guides-headline">Guides & resources</h1>
+        <p class="guides-intro">
+          Practical wisdom for walking the narrow path. Resources to help you break free and become the man you're called to be.
+        </p>
+      </div>
+
+      <div class="guides-grid">
+        <a class="guide-block" href="/youre-not-alone">
+          <div class="guide-block-artwork"><img src="/You're Not Alone- The Silent Struggle of Modern Men.png" alt="" /></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">You're Not Alone: The Silent Struggle of Modern Men</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="/pornography-by-the-numbers">
+          <div class="guide-block-artwork"><img src="/Pornography by the Numbers- A Modern Epidemic 2.png" alt="" /></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">Pornography by the Numbers: A Modern Epidemic</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="/how-porn-rewires-your-brain">
+          <div class="guide-block-artwork"><img src="/How Porn Rewires Your Brain — and How to Recover.png" alt="" /></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">How Porn Rewires Your Brain — and How to Recover</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"><img src="/habit.png" alt="" /></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">The Science Behind Porn Use and Habit Formation</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="/how-pornography-affects-men-and-women-differently">
+          <div class="guide-block-artwork"><img src="/How Pornography Affects Men and Women Differently.png" alt="" /></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">How Pornography Affects Men and Women Differently</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="/what-does-the-bible-say-about-pornography">
+          <div class="guide-block-artwork"><img src="/What Does the Bible Say About Pornography%3F.png" alt="" /></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">What Does the Bible Say About Pornography?</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+        <a class="guide-block" href="#">
+          <div class="guide-block-artwork"><img src="/Grace.jpg" alt="" /></div>
+          <div class="guide-block-body">
+            <span class="guide-block-title">From Shame to Freedom: How the Grace of God Restores and Redeems</span>
+            <span class="guide-block-meta">Article</span>
+          </div>
+        </a>
+      </div>
+
+      <a href="/" class="guides-back">← Back to home</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <ul class="footer-links">
+          <li><a href="/support">Support</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/delete-data">Delete Data</a></li>
+        </ul>
+        <div class="footer-app-btns">
+          <a href="#" class="footer-app-btn" aria-label="Download on the App Store"><img src="/Download App Store.png" alt="Download on the App Store" /></a>
+          <a href="#" class="footer-app-btn" aria-label="Get it on Google Play"><img src="/get it on google play.svg" alt="Get it on Google Play" /></a>
+        </div>
+      </div>
+      <div class="footer-join">
+        <h2 class="footer-join-heading">Join the Movement</h2>
+        <form class="footer-join-form" action="#" method="post" aria-label="Email signup">
+          <label for="footer-join-email-guides" class="visually-hidden">Email</label>
+          <input id="footer-join-email-guides" class="footer-join-input" type="email" name="email" placeholder="Enter your email …" autocomplete="email" required>
+          <button type="submit" class="footer-join-btn" aria-label="Sign up">
+            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="m11.246 5.318.032-.078.084-.147.148-.201.066-.054.143-.09.226-.107.168-.012.25.013.155.07.214.129 4.104 4.104c.048.048.086.104.112.167.025.062.039.129.039.196 0 .068-.013.134-.039.197-.026.062-.064.119-.112.166l-4.104 4.104c-.096.096-.227.15-.363.15s-.267-.054-.363-.15-.15-.227-.15-.363.054-.267.15-.363l3.229-3.228H2.575c-.136 0-.267-.054-.363-.15-.096-.096-.15-.227-.15-.363 0-.136.054-.266.15-.362.096-.097.227-.15.363-.15h11.074l-3.229-3.228c-.096-.096-.15-.227-.15-.363s.054-.267.15-.363.227-.15.363-.15.267.054.363.15l4.104 4.104Z"/></svg>
+          </button>
+        </form>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 The Narrow. Choose the narrow path.<br>Woodside Education Pty Ltd</p>
+        <div class="footer-social-row">
+          <span class="footer-social-label">Follow us on social</span>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/thenarrow.app/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="/instagram.png" alt="" /></a>
+            <a href="https://www.tiktok.com/@thenarrow.app" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><img src="/TikTok gg.png" alt="" /></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-logo-big">
+        <img src="/THE.png" alt="The Narrow" />
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const nav = document.getElementById('nav');
+      const navWrap = document.getElementById('nav-wrap');
+      if (nav && navWrap) { nav.classList.add('scrolled'); navWrap.classList.add('scrolled'); }
+      const btn = document.getElementById('nav-mobile-btn');
+      const overlay = document.getElementById('nav-mobile-overlay');
+      const drawer = document.getElementById('nav-mobile-drawer');
+      function closeNav() { document.body.classList.remove('nav-open'); if (btn) btn.setAttribute('aria-expanded','false'); if (overlay) overlay.setAttribute('aria-hidden','true'); if (drawer) drawer.setAttribute('aria-hidden','true'); }
+      if (btn) btn.addEventListener('click',function(){ document.body.classList.toggle('nav-open'); btn.setAttribute('aria-expanded',document.body.classList.contains('nav-open')); overlay&&overlay.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); drawer&&drawer.setAttribute('aria-hidden',document.body.classList.contains('nav-open')?'false':'true'); });
+      if (overlay) overlay.addEventListener('click',closeNav);
+      if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeNav); });
+    })();
+  </script>
+</body>
+</html>
